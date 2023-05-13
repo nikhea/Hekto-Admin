@@ -3,7 +3,8 @@ import { Suspense, useEffect } from "react";
 import { Routes, Route, useLocation, Link } from "react-router-dom";
 import { routes } from "./routes/routes";
 import PageLoading from "./components/Loading/Loading";
-import Login from "./page/Login/LoginAccountForm";
+import Login from "../page/Login/LoginAccountForm";
+import Dashboard from "../page/dashboard/page";
 const ScrollToTopPage = () => {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -21,7 +22,7 @@ const RouteComponent = () => {
       <Suspense fallback={<PageLoading />}>
         <Routes>
           <Route path={routes.home} element={<Login />} />
-
+          <Route path={routes.dashboard} element={<Dashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

@@ -22,10 +22,3 @@ const App: FC = () => {
 };
 
 export default App;
-//  {Loading ? (
-//       <PageLoading />
-//     ) : (
-//       <>
-//         <RouteComponents />
-//       </>
-//     )}

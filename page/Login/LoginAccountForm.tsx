@@ -2,15 +2,16 @@ import { useForm, FormProvider } from "react-hook-form";
 import style from "./style/AccountForm.module.scss";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginAccountFormData, loginAccountSchema } from "./AccountFormData";
-import Input from "../../components/FormElement/input/input";
-import Button from "../../components/FormElement/Button/Button";
+import Input from "../../src/components/FormElement/input/input";
+import Button from "../../src/components/FormElement/Button/Button";
 import { FC } from "react";
-import { IAccountFormDefaultText } from "../../interface/AccountForm";
+import { IAccountFormDefaultText } from "../../src/interface/AccountForm";
 import { Link } from "react-router-dom";
-import { useLogin } from "../../auth/auth";
+import { useLogin } from "../../src/auth/auth";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { notify } from "../../utils/notify";
+import { notify } from "../../src/utils/notify";
+import { routes } from "../../src/routes/routes";
 
 const AccountFormDefaultText = {
   type: "login",
@@ -46,7 +47,8 @@ const AccountForm: FC = () => {
     login.mutate(data, {
       onSuccess: () => {
         reset();
-        navigate("/");
+        // navigate("/dashboard");
+        navigate(routes.dashboard);
         notify({
           type: "success",
           message: "Logged In Successfully",
