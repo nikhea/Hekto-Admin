@@ -1,3 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Poppins:wght@100;200;300;400;500;700&family=Public+Sans:wght@100;300;400;700&family=Roboto:ital,wght@0,100;0,500;1,100;1,300;1,400;1,500;1,700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Josefin Sans", sans-serif;
+}
+li {
+  list-style: none;
+}
+.container {
+  @apply w-[95%] lg:w-[90%] m-auto;
+}
+.transistionMode {
+  @apply transition duration-500 ease-in delay-200;
+}
+.icons {
+  @apply w-6 h-6 mr-2;
+}
+.mainText {
+  @apply text-2xl capitalize text-[#151875] mb-5 font-bold;
+}

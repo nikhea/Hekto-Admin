@@ -1,0 +1,35 @@
+// title: ` uppercase text-[2rem] text-[#7f7f7f] font-bold tracking-[1.1px]`,
+// titleMessage: `text-[#7f7f7f] font-light tracking-[1.1px] text-justify`,
+// form: ` w-full flex flex-wrap justify-between   m-auto `,
+// inputContainer: `flex flex-col my-5 w-[45%]`,
+
+// containerForm: ` w-full md:grid grid-cols-1 md:grid-cols-2   m-0 p-0 `,
+
+.formMainContainer {
+  @apply my-20 grid place-items-center;
+}
+.formContainer {
+  box-shadow: 0px 3px 35px 0px rgb(0 0 0 / 6%);
+  border-radius: 15px 15px 15px 15px;
+  @apply w-full lg:w-[50%] py-5;
+}
+.inputContainer {
+  @apply flex flex-col my-5 w-full;
+}
+.label {
+  @apply capitalize tracking-[1.1px] font-light mx-2;
+}
+
+.TextContainer {
+  @apply text-center capitalize;
+  h1 {
+    @apply font-bold text-2xl uppercase;
+  }
+  p {
+    @apply text-[#9096B2];
+  }
+}
+.TextContainerFooter {
+  @apply text-center capitalize flex items-center justify-center mt-5 text-[#9096B2];
+}
+// 9096B2

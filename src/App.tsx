@@ -1,11 +1,31 @@
+import { useQueryClient } from "@tanstack/react-query";
 import "./App.css";
+import { FC, useEffect, useState } from "react";
+import RouteComponents from "./RouteComponents";
+import PageLoading from "./components/Loading/Loading";
+import { useUser } from "./auth/auth";
+const App: FC = () => {
+  const user = useUser();
 
-function App() {
+  const queryClient = useQueryClient();
+  const [Loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 1000);
+  }, []);
+
   return (
-    <h1 className=" text-yellow-400 text-1xl bg-black">
-      Hello world! jkjslhksjdhs
-    </h1>
+    <>
+      <RouteComponents />
+    </>
   );
-}
+};
 
 export default App;
+//  {Loading ? (
+//       <PageLoading />
+//     ) : (
+//       <>
+//         <RouteComponents />
+//       </>
+//     )}
