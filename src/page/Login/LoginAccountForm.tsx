@@ -18,7 +18,7 @@ const AccountFormDefaultText = {
   ButtonSign: "sign in",
   altBase: "don’t have an account?",
   // altLink: PagesRoutes.register,
-  altLinkText: "create account",
+  altLinkText: "re",
 };
 
 const AccountForm: FC = () => {
