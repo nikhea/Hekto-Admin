@@ -10,9 +10,9 @@ import SideBarNavOutput from "./SideBarNavOutput";
 // border-[#E5E5E5] bg-[#E5E5E5]
 const style = {
   dashBoardLayout: ` grid grid-cols-6 relative`,
-  dashBoardOutPut: ` md:col-start-2 md:col-end-11 h-full w-full`,
+  dashBoardOutPut: `col-start-1 col-end-7 md:col-start-2 md:col-end-11 h-full w-full`,
   container: `  w-[95%]  m-auto my-5 `,
-  sidebar: ` bg-primary h-screen  sticky overflow-y-hidden  top-0 bottom-0 left-0 right-0 `,
+  sidebar: `hidden md:block bg-gradient-to-tl from-pink-900 via-pink-400 to-pink-600 h-screen  sticky overflow-y-hidden  top-0 bottom-0 left-0 right-0 `,
   sidebarNav: ``,
   Outlet: ``,
   logo: ` flex justify-center py-5   top-0 `,
