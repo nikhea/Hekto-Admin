@@ -13,6 +13,23 @@ body {
 li {
   list-style: none;
 }
+/* For WebKit browsers (e.g. Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: pink;
+  border-radius: 10px;
+}
+
+/* For Firefox */
+/* scrollbar-color: pink #f1f1f1; */
+
 .container {
   @apply w-[95%] lg:w-[90%] m-auto;
 }
