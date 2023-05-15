@@ -1,0 +1,36 @@
+.updateProfile {
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  /* padding: 59px 50px 40px 40px; */
+  /* padding: 59px 30px; */
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  /* box-shadow: 0px 3px 35px 0px rgb(0 0 0 / 6%); */
+  border-radius: 15px 15px 15px 15px;
+  transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+
+  @apply my-10 overflow-hidden;
+}
+/* .uploadContainer {
+    margin: 0 auto;
+    width: 90%;
+  } */
+@media only screen and (max-width: 760px) {
+  .updateProfile {
+    background: #fff;
+    /* padding: 69px 50px 54px 50px; */
+    /* padding: 69px 10px 54px 10px; */
+
+    /* margin: 0 auto; */
+    /* margin-top: 20px; */
+    margin-bottom: 0px;
+    /* box-shadow: 0px 3px 35px 0px rgb(0 0 0 / 6%); */
+    /* border-radius: 15px 15px 15px 15px; */
+    transition: background 0.3s, border 0.3s, border-radius 0.3s,
+      box-shadow 0.3s;
+    /* width: 95%; */
+    @apply my-5 overflow-hidden py-6;
+  }
+}

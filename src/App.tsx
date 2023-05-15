@@ -1,8 +1,10 @@
 import { useQueryClient } from "@tanstack/react-query";
-import "./App.css";
+import "./styles/App.css";
+import "./styles/select.css";
 import { FC, useEffect, useState } from "react";
 import RouteComponents from "./RouteComponents";
 import PageLoading from "./components/Loading/Loading";
+
 import { useUser } from "./auth/auth";
 const App: FC = () => {
   const user = useUser();

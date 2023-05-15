@@ -42,3 +42,35 @@ li {
 .mainText {
   @apply text-2xl capitalize text-[#151875] mb-5 font-bold;
 }
+
+/* text editor */
+.text-editor {
+}
+.quill.text-editors {
+  border-radius: 50%;
+}
+.ql-container.ql-snow {
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+.text-editors .ql-toolbar.ql-snow + .ql-container.ql-snow {
+  height: 50vh !important;
+  @apply shadow-none;
+}
+.text-editors {
+  height: 50vh !important;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+}
+.ql-container {
+  height: 50vh !important;
+}
+.ql-toolbar.ql-snow {
+  border-radius: 50px;
+  /* display:flex; */
+  justify-content: space-between;
+  align-items: center;
+}

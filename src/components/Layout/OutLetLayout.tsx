@@ -9,7 +9,7 @@ const OutLetLayout: FC<IOutLetLayout> = ({ children }) => {
   return (
     <div className="relative flex flex-col h-full">
       <Header />
-      <div className="h-full bg-gray-100"> {children}</div>
+      <div className="h-[100%] bg-gray-100"> {children}</div>
       <Footer />
     </div>
   );

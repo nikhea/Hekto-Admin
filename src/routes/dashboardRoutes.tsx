@@ -1,10 +1,9 @@
 import { routes } from "./routes";
-import { IoSettingsSharp } from "react-icons/io5";
-import { FaUser, FaCloudUploadAlt, FaMagento } from "react-icons/fa";
-import { MdDashboard } from "react-icons/md";
-import { BiStats } from "react-icons/bi";
+import { AiOutlineStar } from "react-icons/ai";
+import { FaUser, FaStore } from "react-icons/fa";
+import { MdDashboard, MdStore } from "react-icons/md";
 import { SiGoogletagmanager } from "react-icons/si";
-import { HiHomeModern } from "react-icons/hi2";
+import { HiOutlineDocumentReport } from "react-icons/hi";
 import { FiUsers } from "react-icons/fi";
 export const dashboardRoutes = [
   {
@@ -13,13 +12,13 @@ export const dashboardRoutes = [
     link: routes.dashboard,
   },
   {
-    icon: <SiGoogletagmanager />,
+    icon: <MdStore />,
     name: "products",
     link: routes.products,
   },
 
   {
-    icon: <FaCloudUploadAlt />,
+    icon: <FaStore />,
     name: "category",
     link: routes.category,
   },
@@ -34,7 +33,7 @@ export const dashboardRoutes = [
     link: routes.orders,
   },
   {
-    icon: <FaMagento />,
+    icon: <AiOutlineStar />,
     name: "product review",
     link: routes.productReview,
   },
@@ -44,7 +43,7 @@ export const dashboardRoutes = [
     link: routes.profile,
   },
   {
-    icon: <BiStats />,
+    icon: <HiOutlineDocumentReport />,
     name: "reports",
     link: routes.reports,
   },

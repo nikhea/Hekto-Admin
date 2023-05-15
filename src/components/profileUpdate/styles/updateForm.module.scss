@@ -1,0 +1,25 @@
+.css-nqaof0-control {
+  @apply lg:mt-[3%];
+}
+.react-select__control.css-nqaof0-control {
+  // margin-top: 3% !important;
+  @apply mb-[13px] md:mb-[10px] lg:mt-[3%];
+}
+
+.react-select__control .css-nqaof0-control {
+  // margin-top: 3% !important;
+}
+.react-select__control > * {
+  // margin-top: 0% !important;
+  @apply mb-[13px] md:mb-[10px] lg:-mt-[0%];
+}
+
+.ThreeDots {
+  margin: auto !important;
+  svg {
+    margin: auto !important;
+  }
+}
+.three-dots-svg {
+  // margin: auto !important;
+}
