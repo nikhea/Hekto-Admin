@@ -69,9 +69,6 @@ const useSingleImage = (widgetRef: any) => {
       }
     );
   }, [widgetRef, newImageData, setNewImageData]);
-  // console.log(newImageData);
-
-  // return UserData;
 };
 
 export default useSingleImage;

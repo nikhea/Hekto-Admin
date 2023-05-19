@@ -31,10 +31,11 @@ const valueFormatter = (number: number) =>
   `$ ${Intl.NumberFormat("us").format(number).toString()}`;
 
 const DonutCharts = () => (
-  <Card className="max-w-lg">
+  // max-w-lg
+  <Card className="h-full ">
     <Title>Sales</Title>
     <DonutChart
-      className="mt-6"
+      className="mt-6 h-[300px]"
       data={cities}
       category="sales"
       index="name"

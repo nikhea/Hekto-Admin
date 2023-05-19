@@ -15,6 +15,7 @@ import Profile from "../page/profile/page";
 import Reports from "../page/Reports/page";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 import { useUser } from "./auth/auth";
+import NewProduct from "../page/newProduct/page";
 const ScrollToTopPage = () => {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -36,6 +37,7 @@ const RouteComponent = () => {
             <Route path="" element={<SideBarLayout />}>
               <Route path={routes.dashboard} element={<Dashboard />} />
               <Route path={routes.products} element={<Products />} />
+              <Route path={routes.newProduct} element={<NewProduct />} />
               <Route path={routes.category} element={<Category />} />
               <Route path={routes.users} element={<Users />} />
               <Route path={routes.orders} element={<Orders />} />

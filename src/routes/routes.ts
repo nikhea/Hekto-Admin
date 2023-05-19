@@ -2,7 +2,7 @@ export const routes = {
   home: "/",
   dashboard: "/dashboard",
   products: "/products",
-  newProducts: "/Products-new",
+  newProduct: "/Product-new",
   category: "/category",
   newCategory: "/category-new",
   users: "/users",

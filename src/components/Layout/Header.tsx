@@ -29,7 +29,6 @@ const style = {
 const DashBoardHeader = () => {
   const logout = useLogout();
   const user = useUser();
-  console.log(user);
 
   const [drop, setDrop] = useState(false);
 
