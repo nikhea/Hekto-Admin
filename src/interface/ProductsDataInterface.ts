@@ -1,5 +1,3 @@
-import { StaticImageData } from "next/image";
-
 export type Product = {
   _id: string;
   name: string;
@@ -16,7 +14,7 @@ export type Product = {
 };
 export type IRelatedProductItem = {
   _id: string;
-  image: string | StaticImageData;
+  image: string | any;
   name: string;
   price: number;
   priceSymbol: string;

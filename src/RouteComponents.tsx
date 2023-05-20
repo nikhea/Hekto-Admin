@@ -16,6 +16,8 @@ import Reports from "../page/Reports/page";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 import { useUser } from "./auth/auth";
 import NewProduct from "../page/newProduct/page";
+import NewCategory from "../page/category/newCategory/page";
+import UpdataCategory from "../page/category/updataCategory/page";
 const ScrollToTopPage = () => {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -39,6 +41,11 @@ const RouteComponent = () => {
               <Route path={routes.products} element={<Products />} />
               <Route path={routes.newProduct} element={<NewProduct />} />
               <Route path={routes.category} element={<Category />} />
+              <Route path={routes.newCategory} element={<NewCategory />} />
+              <Route
+                path={`${routes.updateCategory}/:name`}
+                element={<UpdataCategory />}
+              />
               <Route path={routes.users} element={<Users />} />
               <Route path={routes.orders} element={<Orders />} />
               <Route path={routes.productReview} element={<ProductReview />} />
@@ -46,7 +53,7 @@ const RouteComponent = () => {
               <Route path={routes.reports} element={<Reports />} />
             </Route>
           </Route>
-
+          a
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

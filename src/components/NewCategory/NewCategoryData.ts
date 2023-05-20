@@ -3,11 +3,11 @@ import * as yup from "yup";
 export type newCategoryDataData = {
   name: string;
   description: string;
-  image: string;
+  coverPhoto: string;
 };
 
 export const newCategoryDataSchema = yup.object().shape({
   name: yup.string().required(),
   description: yup.string().required(),
-  image: yup.string().url().required(),
+  coverPhoto: yup.string().url().required(),
 });

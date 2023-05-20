@@ -1,4 +1,5 @@
-// "use client";a
+// @ts-nocheck
+
 import { FC } from "react";
 import ReactStars from "react-rating-stars-component";
 
