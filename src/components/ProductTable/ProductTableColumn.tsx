@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { routes } from "../../routes/routes";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { TbTrashXFilled } from "react-icons/tb";
 
 export const Productcolumns = [
   {
@@ -64,4 +65,21 @@ export const Productcolumns = [
     cellClassName: "name-column--cell",
     renderCell: (params: any) => <div> {params.value}</div>,
   },
+  {
+    field: "actions",
+    headerName: "Remove",
+    width: 100,
+    renderCell: (params: any) => (
+      <TbTrashXFilled
+        className="cursor-pointer hover:text-red-500"
+        // color="#8392A5"
+        size={20}
+        onClick={() => handleDelete(params.row._id)}
+      />
+    ),
+  },
 ];
+
+export const handleDelete = (reviewId: any) => {
+  console.log("Deleting product with ID:", reviewId);
+};

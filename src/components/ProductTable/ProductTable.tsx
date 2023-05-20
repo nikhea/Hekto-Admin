@@ -6,8 +6,6 @@ import { mockDataContacts } from "../../data/mockData";
 import { generateRandom } from "../../utils/generateRandomID";
 
 const ProductTable = ({ products }: any) => {
-  console.log(products);
-
   const gridComponent = useMemo(
     () => (
       <Box
