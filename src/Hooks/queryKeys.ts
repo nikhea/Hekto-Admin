@@ -6,4 +6,5 @@ export const queryKey = {
   wishlist: "wishlist",
   orders: "orders",
   reviews: "reviews",
+  users: "users",
 };

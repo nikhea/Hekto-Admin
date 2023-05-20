@@ -5,14 +5,16 @@ import Button from "../../src/components/FormElement/Button/Button";
 import NewCategoryModal from "../../src/components/NewCategory/NewCategoryModal";
 import { useFetchCategories } from "../../src/Hooks/useCategories/useFetchCategories";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import PageLoading from "../../src/components/Loading/PageLoading";
 
 const Category = () => {
   const categories = useFetchCategories();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
   if (!categories) {
-    return <h1>loadCategories</h1>;
+    return <PageLoading />;
   }
   const displayCategories = categories.map((category: any) => (
     <div key={category._id}>

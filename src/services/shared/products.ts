@@ -1,10 +1,10 @@
 import axios from "../../lib/axios";
 
-export const fetchProducts = async () => {
-  const { data } = await axios.get("products");
+export const fetchAllProducts = async () => {
+  const { data } = await axios.get("products/all");
   // console.log(data);
 
-  return data;
+  return data.data;
 };
 
 export const fetchSingleProducts = async (name: any) => {

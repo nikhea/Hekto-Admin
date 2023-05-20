@@ -1,4 +1,4 @@
-import Table from "../../src/components/Table/Table";
+import Table from "../../src/components/UsersComponents/Table";
 
 const Users = () => {
   return (

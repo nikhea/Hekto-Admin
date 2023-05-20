@@ -14,10 +14,10 @@ import ProductReview from "../page/ProductReview/page";
 import Profile from "../page/profile/page";
 import Reports from "../page/Reports/page";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
-import { useUser } from "./auth/auth";
 import NewProduct from "../page/newProduct/page";
 import NewCategory from "../page/category/newCategory/page";
 import UpdataCategory from "../page/category/updataCategory/page";
+import UserInfo from "../page/users/userInfo/page";
 const ScrollToTopPage = () => {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -47,6 +47,8 @@ const RouteComponent = () => {
                 element={<UpdataCategory />}
               />
               <Route path={routes.users} element={<Users />} />
+              <Route path={`${routes.users}/:name`} element={<UserInfo />} />
+
               <Route path={routes.orders} element={<Orders />} />
               <Route path={routes.productReview} element={<ProductReview />} />
               <Route path={routes.profile} element={<Profile />} />

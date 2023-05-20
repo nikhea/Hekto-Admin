@@ -5,7 +5,12 @@ import {
   ShoppingBagIcon,
   UserIcon,
 } from "@heroicons/react/outline";
+import { useFetchAllUser } from "../../../Hooks/useUser/useFetchAllUser";
+import { useFetchAllProducts } from "../../../Hooks/useProducts/useFetchAllProducts";
 const TotalCard = () => {
+  const users = useFetchAllUser();
+  const products = useFetchAllProducts();
+
   return (
     <div style={{ gap: "12px" }} className="grid grid-cols-2 ">
       <Card
@@ -51,17 +56,13 @@ const TotalCard = () => {
           />
         </Flex>
       </Card>
-      <Card
-        className="cursor-pointer "
-        decoration="left"
-        decorationColor="red"
-      >
+      <Card className="cursor-pointer " decoration="left" decorationColor="red">
         <Flex className="space-x-6">
           <div>
             <Text className="text-base font-normal uppercase">
               Total Products
             </Text>
-            <Metric>$ 34,743</Metric>
+            <Metric>{products && products.length}</Metric>
           </div>
           <Icon
             icon={ShoppingBagIcon}
@@ -83,7 +84,7 @@ const TotalCard = () => {
             <Text className="text-base font-normal uppercase ">
               Total Customers
             </Text>
-            <Metric>$ 34,743</Metric>
+            <Metric> {users && users.length}</Metric>
           </div>
           <Icon
             icon={UserIcon}
