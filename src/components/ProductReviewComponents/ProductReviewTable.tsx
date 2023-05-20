@@ -7,6 +7,7 @@ import RatingStar from "../FormElement/RatingStar/RatingStar";
 import ProductReviewTableDropDown from "./ProductReviewTableDropDown";
 import { TbTrashXFilled } from "react-icons/tb";
 import PageLoading from "../Loading/PageLoading";
+import { generateRandom } from "../../utils/generateRandomID";
 
 const ProductReviewTable = () => {
   const [selectedRows, setSelectedRows] = useState([]);
@@ -139,19 +140,15 @@ const ProductReviewTable = () => {
     return <PageLoading />;
   }
 
-  return <Box m="20px">{gridComponent}</Box>;
+  return (
+    <Box m="20px" className="text-gray-500">
+      {gridComponent}
+    </Box>
+  );
 };
 
 export default ProductReviewTable;
-function generateRandom() {
-  var length = 8,
-    charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-    retVal = "";
-  for (var i = 0, n = charset.length; i < length; ++i) {
-    retVal += charset.charAt(Math.floor(Math.random() * n));
-  }
-  return retVal;
-}
+
 function getProductReviews() {
   const data = usefetchAllReviews();
   const reviews: any = [];
