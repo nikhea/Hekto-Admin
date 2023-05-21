@@ -23,7 +23,7 @@ const UpdataCategory = () => {
 
   return (
     <Card>
-      <h1 className="text-center uppercase "> update {typeof name} </h1>
+      <h1 className="text-center uppercase "> update {name} </h1>
       <EditCategoryForm defaultCategory={category} />
     </Card>
   );

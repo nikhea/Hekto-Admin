@@ -2,7 +2,10 @@ import Typography from "@mui/material/Typography";
 import Input from "../FormElement/input/input";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { newCategoryDataData, newCategoryDataSchema } from "./NewCategoryData";
+import {
+  newCategoryDataData,
+  newCategoryDataSchema,
+} from "./NewSubCategoryData";
 import { BsUpload } from "react-icons/bs";
 import { FC, useEffect, useRef } from "react";
 
@@ -52,7 +55,7 @@ const EditCategoryForm: FC<NewCategoryFormProps> = ({ defaultCategory }) => {
           <Typography className="capitalize"> name</Typography>
           <Input
             type="text"
-            placeholder="Name*"
+            placeholder="Name"
             name="name"
             required
             isWhiteBg
@@ -65,7 +68,7 @@ const EditCategoryForm: FC<NewCategoryFormProps> = ({ defaultCategory }) => {
           <Typography className="capitalize ">image url</Typography>
           <Input
             type="text"
-            placeholder="image*"
+            placeholder="image"
             name="image"
             required
             isWhiteBg

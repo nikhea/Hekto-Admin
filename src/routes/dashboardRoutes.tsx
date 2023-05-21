@@ -23,6 +23,11 @@ export const dashboardRoutes = [
     link: routes.category,
   },
   {
+    icon: <FaStore />,
+    name: "subCategory",
+    link: routes.subCategory,
+  },
+  {
     icon: <FiUsers />,
     name: "users",
     link: routes.users,

@@ -1,47 +1,59 @@
 import Typography from "@mui/material/Typography";
 import Input from "../FormElement/input/input";
-import { useForm } from "react-hook-form";
+import { useController, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { newCategoryDataData, newCategoryDataSchema } from "./NewCategoryData";
-import { BsUpload } from "react-icons/bs";
-import { FC, useEffect, useRef } from "react";
+import {
+  newSubCategoryDataData,
+  newSubCategoryDataSchema,
+} from "./NewSubCategoryData";
+import useCreateCategories from "../../Hooks/useCategories/useCreateCategories";
+import { useEffect, useState } from "react";
+import Select from "../FormElement/select/select";
 
-import useUpdateCategories from "../../Hooks/useCategories/useUpdateCategories";
+const NewSubCategoryForm = ({ categories }: any) => {
+  const [categoryOptions, setCategoryOptions] = useState([""]);
 
-interface NewCategoryFormProps {
-  defaultCategory?: any;
-}
-const EditCategoryForm: FC<NewCategoryFormProps> = ({ defaultCategory }) => {
-  const { updateCategories } = useUpdateCategories();
-
-  const methods = useForm<newCategoryDataData>({
-    resolver: yupResolver(newCategoryDataSchema),
+  useEffect(() => {
+    const getData = async () => {
+      const arr: any = [];
+      let result = categories;
+      result.map((countries: any) => {
+        return arr.push({ value: countries.name, label: countries.name });
+      });
+      setCategoryOptions(arr);
+    };
+    getData();
+  }, []);
+  const methods = useForm<newSubCategoryDataData>({
+    resolver: yupResolver(newSubCategoryDataSchema),
     defaultValues: {},
   });
   const {
     register,
     reset,
     handleSubmit,
-    setValue,
     formState: { errors },
+    control,
   } = methods;
-  useEffect(() => {
-    if (defaultCategory.name) {
-      setValue("name", defaultCategory.name);
-      setValue("description", defaultCategory.description);
-      setValue("coverPhoto", defaultCategory.coverPhoto);
-    }
-  }, [defaultCategory, setValue]);
+  const { field: categoryField } = useController({
+    name: "category",
+    control,
+  });
+  const handleCategoryChange = (option: any) => {
+    categoryField.onChange(option.value);
+
+    return categoryField.onChange(option.value);
+  };
+
   const submitForm = (data: any) => {
-    let categoriesData = data;
-    if (categoriesData) {
-      if (defaultCategory.name) {
-        updateCategories(defaultCategory.name, categoriesData);
-      }
+    let subCategoriesData = data;
+    if (subCategoriesData) {
+      console.log(subCategoriesData);
     } else {
       console.log(errors);
     }
   };
+
   return (
     <form
       onSubmit={handleSubmit(submitForm)}
@@ -75,6 +87,19 @@ const EditCategoryForm: FC<NewCategoryFormProps> = ({ defaultCategory }) => {
           />
         </div>
         <div className="flex flex-col justify-between ">
+          <Typography className="capitalize"> category</Typography>
+
+          <Select
+            placeholder="Category*"
+            // @ts-ignore
+            options={categoryOptions}
+            field={categoryOptions.find(
+              ({ value }: any) => value === categoryField.value
+            )}
+            handleSelectChange={handleCategoryChange}
+          />
+        </div>
+        <div className="flex flex-col justify-between ">
           <Typography className="capitalize "> description</Typography>
           <textarea
             placeholder="type your message*"
@@ -84,7 +109,7 @@ const EditCategoryForm: FC<NewCategoryFormProps> = ({ defaultCategory }) => {
         </div>
         <div className="flex justify-center mt-2 ">
           <button className="px-4 py-1 text-white capitalize rounded-md w-fit bg-primary">
-            update
+            save
           </button>
         </div>
       </div>
@@ -92,4 +117,4 @@ const EditCategoryForm: FC<NewCategoryFormProps> = ({ defaultCategory }) => {
   );
 };
 
-export default EditCategoryForm;
+export default NewSubCategoryForm;

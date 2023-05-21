@@ -12,7 +12,7 @@ const TotalCard = () => {
   const products = useFetchAllProducts();
 
   return (
-    <div style={{ gap: "12px" }} className="grid grid-cols-2 ">
+    <div style={{ gap: "12px" }} className="grid grid-cols-2">
       <Card
         className="cursor-pointer "
         decoration="left"

@@ -18,12 +18,14 @@ import NewProduct from "../page/newProduct/page";
 import NewCategory from "../page/category/newCategory/page";
 import UpdataCategory from "../page/category/updataCategory/page";
 import UserInfo from "../page/users/userInfo/page";
+import SubCategory from "../page/subCatrgories/page";
+import NewSubCategory from "../page/subCatrgories/newSubCategory/page";
 const ScrollToTopPage = () => {
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      // behavior: "smooth",
     });
   }, [pathname]);
   return null;
@@ -46,6 +48,12 @@ const RouteComponent = () => {
                 path={`${routes.updateCategory}/:name`}
                 element={<UpdataCategory />}
               />
+              <Route path={routes.subCategory} element={<SubCategory />} />
+              <Route
+                path={routes.newSubCategory}
+                element={<NewSubCategory />}
+              />
+
               <Route path={routes.users} element={<Users />} />
               <Route path={`${routes.users}/:name`} element={<UserInfo />} />
 

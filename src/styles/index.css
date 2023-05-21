@@ -85,3 +85,13 @@ li {
 .MuiDataGrid-root .MuiDataGrid-cell:focus-within {
   outline: none !important;
 }
+
+.MuiDataGrid-column:focus,
+.MuiDataGrid-column:focus-within {
+  outline: none;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+.MuiDataGrid-root .MuiDataGrid-column:focus-within {
+  outline: none !important;
+}

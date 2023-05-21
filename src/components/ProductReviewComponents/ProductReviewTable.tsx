@@ -9,13 +9,13 @@ import { TbTrashXFilled } from "react-icons/tb";
 import PageLoading from "../Loading/PageLoading";
 import { generateRandom } from "../../utils/generateRandomID";
 
-const ProductReviewTable = () => {
+const ProductReviewTable = ({ reviews }: any) => {
   const [selectedRows, setSelectedRows] = useState([]);
 
   const handleSelectionModelChange = (selectionModel: any) => {
     setSelectedRows(selectionModel);
   };
-  const reviews = getProductReviews();
+
   const columns = useMemo(
     () => [
       // {
@@ -149,24 +149,24 @@ const ProductReviewTable = () => {
 
 export default ProductReviewTable;
 
-function getProductReviews() {
-  const data = usefetchAllReviews();
-  const reviews: any = [];
-  if (data) {
-    data.forEach((item: any) => {
-      const review = {
-        _id: item._id,
-        published: item.published,
-        comment: item.comment,
-        rating: item.rating,
-        customername: `${item.user.firstname} ${item.user.lastname}`,
-        lastname: item.user.lastname,
-        productName: item.product.name,
-      };
+// function getProductReviews() {
+//   const data = usefetchAllReviews();
+//   const reviews: any = [];
+//   if (data) {
+//     data.forEach((item: any) => {
+//       const review = {
+//         _id: item._id,
+//         published: item.published,
+//         comment: item.comment,
+//         rating: item.rating,
+//         customername: `${item.user.firstname} ${item.user.lastname}`,
+//         lastname: item.user.lastname,
+//         productName: item.product.name,
+//       };
 
-      reviews.push(review);
-    });
-  }
+//       reviews.push(review);
+//     });
+//   }
 
-  return reviews;
-}
+//   return reviews;
+// }

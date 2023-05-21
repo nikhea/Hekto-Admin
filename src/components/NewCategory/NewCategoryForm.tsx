@@ -44,7 +44,7 @@ const NewCategoryForm: FC<NewCategoryFormProps> = ({ categoryId }) => {
           <Typography className="capitalize"> name</Typography>
           <Input
             type="text"
-            placeholder="Name"
+            placeholder="Name*"
             name="name"
             required
             isWhiteBg
@@ -57,7 +57,7 @@ const NewCategoryForm: FC<NewCategoryFormProps> = ({ categoryId }) => {
           <Typography className="capitalize ">image url</Typography>
           <Input
             type="text"
-            placeholder="image"
+            placeholder="image*"
             name="image"
             required
             isWhiteBg
