@@ -10,6 +10,8 @@ import { Card } from "@tremor/react";
 import { FaStore } from "react-icons/fa";
 import { MdStore } from "react-icons/md";
 import useDeviceProperties from "../../src/Hooks/UseMediaQueries";
+import { IoChevronBackOutline } from "react-icons/io5";
+import HeaderCate from "../../src/components/HeaderCate/HeaderCate";
 
 const Category = () => {
   const { isTabletOrMobile } = useDeviceProperties();
@@ -80,10 +82,7 @@ const Category = () => {
   // `/categories/${category._id
   return (
     <div>
-      <div className="flex justify-between">
-        Back
-        <Link to={routes.newCategory}>add category</Link>
-      </div>
+      <HeaderCate text={headerDetails.text} link={headerDetails.link} />
       <Card
         style={{ gap: 20 }}
         className="grid grid-cols-1 py-20 md:grid-cols-2"
@@ -95,6 +94,10 @@ const Category = () => {
 };
 
 export default Category;
+const headerDetails = {
+  text: " add category",
+  link: routes.newCategory,
+};
 {
   /* <Button onClick={handleOpen}>Open modal</Button>
 <NewCategoryModal open={open} handleClose={handleClose} /> */
