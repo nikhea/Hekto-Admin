@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 import { routes } from "../../routes/routes";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { TbTrashXFilled } from "react-icons/tb";
+import { BsEyeFill } from "react-icons/bs";
 
+const LiveView = `https://fortune-ecommerce.vercel.app/products/`;
 export const Productcolumns = [
   {
     field: "coverPhoto",
@@ -64,6 +66,20 @@ export const Productcolumns = [
     flex: 1,
     cellClassName: "name-column--cell",
     renderCell: (params: any) => <div> {params.value}</div>,
+  },
+  {
+    // field: "actions",
+    headerName: "View Live",
+    width: 100,
+    renderCell: (params: any) => (
+      <Link target="_blank" to={`${LiveView}/${params.row.name}`}>
+        <BsEyeFill
+          className="cursor-pointer hover:text-red-500"
+          // color="#8392A5"
+          size={20}
+        />
+      </Link>
+    ),
   },
   {
     field: "actions",

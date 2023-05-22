@@ -13,7 +13,7 @@ const SubCategory = () => {
   if (!subcategories) {
     return <PageLoading />;
   }
-  const displaySubcategories = subcategories.map((subcategory: any) => (
+  const displaySubcategories = subcategories.data.map((subcategory: any) => (
     <div key={subcategory._id}>
       <Link to={`${routes.updateSubCategory}/${subcategory.name}`}>
         {subcategory.name}

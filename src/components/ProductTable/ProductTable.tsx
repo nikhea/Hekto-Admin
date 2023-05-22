@@ -36,7 +36,7 @@ const ProductTable = ({ products }: any) => {
             color: `white !important`,
           },
           "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-            color: `black !important`,
+            color: `gray !important`,
           },
         }}
       >

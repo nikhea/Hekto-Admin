@@ -11,7 +11,14 @@ const Products = () => {
   }
   return (
     <div>
-      <Link to={routes.newProduct}>add product</Link>
+      <div className="flex justify-end">
+        <Link
+          to={routes.newProduct}
+          className="p-2 capitalize border rounded-md hover:border-primary"
+        >
+          add product
+        </Link>
+      </div>
       <ProductTable products={products} />
     </div>
   );

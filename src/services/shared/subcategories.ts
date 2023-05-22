@@ -3,8 +3,8 @@ import axios from "../../lib/axios";
 import { notify } from "../../utils/notify";
 
 export const fetchSubCategories = async () => {
-  const { data } = await axios.get("subcategory");
-  return data.data;
+  const { data } = await axios.get("subcategory/pagination");
+  return data;
 };
 export const fetchSubSingleCategories = async (name: any) => {
   const { data } = await axios.get(`subcategory/${name}`);
