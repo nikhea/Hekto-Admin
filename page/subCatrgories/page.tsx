@@ -8,22 +8,47 @@ import { useFetchCategories } from "../../src/Hooks/useCategories/useFetchCatego
 
 const SubCategory = () => {
   const categories = useFetchCategories();
-  const subcategories = usefetchSubCategories();
 
+  const {
+    subcategories,
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    status,
+  } = usefetchSubCategories();
   if (!subcategories) {
     return <PageLoading />;
   }
-  const displaySubcategories = subcategories.data.map((subcategory: any) => (
-    <div key={subcategory._id}>
-      <Link to={`${routes.updateSubCategory}/${subcategory.name}`}>
-        {subcategory.name}
-      </Link>
-    </div>
+  console.log(subcategories);
+
+  const displaySubcategories = subcategories?.pages.map((page, pageIndex) => (
+    <React.Fragment key={pageIndex}>
+      {page.data.map((subcategory: any) => (
+        <div key={subcategory._id}>
+          <Link to={`${routes.updateSubCategory}/${subcategory.name}`}>
+            {subcategory.name}
+          </Link>
+        </div>
+      ))}
+    </React.Fragment>
   ));
+
   return (
     <div>
       <HeaderCate text={headerDetails.text} link={headerDetails.link} />
       {displaySubcategories}
+      <div className="grid my-3 text-center place-content-center">
+        {hasNextPage && (
+          <button
+            onClick={() => fetchNextPage()}
+            disabled={isFetchingNextPage}
+            className="p-2 text-white capitalize rounded-md bg-primary"
+          >
+            {isFetchingNextPage ? "Loading..." : "Load More"}
+          </button>
+        )}
+      </div>
     </div>
   );
 };

@@ -2,8 +2,11 @@ import { storage } from "../../auth/utils";
 import axios from "../../lib/axios";
 import { notify } from "../../utils/notify";
 
-export const fetchSubCategories = async () => {
-  const { data } = await axios.get("subcategory/pagination");
+const PAGE_SIZE = 4;
+export const fetchSubCategories = async ({ pageParam = 1 }) => {
+  const { data } = await axios.get(
+    `subcategory/pagination?page=${pageParam}&pageSize=${PAGE_SIZE}`
+  );
   return data;
 };
 export const fetchSubSingleCategories = async (name: any) => {
