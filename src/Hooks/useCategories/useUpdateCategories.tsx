@@ -2,10 +2,11 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import { queryKey } from "../queryKeys";
 import { UpdateCategoriesServer } from "../../services/shared/categories";
+import { useSingleImageStore } from "../../store/useSingleImageStore";
 
 const useUpdateCategories = () => {
+  const { clearStore } = useSingleImageStore();
   const queryClient = useQueryClient();
-
   const UpdateCategories = useMutation(
     async ({ categoriesId, categoriesData }: any) => {
       await UpdateCategoriesServer(categoriesId, categoriesData);
@@ -14,6 +15,7 @@ const useUpdateCategories = () => {
       onSuccess: () => {
         queryClient.invalidateQueries([queryKey.categories]);
         queryClient.invalidateQueries();
+        clearStore();
       },
     }
   );

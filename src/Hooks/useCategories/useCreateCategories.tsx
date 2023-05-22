@@ -1,16 +1,19 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createCategories } from "../../services/shared/categories";
 import { queryKey } from "../queryKeys";
+import { useSingleImageStore } from "../../store/useSingleImageStore";
 
 const useCreateCategories = () => {
+  const { clearStore } = useSingleImageStore();
+
   const queryClient = useQueryClient();
 
   const { mutateAsync, status, isLoading, data } = useMutation(
     createCategories,
     {
       onSuccess: () => {
-        // queryCache.invalidateQueries(WISHLIST_QUERY_KEY);
-        queryClient.invalidateQueries([queryKey.wishlist]);
+        queryClient.invalidateQueries([queryKey.categories]);
+        clearStore();
       },
     }
   );

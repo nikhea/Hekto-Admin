@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, FC } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addProfileImage } from "../services/shared/profile";
-import { useUser } from "../auth/auth";
+import { useSingleImageStore } from "../store/useSingleImageStore";
 
 interface Image {
   asset_id: any;
@@ -9,19 +9,25 @@ interface Image {
   thumbnail_url: any;
   public_id: any;
 }
-const useSingleImage = (widgetRef: any) => {
-  const user = useUser();
+export type ISingleImage = {
+  widgetRef: any;
+  foldername: string;
+};
+const useSingleImage = (
+  widgetRef: any,
+  foldername: any,
+  mutationFunction?: any
+) => {
   const cloudinaryRef = useRef();
-  const [newImageData, setNewImageData] = useState<Image>();
+  // const [newImageData, setNewImageData] = useState<Image>();
+  // const { newImageData, setNewImageData } = useSingleImageStore();
+  const { newImageData, setNewImageData } = useSingleImageStore();
+
   const queryClient = useQueryClient();
-  const {
-    mutateAsync,
-    status,
-    data: UserData,
-  } = useMutation(addProfileImage, {
+  const { mutateAsync } = useMutation(mutationFunction, {
     onMutate: () => {},
     onSettled: () => {
-      queryClient.invalidateQueries(["authenticated-user"]);
+      queryClient.invalidateQueries([""]);
     },
   });
   useEffect(() => {
@@ -31,9 +37,7 @@ const useSingleImage = (widgetRef: any) => {
       {
         cloudName: import.meta.env.VITE_REACT_APP_CLOUDINARY_CLOUD_NAME,
         uploadPreset: import.meta.env.VITE_REACT_APP_CLOUDINARY_UPLOAD_PRESET,
-        folder: `user/profile/${user?.data?.firstname} ${
-          user?.data?.lastname
-        }-${Date.now()}`,
+        folder: foldername,
         // clientAllowedFormats: ["webp", "png", "jpeg"],
         showPoweredBy: false,
         maxFileSize: 1500000,
@@ -60,7 +64,7 @@ const useSingleImage = (widgetRef: any) => {
             if (data) {
               setNewImageData(data);
               const submitImage = async () => {
-                await mutateAsync(data);
+                // await mutateAsync(data);
               };
               submitImage();
             }
@@ -69,6 +73,7 @@ const useSingleImage = (widgetRef: any) => {
       }
     );
   }, [widgetRef, newImageData, setNewImageData]);
+  console.log(newImageData);
 };
 
 export default useSingleImage;

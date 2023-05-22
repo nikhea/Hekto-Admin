@@ -21,7 +21,7 @@ const ProfileUpdate = () => {
       <HeaderNavigation />
       <div className={style.profileInfo}>
         <div className={style.ImgContainer}>
-          {/* <BannerImage user={user} /> */}
+          <BannerImage user={user} />
         </div>
 
         <div className={style.padding}>

@@ -4,16 +4,36 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { newCategoryDataData, newCategoryDataSchema } from "./NewCategoryData";
 import { BsUpload } from "react-icons/bs";
-import { FC, useRef } from "react";
+import { FC, useEffect, useRef } from "react";
 import useSingleImage from "../../Hooks/useSingleImage";
 import useCreateCategories from "../../Hooks/useCategories/useCreateCategories";
-
+import { useSingleImageStore } from "../../store/useSingleImageStore";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { TiCamera } from "react-icons/ti";
+const style = {
+  imgContainer: `h-full  rounded-tl-md rounded-tr-md relative`,
+  thumbnailImg: ``,
+  profileImg: `shadow-xl  h-[100px] w-[100px] bg-red-500 rounded-full absolute -bottom-[50px] left-10   border-4 border-white object-cover`,
+  thumbnailImage: `h-full w-full bg-red-500 rounded-full object-cover `,
+  btnContainer: `absolute left-3 top-[20px] `,
+  btn: `bg-white p-3 rounded-md flex items-center justify-between capitalize absolute m-3`,
+};
 interface NewCategoryFormProps {
   categoryId?: string;
 }
-const NewCategoryForm: FC<NewCategoryFormProps> = ({ categoryId }) => {
-  const { createNewCategories } = useCreateCategories();
+const addCategoryImage = {};
+const NewCategoryForm: FC<NewCategoryFormProps> = () => {
+  const { newImageData, setNewImageData } = useSingleImageStore();
 
+  const foldername = `categories-${Date.now()}`;
+  const widgetRef = useRef();
+  const s = useSingleImage(widgetRef, foldername, addCategoryImage);
+  const openWidget = () => {
+    //@ts-ignore
+    widgetRef.current.open();
+  };
+
+  const { createNewCategories, status } = useCreateCategories();
   const methods = useForm<newCategoryDataData>({
     resolver: yupResolver(newCategoryDataSchema),
     defaultValues: {},
@@ -22,8 +42,19 @@ const NewCategoryForm: FC<NewCategoryFormProps> = ({ categoryId }) => {
     register,
     reset,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = methods;
+  useEffect(() => {
+    if (newImageData?.secure_url) {
+      setValue("photo", newImageData);
+    }
+  }, [newImageData, setNewImageData, setValue]);
+  useEffect(() => {
+    if (status === "success") {
+      reset();
+    }
+  }, [status]);
 
   const submitForm = (data: any) => {
     let categoriesData = data;
@@ -49,22 +80,43 @@ const NewCategoryForm: FC<NewCategoryFormProps> = ({ categoryId }) => {
             required
             isWhiteBg
             isCurve
-            // Width="70%"
             inputRef={register("name")}
           />
         </div>
         <div className="flex flex-col justify-between ">
-          <Typography className="capitalize ">image url</Typography>
-          <Input
-            type="text"
-            placeholder="image*"
-            name="image"
-            required
-            isWhiteBg
-            isCurve
-            // Width="70%"
-            inputRef={register("coverPhoto")}
-          />
+          <Typography className="capitalize ">image </Typography>
+          {status}
+          {!newImageData ? (
+            <div
+              onClick={openWidget}
+              className="flex flex-col items-center justify-center w-full h-56 text-center border-2 border-dashed cursor-pointer group hover:border-primary"
+            >
+              <BsUpload
+                className="text-[#8392A5] group-hover:text-primary"
+                size={20}
+              />
+              <h1 className="group-hover:text-primary">
+                {" "}
+                choose an image file
+              </h1>
+            </div>
+          ) : (
+            <div className="relative w-full h-56 mb-3 rounded-md bg-fuchsia-500">
+              <button className={style.btn} onClick={openWidget}>
+                <TiCamera
+                  color=" #3b5998"
+                  size={25}
+                  style={{ marginRight: "11px" }}
+                />
+                change photo
+              </button>
+              <LazyLoadImage
+                className="object-cover w-full h-full rounded-md"
+                src={newImageData.secure_url}
+                alt={newImageData.public_id}
+              />
+            </div>
+          )}
         </div>
         <div className="flex flex-col justify-between ">
           <Typography className="capitalize "> description</Typography>
@@ -83,6 +135,9 @@ const NewCategoryForm: FC<NewCategoryFormProps> = ({ categoryId }) => {
     </form>
   );
 };
+
+export default NewCategoryForm;
+
 // <Input
 //           type="text"
 //           placeholder="description"
@@ -93,7 +148,6 @@ const NewCategoryForm: FC<NewCategoryFormProps> = ({ categoryId }) => {
 //           // Width="70%"
 //           inputRef={register("description")}
 //         />
-export default NewCategoryForm;
 {
   /* <div className=" text-center group cursor-pointer hover:border-primary border-2 w-[69%] h-56 border-dashed flex flex-col justify-center items-center">
           <BsUpload
@@ -150,3 +204,15 @@ export default NewCategoryForm;
 //   </button>
 // </div>
 // </form>
+{
+  /* <Input
+type="text"
+placeholder="image*"
+name="image"
+required
+isWhiteBg
+isCurve
+// Width="70%"
+inputRef={register("coverPhoto")}
+/> */
+}
