@@ -2,7 +2,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { MdNotifications } from "react-icons/md";
 import { IoSettingsSharp } from "react-icons/io5";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-// import "rc-dropdown/assets/index.css";
+import "rc-dropdown/assets/index.css";
 import Dropdown from "rc-dropdown";
 import Menu, { Item as MenuItem } from "rc-menu";
 import { useState } from "react";
@@ -11,7 +11,7 @@ import { routes } from "../../routes/routes";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { useLogout, useUser } from "../../auth/auth";
 const style = {
-  container: `shadow-sm  md:flex bg-white p-[0em] py-2  overflow-hidden text-[#11142D] relative sticky  top-0 bottom-0 left-0 right-0 z-[9999] overflow-hidden`,
+  container: `shadow-sm  md:flex bg-white p-[0em] py-2  overflow-hidden text-[#11142D] relative sticky  top-0 bottom-0 left-0 right-0 z-[99] overflow-hidden`,
   subContainer: `flex justify-between items-center w-[95%] m-auto `,
   colRight: ``,
   colLeft: `flex items-center`,
@@ -52,14 +52,14 @@ const DashBoardHeader = () => {
           />
           <p className={style.MenuItemLinkText}>edit profile</p>
         </Link>
-        <Link to={routes.users} className={style.MenuItemLink}>
+        {/* <Link to={routes.users} className={style.MenuItemLink}>
           <IoSettingsSharp
             color="#8392A5"
             size={20}
             style={{ marginRight: "5px" }}
           />
           <p className={style.MenuItemLinkText}>settings</p>
-        </Link>
+        </Link> */}
         <Link to="#" onClick={logOutUser} className={style.MenuItemLink}>
           <RiLogoutCircleRLine
             color="#8392A5"
@@ -90,7 +90,7 @@ const DashBoardHeader = () => {
             <div className="bg-red-800 h-2 w-2 rounded-full absolute left-2 top-[1px]"></div>
           </div>
           <p className="cursor-pointer">
-            {urlImg ? (
+            {!user?.data?.firstname ? (
               <Dropdown
                 trigger={["click"]}
                 overlay={menu}

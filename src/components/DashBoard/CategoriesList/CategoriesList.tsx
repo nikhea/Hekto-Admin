@@ -8,21 +8,24 @@ import useDeviceProperties from "../../../Hooks/UseMediaQueries";
 const CategoriesList = () => {
   const { isTabletOrMobile } = useDeviceProperties();
   const categories = useFetchCategories();
-  // [].
-  const displayCategories = categories.slice(0, 4).map((category: any) => (
-    <Link className="w-full" to={`${routes.category}`} key={category._id}>
-      <div style={{ width: "100%", height: "100px", borderRadius: "10px" }}>
-        <LazyLoadImage
-          style={{ borderRadius: "10px" }}
-          className="flex object-cover w-full h-full rounded-2xl"
-          src={category.coverPhoto}
-          alt={category.name}
-        />
-      </div>
-      <h1 className="mt-3 text-center">{category.name}</h1>
-    </Link>
-  ));
-  const displayCategoriesLG = categories.slice(0).map((category: any) => (
+
+  const LoopedCategories = categories || [];
+  const displayCategories = LoopedCategories.slice(0, 4).map(
+    (category: any) => (
+      <Link className="w-full" to={`${routes.category}`} key={category._id}>
+        <div style={{ width: "100%", height: "100px", borderRadius: "10px" }}>
+          <LazyLoadImage
+            style={{ borderRadius: "10px" }}
+            className="flex object-cover w-full h-full rounded-2xl"
+            src={category.coverPhoto}
+            alt={category.name}
+          />
+        </div>
+        <h1 className="mt-3 text-center">{category.name}</h1>
+      </Link>
+    )
+  );
+  const displayCategoriesLG = LoopedCategories.map((category: any) => (
     <Link className="w-full" to={`${routes.category}`} key={category._id}>
       <div style={{ width: "100%", height: "100px", borderRadius: "10px" }}>
         <LazyLoadImage
