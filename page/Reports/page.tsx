@@ -3,66 +3,60 @@ import AreaCharts from "../../src/components/Chart/AreaChart/AreaChart";
 import BarCharts from "../../src/components/Chart/BarChart/BarChart";
 import DonutCharts from "../../src/components/Chart/Donut/DountChart";
 import LineCharts from "../../src/components/Chart/LineChart/LineChart";
+import BarChartGroup from "../../src/components/Chart/BarChartGroup/BarChartGroup";
 
 const Reports = () => {
   return (
-    <div className="">
-      <Grid
-        numCols={1}
-        numColsMd={2}
-        style={{ marginBottom: "12px", gap: "12px" }}
-      >
-        <Col className="h-full ">
-          <BarCharts />
-        </Col>
-        <Col className="h-full ">
-          <LineCharts />
-        </Col>
-      </Grid>
-      <Grid
-        numCols={1}
-        numColsMd={2}
-        style={{ marginBottom: "12px", gap: "12px" }}
-      >
-        <Col className="h-full ">
-          <DonutCharts />
-        </Col>
-        <Col className="h-full ">
-          <BarCharts />
-        </Col>
-      </Grid>
-
-      <AreaCharts />
-    </div>
+    <Grid
+      numCols={1}
+      numColsSm={1}
+      numColsLg={3}
+      style={{ marginBottom: "12px", gap: "12px" }}
+      className="gap-2"
+    >
+      <Col numColSpan={1} numColSpanLg={2}>
+        <LineCharts />
+      </Col>
+      <BarCharts />
+      <DonutCharts />
+      <Col numColSpan={1} numColSpanLg={2}>
+        <BarChartGroup />
+      </Col>
+      <Col numColSpan={1} numColSpanLg={3}>
+        <AreaCharts />
+      </Col>
+    </Grid>
   );
 };
 
 export default Reports;
-{
-  /* <div className="grid grid-cols-12 my-5" style={{ gap: "12px" }}>
-<div style={{ height: "100%", gridColumnStart: 1, gridColumnEnd: 6 }}>
-  <DonutCharts />
-</div>
-<div style={{ height: "100%", gridColumnStart: 6, gridColumnEnd: 13 }}>
-  <BarCharts />
-</div>
-</div> */
-}
-{
-  /* <div className="grid grid-cols-12 my-5" style={{ gap: "12px" }}>
-<div style={{ height: "100%", gridColumnStart: 1, gridColumnEnd: 8 }}>
-  <BarCharts />
-</div>
-<div style={{ height: "100%", gridColumnStart: 8, gridColumnEnd: 13 }}>
-  <LineCharts />
-</div>
-</div>
-<div className="grid grid-cols-12 my-5" style={{ gap: "12px" }}>
-<div style={{ height: "100%", gridColumnStart: 1, gridColumnEnd: 6 }}>
-  <DonutCharts />
-</div>
-<div style={{ height: "100%", gridColumnStart: 6, gridColumnEnd: 13 }}>
-  <BarCharts />
-</div>
-</div> */
-}
+
+// <div className="">
+// <Grid
+//   numCols={1}
+//   numColsMd={2}
+//   style={{ marginBottom: "12px", gap: "12px" }}
+// >
+//   <Col className="h-full ">
+//     <BarCharts />
+//   </Col>
+//   <Col className="h-full ">
+//     <LineCharts />
+//   </Col>
+// </Grid>
+// <Grid
+//   numCols={1}
+//   numColsMd={2}
+//   style={{ marginBottom: "12px", gap: "12px" }}
+// >
+//   <Col className="h-full ">
+//     <DonutCharts />
+//   </Col>
+//   <Col className="h-full ">
+//     {/* <BarCharts /> */}
+//     <BarChartGroup />{" "}
+//   </Col>
+// </Grid>
+
+// <AreaCharts />
+// </div>
