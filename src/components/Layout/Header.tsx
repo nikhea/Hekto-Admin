@@ -90,30 +90,31 @@ const DashBoardHeader = () => {
             <div className="bg-red-800 h-2 w-2 rounded-full absolute left-2 top-[1px]"></div>
           </div>
           <p className="cursor-pointer">
-            {!user?.data?.firstname ? (
-              <Dropdown
-                trigger={["click"]}
-                overlay={menu}
-                animation="slide-up"
-                onVisibleChange={onVisibleChange}
-                // onSelect={onSelect}
-              >
-                <div className={style.profileImg}>
-                  <LazyLoadImage
-                    className={style.thumbnailImage}
-                    src={urlImg}
+            <Dropdown
+              trigger={["click"]}
+              overlay={menu}
+              animation="slide-up"
+              onVisibleChange={onVisibleChange}
+              // onSelect={onSelect}
+            >
+              {/* className={style.profileImg} */}
+              <div>
+                {urlImg ? (
+                  <div className={style.profileImg}>
+                    <LazyLoadImage
+                      className={style.thumbnailImage}
+                      src={urlImg}
+                    />
+                  </div>
+                ) : (
+                  <FaUserCircle
+                    color="#8392A5"
+                    size={50}
+                    style={{ marginRight: "5px" }}
                   />
-                </div>
-              </Dropdown>
-            ) : (
-              <>
-                <FaUserCircle
-                  color="#8392A5"
-                  size={50}
-                  style={{ marginRight: "5px" }}
-                />
-              </>
-            )}
+                )}
+              </div>
+            </Dropdown>
           </p>
           <div className=" flex flex-col text-[.7rem] lg:text-[1rem]">
             <h1>

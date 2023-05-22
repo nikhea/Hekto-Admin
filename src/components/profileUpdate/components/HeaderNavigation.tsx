@@ -10,11 +10,11 @@ const HeaderNavigation = () => {
   return (
     <div className={style.header}>
       <h1 className={style.h1}>update profile</h1>
-      <Link to="/profile">
+      {/* <Link to="/profile">
         <Button isCurve uppercase primary padding full>
           <span className="mx-2">view profile</span>
         </Button>
-      </Link>
+      </Link> */}
     </div>
   );
 };
