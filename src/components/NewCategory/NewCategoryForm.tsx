@@ -82,7 +82,10 @@ const NewCategoryForm: FC<NewCategoryFormProps> = () => {
           {!newImageData ? (
             <div
               onClick={openWidget}
-              className="flex flex-col items-center justify-center w-full h-56 text-center border-2 border-dashed cursor-pointer group hover:border-primary"
+              className={`flex flex-col items-center justify-center w-full h-56 text-center border-2 border-dashed cursor-pointer group hover:border-primary ${
+                errors.photo && " border-red-500"
+              }`}
+              // className="flex flex-col items-center justify-center w-full h-56 text-center border-2 border-dashed cursor-pointer group hover:border-primary"
             >
               <BsUpload
                 className="text-[#8392A5] group-hover:text-primary"

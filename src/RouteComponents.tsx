@@ -20,6 +20,7 @@ import UpdataCategory from "../page/category/updataCategory/page";
 import UserInfo from "../page/users/userInfo/page";
 import SubCategory from "../page/subCatrgories/page";
 import NewSubCategory from "../page/subCatrgories/newSubCategory/page";
+import UpdataSubCategory from "../page/subCatrgories/UpdataSubCategory/page";
 const ScrollToTopPage = () => {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -53,7 +54,10 @@ const RouteComponent = () => {
                 path={routes.newSubCategory}
                 element={<NewSubCategory />}
               />
-
+              <Route
+                path={`${routes.updateSubCategory}/:name`}
+                element={<UpdataSubCategory />}
+              />
               <Route path={routes.users} element={<Users />} />
               <Route path={`${routes.users}/:name`} element={<UserInfo />} />
 

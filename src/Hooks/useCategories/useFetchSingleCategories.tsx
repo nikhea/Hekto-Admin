@@ -8,11 +8,11 @@ interface IProps {
 }
 
 const useFetchSingleCategories = (name: string) => {
-  const { data: product } = useQuery([queryKey.products, name], () =>
+  const { data: Category } = useQuery([queryKey.categories, name], () =>
     fetchSingleCategories(name)
   );
 
-  return product;
+  return Category;
 };
 
 export default useFetchSingleCategories;
