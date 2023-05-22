@@ -11,11 +11,6 @@ import { useSingleImageStore } from "../../store/useSingleImageStore";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { TiCamera } from "react-icons/ti";
 const style = {
-  imgContainer: `h-full  rounded-tl-md rounded-tr-md relative`,
-  thumbnailImg: ``,
-  profileImg: `shadow-xl  h-[100px] w-[100px] bg-red-500 rounded-full absolute -bottom-[50px] left-10   border-4 border-white object-cover`,
-  thumbnailImage: `h-full w-full bg-red-500 rounded-full object-cover `,
-  btnContainer: `absolute left-3 top-[20px] `,
   btn: `bg-white p-3 rounded-md flex items-center justify-between capitalize absolute m-3`,
 };
 interface NewCategoryFormProps {
@@ -50,11 +45,6 @@ const NewCategoryForm: FC<NewCategoryFormProps> = () => {
       setValue("photo", newImageData);
     }
   }, [newImageData, setNewImageData, setValue]);
-  useEffect(() => {
-    if (status === "success") {
-      reset();
-    }
-  }, [status]);
 
   const submitForm = (data: any) => {
     let categoriesData = data;
@@ -64,7 +54,11 @@ const NewCategoryForm: FC<NewCategoryFormProps> = () => {
       console.log(errors);
     }
   };
-
+  useEffect(() => {
+    if (status === "success") {
+      reset();
+    }
+  }, [status]);
   return (
     <form
       onSubmit={handleSubmit(submitForm)}
@@ -85,7 +79,6 @@ const NewCategoryForm: FC<NewCategoryFormProps> = () => {
         </div>
         <div className="flex flex-col justify-between ">
           <Typography className="capitalize ">image </Typography>
-          {status}
           {!newImageData ? (
             <div
               onClick={openWidget}
@@ -102,7 +95,7 @@ const NewCategoryForm: FC<NewCategoryFormProps> = () => {
             </div>
           ) : (
             <div className="relative w-full h-56 mb-3 rounded-md bg-fuchsia-500">
-              <button className={style.btn} onClick={openWidget}>
+              <button type="button" className={style.btn} onClick={openWidget}>
                 <TiCamera
                   color=" #3b5998"
                   size={25}

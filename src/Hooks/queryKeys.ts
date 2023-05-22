@@ -7,4 +7,5 @@ export const queryKey = {
   orders: "orders",
   reviews: "reviews",
   users: "users",
+  subcategory: "subcategory",
 };

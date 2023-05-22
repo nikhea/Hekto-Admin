@@ -85,7 +85,7 @@ const EditCategoryForm: FC<NewCategoryFormProps> = ({ defaultCategory }) => {
           <Typography className="capitalize ">image url</Typography>
           {!newImageData ? (
             <div className="relative w-full h-56 mb-3 rounded-md bg-fuchsia-500">
-              <button className={style.btn} onClick={openWidget}>
+              <button type="button" className={style.btn} onClick={openWidget}>
                 <TiCamera
                   color=" #3b5998"
                   size={25}
@@ -101,7 +101,7 @@ const EditCategoryForm: FC<NewCategoryFormProps> = ({ defaultCategory }) => {
             </div>
           ) : (
             <div className="relative w-full h-56 mb-3 rounded-md bg-fuchsia-500">
-              <button className={style.btn} onClick={openWidget}>
+              <button type="button" className={style.btn} onClick={openWidget}>
                 <TiCamera
                   color=" #3b5998"
                   size={25}

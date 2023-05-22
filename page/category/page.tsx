@@ -12,23 +12,38 @@ import { MdStore } from "react-icons/md";
 import useDeviceProperties from "../../src/Hooks/UseMediaQueries";
 import { IoChevronBackOutline } from "react-icons/io5";
 import HeaderCate from "../../src/components/HeaderCate/HeaderCate";
+import { TbTrashXFilled } from "react-icons/tb";
+import useRemoveCategories from "../../src/Hooks/useCategories/useRemoveCategories";
+import IconsLoading from "../../src/components/Loading/IconsLoading";
 
 const Category = () => {
+  const { removeFromCategories, removeFromCategoriesisLoading } =
+    useRemoveCategories();
   const { isTabletOrMobile } = useDeviceProperties();
   const categories = useFetchCategories();
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [hoveredCategory, setHoveredCategory] = useState(null);
 
   if (!categories) {
     return <PageLoading />;
   }
+  const handleMouseEnter = (categoryId: any) => {
+    setHoveredCategory(categoryId);
+  };
+
+  const handleMouseLeave = (categoryId: string) => {
+    setHoveredCategory(null);
+  };
+  const handleDelete = (Id: any) => {
+    removeFromCategories(Id);
+  };
   const displayCategories = categories.map((category: any) => (
     <div
-      className={`flex mt-5 w-full cursor-pointer group ${
+      className={`flex mt-5 w-full cursor-pointer group relative ${
         !isTabletOrMobile && "justify-center"
       }`}
       key={category._id}
+      onMouseEnter={() => handleMouseEnter(category._id)}
+      onMouseLeave={() => handleMouseLeave(category._id)}
     >
       <Link
         to={`${routes.updateCategory}/${category.name}`}
@@ -41,6 +56,21 @@ const Category = () => {
           alt={category.name}
         />
       </Link>
+      <div
+        className={`absolute right-0 ${
+          hoveredCategory === category._id ? "block" : "hidden"
+        } transition-opacity duration-500 ease-in-out`}
+      >
+        {!removeFromCategoriesisLoading ? (
+          <TbTrashXFilled
+            className="cursor-pointer hover:text-red-500 "
+            size={20}
+            onClick={() => handleDelete(category._id)}
+          />
+        ) : (
+          <IconsLoading />
+        )}
+      </div>
       <div
         className="flex flex-col justify-center capitalize"
         style={{ marginLeft: 10 }}
@@ -79,7 +109,6 @@ const Category = () => {
       </div>
     </div>
   ));
-  // `/categories/${category._id
   return (
     <div>
       <HeaderCate text={headerDetails.text} link={headerDetails.link} />

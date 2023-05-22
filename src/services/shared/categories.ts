@@ -74,3 +74,25 @@ export const UpdateCategoriesServer = async (
     }
   });
 };
+export const removeCategories = async (id: string) => {
+  const { data } = await axios.delete(`category/${id}`, {
+    headers: {
+      Authorization: `Bearer ${storage.getToken()}`,
+    },
+  });
+
+  if (data.statuscode === 400) {
+    notify({
+      type: "error",
+      message: data.message,
+    });
+  }
+  if (data.statuscode === 200) {
+    notify({
+      type: "success",
+      message: data.message,
+    });
+  }
+
+  // return data.data;
+};
