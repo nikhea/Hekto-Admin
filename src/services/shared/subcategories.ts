@@ -43,3 +43,58 @@ export const createSubCategories = async ({ subCategoriesData }: any) => {
   }
   return data.data;
 };
+export const UpdateSubCategoriesServer = async (
+  subCategoriesId: string,
+  subCategoriesData: any
+) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const { data } = await axios.patch(
+        `subcategory/${subCategoriesId}`,
+        { subCategoriesData },
+        {
+          headers: {
+            Authorization: `Bearer ${storage.getToken()}`,
+          },
+        }
+      );
+      resolve(data);
+      if (data.statuscode === 200) {
+        notify({
+          type: "info",
+          message: data.message,
+        });
+      }
+      if (data.statuscode === 201) {
+        notify({
+          type: "success",
+          message: data.message,
+        });
+      }
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+export const removeSubCategories = async (id: string) => {
+  const { data } = await axios.delete(`subcategory/${id}`, {
+    headers: {
+      Authorization: `Bearer ${storage.getToken()}`,
+    },
+  });
+
+  if (data.statuscode === 400) {
+    notify({
+      type: "error",
+      message: data.message,
+    });
+  }
+  if (data.statuscode === 200) {
+    notify({
+      type: "success",
+      message: data.message,
+    });
+  }
+
+  // return data.data;
+};

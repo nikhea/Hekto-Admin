@@ -4,11 +4,10 @@ import Typography from "@mui/material/Typography";
 import Input from "../FormElement/input/input";
 import { useController, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
-import { BsUpload } from "react-icons/bs";
+import { useParams } from "react-router-dom";
 import { FC, useEffect, useRef, useState } from "react";
 
-import useUpdateCategories from "../../Hooks/useCategories/useUpdateCategories";
+import useUpdateSubcategories from "../../Hooks/useSubCategory/useUpdateSubcategories";
 import {
   newSubCategoryDataData,
   newSubCategoryDataSchema,
@@ -27,6 +26,9 @@ const EditSubCategoryForm: FC<NewCategoryFormProps> = ({
   defaultCategory,
   categories,
 }) => {
+  const { name } = useParams<{ name?: string }>();
+
+  const { updateSubCategories } = useUpdateSubcategories();
   const [categoryOptions, setCategoryOptions] = useState([""]);
   const { newImageData, setNewImageData } = useSingleImageStore();
   const foldername = `new-updated-subcategories-${Date.now()}`;
@@ -79,22 +81,28 @@ const EditSubCategoryForm: FC<NewCategoryFormProps> = ({
 
     return categoryField.onChange(option.value);
   };
+  useEffect(() => {
+    if (newImageData?.secure_url) {
+      setValue("photo", newImageData);
+    }
+  }, [newImageData, setNewImageData, setValue]);
   const submitForm = (data: any) => {
-    let categoriesData = data;
-    if (categoriesData) {
+    let subCategoriesData = data;
+    if (subCategoriesData) {
       if (defaultCategory.name) {
-        console.log(categoriesData, "categoriesData");
+        subCategoriesData;
+        updateSubCategories(name, subCategoriesData);
       }
     } else {
       console.log(errors);
     }
   };
+
   return (
     <form
       onSubmit={handleSubmit(submitForm)}
       className="grid w-full place-items-center"
     >
-      {defaultCategory.category.name}
       <div className=" w-[80%]  ">
         <div className="flex flex-col justify-between ">
           <Typography className="capitalize"> name</Typography>
