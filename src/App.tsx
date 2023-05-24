@@ -1,15 +1,9 @@
-import { useQueryClient } from "@tanstack/react-query";
 import "./styles/App.css";
 import "./styles/select.css";
 import { FC, useEffect, useState } from "react";
 import RouteComponents from "./RouteComponents";
-import PageLoading from "./components/Loading/Loading";
 
-import { useUser } from "./auth/auth";
 const App: FC = () => {
-  const user = useUser();
-
-  const queryClient = useQueryClient();
   const [Loading, setLoading] = useState(true);
 
   useEffect(() => {

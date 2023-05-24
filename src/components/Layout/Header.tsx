@@ -6,10 +6,11 @@ import "rc-dropdown/assets/index.css";
 import Dropdown from "rc-dropdown";
 import Menu, { Item as MenuItem } from "rc-menu";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { routes } from "../../routes/routes";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { useLogout, useUser } from "../../auth/auth";
+import { toast } from "react-toastify";
 const style = {
   container: `shadow-sm  md:flex bg-white p-[0em] py-2  overflow-hidden text-[#11142D] relative sticky  top-0 bottom-0 left-0 right-0 z-[99] overflow-hidden`,
   subContainer: `flex justify-between items-center w-[95%] m-auto `,
@@ -27,6 +28,8 @@ const style = {
   MenuItemLinkText: `text-[1rem] `,
 };
 const DashBoardHeader = () => {
+  const navigate = useNavigate();
+
   const logout = useLogout();
   const user = useUser();
 
@@ -36,10 +39,16 @@ const DashBoardHeader = () => {
   function onVisibleChange(visible: any) {
     setDrop((prevDrop: any) => !prevDrop);
   }
-  const logOutUser = async () => {
-    try {
-      // await logout();
-    } catch (error) {}
+  const logoutUser = () => {
+    logout.mutate(
+      {},
+      {
+        onSuccess: () => {
+          navigate("/");
+          toast.success("Logged Out Successfully");
+        },
+      }
+    );
   };
   const menu = (
     <Menu className={style.Menu}>
@@ -60,7 +69,7 @@ const DashBoardHeader = () => {
           />
           <p className={style.MenuItemLinkText}>settings</p>
         </Link> */}
-        <Link to="#" onClick={logOutUser} className={style.MenuItemLink}>
+        <Link to="#" onClick={logoutUser} className={style.MenuItemLink}>
           <RiLogoutCircleRLine
             color="#8392A5"
             size={20}

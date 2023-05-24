@@ -2,7 +2,7 @@ import { storage } from "../../auth/utils";
 import axios from "../../lib/axios";
 import { notify } from "../../utils/notify";
 
-const PAGE_SIZE = 4;
+const PAGE_SIZE = 2;
 export const fetchSubCategories = async ({ pageParam = 1 }) => {
   const { data } = await axios.get(
     `subcategory/pagination?page=${pageParam}&pageSize=${PAGE_SIZE}`

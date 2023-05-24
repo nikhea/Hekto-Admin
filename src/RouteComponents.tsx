@@ -38,7 +38,7 @@ const RouteComponent = () => {
       <Suspense fallback={<PageLoading />}>
         <Routes>
           <Route path={routes.home} element={<Login />} />
-          <Route path="" element={<ProtectedRoutes />}>
+          <Route element={<ProtectedRoutes />}>
             <Route path="" element={<SideBarLayout />}>
               <Route path={routes.dashboard} element={<Dashboard />} />
               <Route path={routes.products} element={<Products />} />

@@ -9,7 +9,10 @@ const TranscaionList = () => {
         Recent Transactions
       </Typography>
       {mockTransactions.map((transaction, i) => (
-        <Box className="grid w-full grid-cols-3 py-10 text-gray-500 place-items-center place-content-center ">
+        <Box
+          key={i}
+          className="grid w-full grid-cols-3 py-10 text-gray-500 place-items-center place-content-center "
+        >
           <Box>
             {/* <Typography className="font-medium">{transaction.txId}</Typography> */}
             <Typography className="capitalize">{transaction.user}</Typography>

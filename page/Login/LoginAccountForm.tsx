@@ -4,10 +4,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { loginAccountFormData, loginAccountSchema } from "./AccountFormData";
 import Input from "../../src/components/FormElement/input/input";
 import Button from "../../src/components/FormElement/Button/Button";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { IAccountFormDefaultText } from "../../src/interface/AccountForm";
 import { Link } from "react-router-dom";
-import { useLogin } from "../../src/auth/auth";
+import { useLogin, useUser } from "../../src/auth/auth";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { notify } from "../../src/utils/notify";
@@ -25,7 +25,12 @@ const AccountFormDefaultText = {
 const AccountForm: FC = () => {
   const login = useLogin();
   let navigate = useNavigate();
-
+  const user = useUser();
+  // useEffect(() => {
+  //   if (user?.data?.email) {
+  //     navigate(-1);
+  //   }
+  // }, [user]);
   const methods = useForm<loginAccountFormData>({
     resolver: yupResolver(loginAccountSchema),
   });

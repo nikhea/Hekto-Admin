@@ -68,7 +68,7 @@ export const Productcolumns = [
     renderCell: (params: any) => <div> {params.value}</div>,
   },
   {
-    // field: "actions",
+    field: "action",
     headerName: "View Live",
     width: 100,
     renderCell: (params: any) => (
