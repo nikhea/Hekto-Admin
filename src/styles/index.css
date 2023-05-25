@@ -96,3 +96,27 @@ li {
 .MuiDataGrid-root .MuiDataGrid-column:focus-within {
   outline: none !important;
 }
+
+.MuiDataGrid-cell.MuiDataGrid-cell--textLeft.MuiDataGrid-withBorderColor {
+  color: #333;
+  text-transform: capitalize;
+}
+.MuiTablePagination-root.css-rtrcn9-MuiTablePagination-root {
+  color: #333;
+  text-transform: capitalize;
+}
+.MuiDataGrid-columnHeader.MuiDataGrid-columnHeader--alignLeft.MuiDataGrid-columnHeader--sortable.MuiDataGrid-columnHeader--sorted.MuiDataGrid-columnHeader--numeric.MuiDataGrid-withBorderColor {
+  outline: none !important;
+  border: none;
+}
+.MuiDataGrid-columnHeader.MuiDataGrid-columnHeader--sortable.MuiDataGrid-withBorderColor {
+  outline: none !important;
+}
+.MuiDataGrid-root.MuiDataGrid-columnHeader:focus,
+.MuiDataGrid-root.MuiDataGrid-cell:focus {
+  outline: none;
+}
+.MuiDataGrid-root.MuiDataGrid-columnHeader:focus-within,
+.MuiDataGrid-root.MuiDataGrid-cell:focus-within {
+  outline: none;
+}

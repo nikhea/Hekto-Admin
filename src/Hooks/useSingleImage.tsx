@@ -73,7 +73,7 @@ const useSingleImage = (
       }
     );
   }, [widgetRef, newImageData, setNewImageData]);
-  console.log(newImageData);
+  // console.log(newImageData);
 };
 
 export default useSingleImage;

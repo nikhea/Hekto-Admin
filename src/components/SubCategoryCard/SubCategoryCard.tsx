@@ -5,7 +5,10 @@ import { useState } from "react";
 import { FaStore } from "react-icons/fa";
 import { MdStore } from "react-icons/md";
 import { TbTrashXFilled } from "react-icons/tb";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import {
+  LazyLoadImage,
+  trackWindowScroll,
+} from "react-lazy-load-image-component";
 import IconsLoading from "../Loading/IconsLoading";
 import { handleDelete } from "../ProductTable/ProductTableColumn";
 import Category from "../../../page/category/page";
@@ -102,7 +105,7 @@ const SubCategoryCard = ({ subcategory }: any) => {
   );
 };
 
-export default SubCategoryCard;
+export default trackWindowScroll(SubCategoryCard);
 
 {
   /* <Link to={`${routes.updateSubCategory}/${subcategory.name}`}>

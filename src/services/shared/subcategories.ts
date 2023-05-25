@@ -3,10 +3,21 @@ import axios from "../../lib/axios";
 import { notify } from "../../utils/notify";
 
 const PAGE_SIZE = 2;
+const name = "";
+
 export const fetchSubCategories = async ({ pageParam = 1 }) => {
   const { data } = await axios.get(
-    `subcategory/pagination?page=${pageParam}&pageSize=${PAGE_SIZE}`
+    `subcategory/pagination?page=${pageParam}&pageSize=${PAGE_SIZE}&name=${name}`
   );
+  // return data;
+
+  // const { data } = await axios.get(`subcategory/pagination`, {
+  //   params: {
+  //     page: pageParam,
+  //     pageSize: PAGE_SIZE,
+  //     name: "fortune",
+  //   },
+  // });
   return data;
 };
 export const fetchSubSingleCategories = async (name: any) => {

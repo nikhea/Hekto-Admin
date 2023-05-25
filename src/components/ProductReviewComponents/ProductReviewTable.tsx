@@ -56,7 +56,7 @@ const ProductReviewTable = ({ reviews }: any) => {
               variant="outlined"
               color="secondary"
               size="small"
-              //   style={{ backgroundColor: "pink" }}
+              // style={{ backgroundColor: "pink" }}
             >
               {params.row.published ? "Unpublished" : "Published"}
             </Button>
@@ -100,11 +100,13 @@ const ProductReviewTable = ({ reviews }: any) => {
             borderBottom: "none",
           },
           "& .name-column--cell": {
-            color: "black",
+            // color: "black",
+            textTransform: "capitalize",
           },
           "& .MuiDataGrid-columnHeaders": {
             backgroundColor: "white",
             borderBottom: "none",
+            color: "gray",
           },
           "& .MuiDataGrid-virtualScroller": {
             backgroundColor: "white",

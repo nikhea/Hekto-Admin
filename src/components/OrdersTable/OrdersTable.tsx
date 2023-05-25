@@ -1,11 +1,11 @@
 import React, { useMemo } from "react";
-import { Productcolumns } from "./ProductTableColumn";
 import { Box } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { mockDataContacts } from "../../data/mockData";
 import { generateRandom } from "../../utils/generateRandomID";
+import { Ordercolumns } from "./OrdersTableColumn";
+import { OrdersTableData } from "./OrdersTableData";
 
-const ProductTable = ({ products }: any) => {
+const OrdersTable = () => {
   const gridComponent = useMemo(
     () => (
       <Box
@@ -19,15 +19,26 @@ const ProductTable = ({ products }: any) => {
             borderBottom: "none",
             // textTransform: "capitalize",
           },
+          "& .MuiDataGrid-row": {
+            justifyContent: "center",
+            "& .MuiDataGrid-cell": {
+              textAlign: "center",
+            },
+          },
           "& .name-column--cell": {
             color: "#333",
             textTransform: "capitalize",
+            width: "100%",
+            // textAlign: "center",
+          },
+          ".MuiDataGrid-cellContent": {
+            width: "100%",
           },
           "& .MuiDataGrid-columnHeaders": {
             backgroundColor: "white",
             borderBottom: "none",
             color: "gray",
-            // textTransform: "capitalize",
+            textTransform: "capitalize",
           },
           "& .MuiDataGrid-virtualScroller": {
             backgroundColor: "white",
@@ -46,23 +57,17 @@ const ProductTable = ({ products }: any) => {
       >
         <DataGrid
           density="comfortable"
-          rows={products}
+          rows={OrdersTableData}
           components={{ Toolbar: GridToolbar }}
-          columns={Productcolumns}
+          columns={Ordercolumns}
           getRowId={(row: any) => generateRandom()}
-          getRowHeight={() => "auto"}
-
-          //   initialState={{
-          //     pagination: { paginationModel: { pageSize: 25 } },
-          //   }}
-          //   pageSizeOptions={[25, 50, 100]}
         />
       </Box>
     ),
-    [Productcolumns]
+    [Ordercolumns]
   );
 
   return <Box m="20px"> {gridComponent}</Box>;
 };
 
-export default ProductTable;
+export default OrdersTable;

@@ -23,7 +23,7 @@ const HeaderCate: FC<IHeaderCate> = ({ text, link }) => {
       />
       <Link
         to={link}
-        className="p-2 capitalize border rounded-md hover:border-primary"
+        className="p-2 text-gray-500 capitalize border rounded-md hover:text-primary hover:border-primary"
       >
         {text}
       </Link>

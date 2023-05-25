@@ -13,15 +13,12 @@ export const Productcolumns = [
     cellClassName: "name-column--cell",
     width: 50,
     renderCell: (params: any) => (
-      //   <div style={{ height: "400px" }}>
       <LazyLoadImage
         width={100}
         height={100}
-        // style={{ height: "100%", width: "auto" }}
         src={params.row.coverPhoto}
         alt={params.row.coverPhoto}
       />
-      //   </div>
     ),
   },
 
@@ -74,8 +71,7 @@ export const Productcolumns = [
     renderCell: (params: any) => (
       <Link target="_blank" to={`${LiveView}/${params.row.name}`}>
         <BsEyeFill
-          className="cursor-pointer hover:text-red-500"
-          // color="#8392A5"
+          className="cursor-pointer text-[#333] hover:text-red-500"
           size={20}
         />
       </Link>
@@ -87,8 +83,7 @@ export const Productcolumns = [
     width: 100,
     renderCell: (params: any) => (
       <TbTrashXFilled
-        className="cursor-pointer hover:text-red-500"
-        // color="#8392A5"
+        className="cursor-pointer text-[#333] hover:text-red-500"
         size={20}
         onClick={() => handleDelete(params.row._id)}
       />

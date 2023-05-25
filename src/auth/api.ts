@@ -39,7 +39,7 @@ export async function getUserProfile() {
 export async function loginWithEmailAndPassword(
   data: any
 ): Promise<AuthResponse> {
-  console.log(data);
+  // console.log(data);
 
   const res = await axios.post(`/auth/login`, data);
   // notify(res.status, res.data.message);
