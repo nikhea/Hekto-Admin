@@ -1,11 +1,10 @@
 import * as yup from "yup";
 
 export const productSchema = yup.object().shape({
-  name: yup.string().required(),
-  description: yup.string().required(),
+  name: yup.string().required().trim().max(64),
+  shortDescription: yup.string().required().trim().max(800),
+  description: yup.string().required().trim().max(1000),
   price: yup.number().required(),
-  priceSymbol: yup.string().required(),
-  currency: yup.string().required(),
   quantity: yup.number().required(),
   sold: yup.number().required(),
   photos: yup.array().of(yup.string()).required(),
@@ -38,6 +37,7 @@ export const productSchema = yup.object().shape({
 export interface ProductForm {
   name: string;
   description: string;
+  shortDescription: string;
   price: number;
   priceSymbol: string;
   currency: string;
