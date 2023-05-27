@@ -41,8 +41,14 @@ const ProductInventory = () => {
   };
   const handleFeaturesChange = (option: any) => {
     FeaturesField.onChange(option.value);
+    // console.log(option);
 
-    return FeaturesField.onChange(option.value);
+    const features = option.map((element: any) => {
+      return element.value;
+    });
+    // console.log(features, "features");
+
+    return FeaturesField.onChange(features);
   };
   const { fields, append, remove } = useFieldArray({
     control,
