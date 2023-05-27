@@ -1,13 +1,13 @@
 import { Card } from "@tremor/react";
-import React from "react";
 import CardHeader from "./CardHeader";
 import Select from "../FormElement/select/select";
 import { MdDeleteForever } from "react-icons/md";
 import { AiFillPlusCircle } from "react-icons/ai";
-import { useFieldArray, useFormContext } from "react-hook-form";
+import { useController, useFieldArray, useFormContext } from "react-hook-form";
 import Input from "../FormElement/input/input";
 import useDeviceProperties from "../../Hooks/UseMediaQueries";
-
+import { statusOption } from "./defaultValue";
+import CreatableSelect from "../FormElement/CreatableSelect/CreatableSelect";
 const style = {
   inputTitle: `capitalize leading-4 tracking-wide my-`,
   inputTitleC: `capitalize leading-4 tracking-wide  ml-4 md:mt-3`,
@@ -26,10 +26,29 @@ const ProductInventory = () => {
     control,
     formState: { errors },
   } = useFormContext();
+  const { field: statusField } = useController({
+    name: "status",
+    control,
+  });
+  const { field: FeaturesField } = useController({
+    name: "features",
+    control,
+  });
+  const handleStatusChange = (option: any) => {
+    statusField.onChange(option.value);
+
+    return statusField.onChange(option.value);
+  };
+  const handleFeaturesChange = (option: any) => {
+    FeaturesField.onChange(option.value);
+
+    return FeaturesField.onChange(option.value);
+  };
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "items",
+    name: "specifications",
   });
+
   function onItemAdd() {
     append({ id: uuidv4() });
   }
@@ -37,6 +56,7 @@ const ProductInventory = () => {
   function onItemDelete(index: number) {
     remove(index);
   }
+
   return (
     <Card>
       <CardHeader title="product inventory" />
@@ -47,39 +67,32 @@ const ProductInventory = () => {
           <Select
             placeholder="status*"
             // @ts-ignore
-            // options={categoryOptions}
-            // field={categoryOptions.find(
-            //   ({ value }: any) => value === categoryField.value
-            // )}
-            // field={categoryOptions.find(
-            //   (option) => option.value === getValues("category")
-            // )}
-            // handleSelectChange={handleCategoryChange}
+            options={statusOption}
+            field={statusOption.find(
+              ({ value }: any) => value === statusField.value
+            )}
+            handleSelectChange={handleStatusChange}
           />
         </span>
         <span className="flex flex-col justify-between ">
           <h1 className={`${style.inputTitle} my-2`}>features*</h1>
 
-          <Select
+          <CreatableSelect
             placeholder="features*"
-            // @ts-ignore
-            // options={categoryOptions}
-            // field={categoryOptions.find(
-            //   ({ value }: any) => value === categoryField.value
-            // )}
-            // field={categoryOptions.find(
-            //   (option) => option.value === getValues("category")
-            // )}
-            // handleSelectChange={handleCategoryChange}
+            options={statusOption}
+            field={statusOption.find(
+              ({ value }: any) => value === FeaturesField.value
+            )}
+            handleSelectChange={handleFeaturesChange}
           />
         </span>
       </div>
       <span className="flex flex-col justify-between w-full">
         <h1 className={`${style.inputTitle} my-2`}>specifications*</h1>
         <span>
-          {fields.map((item: any, index: number) => (
+          {fields.map((specifications: any, index: number) => (
             <div
-              key={item.id}
+              key={specifications.id}
               className="flex flex-col items-center justify-between w-full gap-x-5 lg:flex-row "
             >
               <label className="w-full ">
@@ -93,8 +106,9 @@ const ProductInventory = () => {
                   required
                   isWhiteBg
                   isCurve
-                  // errors={errors}
-                  // inputRef={register("name", { required: true })}
+                  inputRef={register(`specifications[${index}].name`, {
+                    required: true,
+                  })}
                 />
               </label>
               <br />
@@ -110,7 +124,9 @@ const ProductInventory = () => {
                   isWhiteBg
                   isCurve
                   // errors={errors}
-                  // inputRef={register("name", { required: true })}
+                  inputRef={register(`specifications[${index}].value`, {
+                    required: true,
+                  })}
                 />
               </label>
               {isTabletOrMobile ? (
@@ -160,3 +176,12 @@ export default ProductInventory;
 function uuidv4() {
   return Date.now().toString(36) + Math.random().toString(36).substring(2);
 }
+
+// options={categoryOptions}
+// field={categoryOptions.find(
+//   ({ value }: any) => value === categoryField.value
+// )}
+// field={categoryOptions.find(
+//   (option) => option.value === getValues("category")
+// )}
+// handleSelectChange={handleCategoryChange}

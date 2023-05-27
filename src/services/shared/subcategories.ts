@@ -3,21 +3,15 @@ import axios from "../../lib/axios";
 import { notify } from "../../utils/notify";
 
 const PAGE_SIZE = 2;
-const name = "";
 
+export const fetchAllSubCategories = async () => {
+  const { data } = await axios.get(`subcategory`);
+  return data.data;
+};
 export const fetchSubCategories = async ({ pageParam = 1 }) => {
   const { data } = await axios.get(
-    `subcategory/pagination?page=${pageParam}&pageSize=${PAGE_SIZE}&name=${name}`
+    `subcategory/pagination?page=${pageParam}&pageSize=${PAGE_SIZE}`
   );
-  // return data;
-
-  // const { data } = await axios.get(`subcategory/pagination`, {
-  //   params: {
-  //     page: pageParam,
-  //     pageSize: PAGE_SIZE,
-  //     name: "fortune",
-  //   },
-  // });
   return data;
 };
 export const fetchSubSingleCategories = async (name: any) => {

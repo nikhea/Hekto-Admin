@@ -21,9 +21,12 @@ const ProductForm = () => {
     getValues,
     formState: { errors },
   } = methods;
+  console.log(watch());
+
   const submitForm = (data: any) => {
     console.log(data);
   };
+  console.log(errors);
 
   return (
     <FormProvider {...methods}>
@@ -31,7 +34,7 @@ const ProductForm = () => {
         <div className="flex flex-col gap-y-5">
           <ProductInformation />
           <ProductDescrption />
-          <ProductImages />
+          {/* <ProductImages /> */}
           <ProductInventory />
         </div>
         <div className="flex justify-center mt-2 ">

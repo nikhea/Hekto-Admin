@@ -3,6 +3,9 @@ import { useFormContext, useController } from "react-hook-form";
 import Input from "../FormElement/input/input";
 import Select from "../FormElement/select/select";
 import CardHeader from "./CardHeader";
+import { useFetchCategories } from "../../Hooks/useCategories/useFetchCategories";
+import { useEffect, useState } from "react";
+import usefetchAllSubCategories from "../../Hooks/useSubCategory/usefetchAllSubCategories";
 
 const style = {
   inputTitle: `capitalize leading-4 tracking-wide my-`,
@@ -15,11 +18,57 @@ const style = {
   errors: `block text-red-500 capitalize  leading-4 tracking-wide my-4 ml-4`,
 };
 const ProductInformation = () => {
+  const categories = useFetchCategories();
+  const subCategories = usefetchAllSubCategories();
+  const [categoryOptions, setCategoryOptions] = useState([""]);
+  const [subCategoryOptions, setSubCategoryOptions] = useState([""]);
+
   const {
     register,
     control,
+    watch,
     formState: { errors },
   } = useFormContext();
+  const { field: categoryField } = useController({
+    name: "category",
+    control,
+  });
+  const { field: subCategoryField } = useController({
+    name: "subcategory",
+    control,
+  });
+  useEffect(() => {
+    const getData = async () => {
+      const arr: any = [];
+      let result = categories;
+      result.map((countries: any) => {
+        return arr.push({ value: countries.name, label: countries.name });
+      });
+      setCategoryOptions(arr);
+    };
+    getData();
+  }, [watch]);
+  useEffect(() => {
+    const getData = async () => {
+      const arr: any = [];
+      let result = subCategories;
+      result.map((subCategory: any) => {
+        return arr.push({ value: subCategory.name, label: subCategory.name });
+      });
+      setSubCategoryOptions(arr);
+    };
+    getData();
+  }, [categoryOptions, watch]);
+  const handleCategoryChange = (option: any) => {
+    categoryField.onChange(option.value);
+
+    return categoryField.onChange(option.value);
+  };
+  const handleSubCategoryChange = (option: any) => {
+    subCategoryField.onChange(option.value);
+
+    return subCategoryField.onChange(option.value);
+  };
 
   return (
     <div>
@@ -33,7 +82,7 @@ const ProductInformation = () => {
               name="name"
               placeholder="product name*"
               inputFull
-              required
+              // required
               isWhiteBg
               isCurve
               errors={errors}
@@ -47,7 +96,7 @@ const ProductInformation = () => {
               name="price"
               placeholder="product price*"
               inputFull
-              required
+              // required
               isWhiteBg
               isCurve
               errors={errors}
@@ -60,14 +109,11 @@ const ProductInformation = () => {
             <Select
               placeholder="category*"
               // @ts-ignore
-              // options={categoryOptions}
-              // field={categoryOptions.find(
-              //   ({ value }: any) => value === categoryField.value
-              // )}
-              // field={categoryOptions.find(
-              //   (option) => option.value === getValues("category")
-              // )}
-              // handleSelectChange={handleCategoryChange}
+              options={categoryOptions}
+              field={categoryOptions.find(
+                ({ value }: any) => value === categoryField.value
+              )}
+              handleSelectChange={handleCategoryChange}
             />
           </span>
           <span className="flex flex-col justify-between ">
@@ -77,13 +123,11 @@ const ProductInformation = () => {
               placeholder="subcategory*"
               // @ts-ignore
               // options={categoryOptions}
-              // field={categoryOptions.find(
-              //   ({ value }: any) => value === categoryField.value
-              // )}
-              // field={categoryOptions.find(
-              //   (option) => option.value === getValues("category")
-              // )}
-              // handleSelectChange={handleCategoryChange}
+              options={subCategoryOptions}
+              field={subCategoryOptions.find(
+                ({ value }: any) => value === subCategoryField.value
+              )}
+              handleSelectChange={handleSubCategoryChange}
             />
           </span>
           <span>
@@ -93,7 +137,7 @@ const ProductInformation = () => {
               name="quantity"
               placeholder="product quantity*"
               inputFull
-              required
+              // required
               isWhiteBg
               isCurve
               errors={errors}
@@ -107,7 +151,7 @@ const ProductInformation = () => {
               name="rating"
               placeholder="product rating*"
               inputFull
-              required
+              // required
               isWhiteBg
               isCurve
               errors={errors}
