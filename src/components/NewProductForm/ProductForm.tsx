@@ -8,7 +8,9 @@ import ProductInventory from "./ProductInventory";
 import useFormPersist from "react-hook-form-persist";
 import ProductImages from "./ProductImages";
 import { useEffect } from "react";
+import useCreateProducts from "../../Hooks/useProducts/useCreateProducts";
 const ProductForm = () => {
+  const { createNewProduct } = useCreateProducts();
   const methods = useForm<ProductForm>({
     resolver: yupResolver(productSchema),
     mode: "onChange",
@@ -37,7 +39,10 @@ const ProductForm = () => {
     getData();
   }, [watch, setValue]);
   const submitForm = (data: any) => {
-    console.log(data, "datta");
+    // console.log(data, "datta");
+    if (data) {
+      createNewProduct(data);
+    }
   };
   console.log(errors);
 
