@@ -5,7 +5,9 @@ import { ProductForm, productSchema } from "./ProductShcema";
 import ProductInformation from "./ProductInformation";
 import ProductDescrption from "./ProductDescrption";
 import ProductInventory from "./ProductInventory";
+import useFormPersist from "react-hook-form-persist";
 import ProductImages from "./ProductImages";
+import { useEffect } from "react";
 const ProductForm = () => {
   const methods = useForm<ProductForm>({
     resolver: yupResolver(productSchema),
@@ -21,10 +23,21 @@ const ProductForm = () => {
     getValues,
     formState: { errors },
   } = methods;
-  console.log(watch());
-
+  useFormPersist("products-storage", {
+    watch,
+    setValue,
+    storage: window.localStorage,
+  });
+  useEffect(() => {
+    const getData = () => {
+      setValue("availability.inStock", true);
+      setValue("availability.quantity", watch("quantity"));
+      setValue("availability.deliveryDate", getDateTwoWeeksFromNow());
+    };
+    getData();
+  }, [watch, setValue]);
   const submitForm = (data: any) => {
-    console.log(data);
+    console.log(data, "datta");
   };
   console.log(errors);
 
@@ -34,14 +47,14 @@ const ProductForm = () => {
         <div className="flex flex-col gap-y-5">
           <ProductInformation />
           <ProductDescrption />
-          {/* <ProductImages /> */}
+          <ProductImages />
           <ProductInventory />
         </div>
-        <div className="flex justify-center mt-2 ">
+        {/* <div className="flex justify-center mt-2 ">
           <button className="px-4 py-1 text-white capitalize rounded-md w-fit bg-primary">
             create
           </button>
-        </div>
+        </div> */}
       </form>
       <DevTool control={control} />
     </FormProvider>
@@ -49,3 +62,36 @@ const ProductForm = () => {
 };
 
 export default ProductForm;
+function getDateTwoWeeksFromNow() {
+  // Get the current date
+  var today = new Date();
+
+  // Add 2 weeks to the current date
+  var twoWeeksLater = new Date(today.getTime() + 2 * 7 * 24 * 60 * 60 * 1000);
+
+  // Extract the date and time components
+  var year = twoWeeksLater.getFullYear();
+  var month = twoWeeksLater.getMonth() + 1; // Note: Months are zero-based
+  var day = twoWeeksLater.getDate();
+  var hours = twoWeeksLater.getHours();
+  var minutes = twoWeeksLater.getMinutes();
+  var seconds = twoWeeksLater.getSeconds();
+
+  // Format the date and time
+  var formattedDateTime =
+    year +
+    "-" +
+    month +
+    "-" +
+    day +
+    " " +
+    hours +
+    ":" +
+    minutes +
+    ":" +
+    seconds;
+
+  return twoWeeksLater;
+}
+
+var twoWeeksFromNow = getDateTwoWeeksFromNow();

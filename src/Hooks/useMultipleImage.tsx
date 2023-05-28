@@ -1,24 +1,17 @@
 import { useEffect, useRef, useState, FC } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useSingleImageStore } from "../store/useSingleImageStore";
-
-interface Image {
-  asset_id: any;
-  secure_url: any;
-  thumbnail_url: any;
-  public_id: any;
-}
+import { useMultiImageStore } from "../store/useMultipleImageStore";
 export type ISingleImage = {
   widgetRef: any;
   foldername: string;
 };
-const useSingleImage = (
+const useMultipleImage = (
   widgetRef: any,
   foldername: any,
   mutationFunction?: any
 ) => {
   const cloudinaryRef = useRef();
-  const { newImageData, setNewImageData } = useSingleImageStore();
+  const { imageData, addImage } = useMultiImageStore();
 
   const queryClient = useQueryClient();
   const { mutateAsync } = useMutation(mutationFunction, {
@@ -38,8 +31,10 @@ const useSingleImage = (
         // clientAllowedFormats: ["webp", "png", "jpeg"],
         showPoweredBy: false,
         maxFileSize: 1500000,
-        multiple: false,
+        // multiple: fals,
         maxImageFileSize: 1500000,
+        maxFiles: 5,
+        max_files: 5,
       },
       function (error: any, result: any) {
         if (!error && result && result.event === "success") {
@@ -49,27 +44,36 @@ const useSingleImage = (
             result?.data?.info?.files[0]?.uploadInfo !== null ||
             result?.data?.info?.files[0]?.uploadInfo !== undefined
           ) {
-            const { url, asset_id, secure_url, thumbnail_url, public_id } =
-              result?.data?.info?.files[0]?.uploadInfo;
-            const data = {
-              url,
-              asset_id,
-              secure_url,
-              thumbnail_url,
-              public_id,
-            };
-            if (data) {
-              setNewImageData(data);
-              const submitImage = async () => {
-                // await mutateAsync(data);
-              };
-              submitImage();
+            let images = result?.data?.info?.files;
+            if (images !== undefined || images.length >= 0 || images !== null) {
+              const uploadInfoArray = [];
+              for (let i = 0; i < images.length; i++) {
+                const uploadInfo = images[i].uploadInfo;
+                // uploadInfoArray.push();
+                addImage(uploadInfo);
+              }
             }
           }
         }
       }
     );
-  }, [widgetRef, newImageData, setNewImageData]);
+  }, [widgetRef, imageData, addImage]);
 };
 
-export default useSingleImage;
+export default useMultipleImage;
+// const { url, asset_id, secure_url, thumbnail_url, public_id } =
+// result?.data?.info?.files[0]?.uploadInfo;
+// const data = {
+// url,
+// asset_id,
+// secure_url,
+// thumbnail_url,
+// public_id,
+// };
+// if (data) {
+// addImage(data);
+// const submitImage = async () => {
+//   // await mutateAsync(data);
+// };
+// submitImage();
+// }

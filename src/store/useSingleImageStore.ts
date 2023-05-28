@@ -34,11 +34,3 @@ export const useSingleImageStore = create<ImageDataState>()(
     )
   )
 );
-// const useSingleImageStore = create(
-//   devtools(
-//     persist(ImageDataStore, {
-//       name: "SingleImageStore",
-//       storage: createJSONStorage(() => sessionStorage),
-//     })
-//   )
-// );

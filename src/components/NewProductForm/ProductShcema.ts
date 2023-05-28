@@ -1,14 +1,19 @@
 import * as yup from "yup";
-
+interface Image {
+  asset_id: any;
+  secure_url: any;
+  thumbnail_url: any;
+  public_id: any;
+}
 export const productSchema = yup.object().shape({
   name: yup.string().required().trim().max(64),
   shortDescription: yup.string().required().trim().max(800),
   description: yup.string().required().trim().max(1000),
   price: yup.number().required(),
   quantity: yup.number().required(),
-  sold: yup.number().required(),
-  photos: yup.array().of(yup.string()).required(),
-  coverPhoto: yup.string().required(),
+  // sold: yup.number().required(),
+  photos: yup.array().required(),
+  coverPhoto: yup.object().required(),
   specifications: yup
     .array()
     .of(
@@ -42,10 +47,10 @@ export interface ProductForm {
   priceSymbol: string;
   currency: string;
   quantity: number;
-  sold: number;
+  // sold: number;
   status: string;
-  photos: string[];
-  coverPhoto: string;
+  photos: Image[];
+  coverPhoto: Image;
   subcategory: string;
   category: string;
   rating: number;
@@ -55,7 +60,7 @@ export interface ProductForm {
     value: string;
     id: string;
   }[];
-  availability: {
+  availability?: {
     inStock: boolean;
     quantity: number;
     deliveryDate: Date;
