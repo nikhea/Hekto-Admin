@@ -3,7 +3,9 @@ import { routes } from "../../routes/routes";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { TbTrashXFilled } from "react-icons/tb";
 import { BsEyeFill } from "react-icons/bs";
-
+import { status } from "../NewProductForm/defaultValue";
+import useRemoveFromProducts from "../../Hooks/useProducts/useRemoveProducts";
+import { useProductState } from "../../store/useProductStore";
 const LiveView = `https://fortune-ecommerce.vercel.app/products/`;
 export const Productcolumns = [
   {
@@ -62,7 +64,28 @@ export const Productcolumns = [
     headerName: "Status",
     flex: 1,
     cellClassName: "name-column--cell",
-    renderCell: (params: any) => <div> {params.value}</div>,
+    renderCell: (params: any) => {
+      let statusStyle;
+      switch (params.value) {
+        case status.instock:
+          statusStyle = " text-green-500";
+          break;
+        case status.beingrestocked:
+          statusStyle = "text-blue-500";
+          break;
+        case status.outofstock:
+          statusStyle = "text-yellow-500";
+          break;
+        case "delivered":
+          statusStyle = "text-gray-500 bg-gray-100";
+          break;
+        default:
+          statusStyle = "text-gray-500 bg-gray-100";
+      }
+      return (
+        <div className={`${statusStyle} text-[12px]`}> {params.value}</div>
+      );
+    },
   },
   {
     field: "action",
@@ -81,16 +104,21 @@ export const Productcolumns = [
     field: "actions",
     headerName: "Remove",
     width: 100,
-    renderCell: (params: any) => (
-      <TbTrashXFilled
-        className="cursor-pointer text-[#333] hover:text-red-500"
-        size={20}
-        onClick={() => handleDelete(params.row._id)}
-      />
-    ),
+    renderCell: (params: any) => {
+      const { removeFromProducts } = useRemoveFromProducts();
+      // const { removeProduct } = useProductState();
+
+      return (
+        <TbTrashXFilled
+          className="cursor-pointer text-[#333] hover:text-red-500"
+          size={20}
+          onClick={() => removeFromProducts(params.row._id)}
+        />
+      );
+    },
   },
 ];
 
-export const handleDelete = (reviewId: any) => {
-  console.log("Deleting product with ID:", reviewId);
-};
+// export const handleDelete = (reviewId: any) => {
+//   console.log("Deleting product with ID:", reviewId);
+// };

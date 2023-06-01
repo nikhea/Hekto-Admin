@@ -37,6 +37,10 @@ export const productSchema = yup.object().shape({
   rating: yup.number().required(),
   features: yup.array().of(yup.string()).required(),
   status: yup.string().required(),
+  bestSeller: yup.boolean().required(),
+  featured: yup.boolean().required(),
+  newArrival: yup.boolean().required(),
+  specialOffer: yup.boolean().required(),
 });
 
 export interface ProductForm {
@@ -65,4 +69,8 @@ export interface ProductForm {
     quantity: number;
     deliveryDate: Date;
   };
+  bestSeller: boolean;
+  featured: boolean;
+  newArrival: boolean;
+  specialOffer: boolean;
 }

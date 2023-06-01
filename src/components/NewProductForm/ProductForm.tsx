@@ -9,6 +9,7 @@ import useFormPersist from "react-hook-form-persist";
 import ProductImages from "./ProductImages";
 import { useEffect } from "react";
 import useCreateProducts from "../../Hooks/useProducts/useCreateProducts";
+import ProductState from "./ProductState";
 const ProductForm = () => {
   const { createNewProduct } = useCreateProducts();
   const methods = useForm<ProductForm>({
@@ -54,6 +55,7 @@ const ProductForm = () => {
           <ProductDescrption />
           <ProductImages />
           <ProductInventory />
+          <ProductState />
         </div>
         {/* <div className="flex justify-center mt-2 ">
           <button className="px-4 py-1 text-white capitalize rounded-md w-fit bg-primary">

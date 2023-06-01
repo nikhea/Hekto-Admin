@@ -10,8 +10,6 @@ export const fetchAllProducts = async () => {
   return data.data;
 };
 export const createProductServer = async (productData: any) => {
-  console.log(productData, "serce");
-
   const { data } = await axios.post(
     "products",
     { ...productData },
@@ -40,6 +38,28 @@ export const createProductServer = async (productData: any) => {
     });
   }
   return data.data;
+};
+export const removeProductServer = async (id: string) => {
+  const { data } = await axios.delete(`products/${id}`, {
+    headers: {
+      Authorization: `Bearer ${storage.getToken()}`,
+    },
+  });
+
+  if (data.statuscode === 400) {
+    notify({
+      type: "error",
+      message: data.message,
+    });
+  }
+  if (data.statuscode === 200) {
+    notify({
+      type: "success",
+      message: data.message,
+    });
+  }
+
+  // return data.data;
 };
 
 export const fetchSingleProducts = async (name: any) => {

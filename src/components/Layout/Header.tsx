@@ -5,12 +5,14 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "rc-dropdown/assets/index.css";
 import Dropdown from "rc-dropdown";
 import Menu, { Item as MenuItem } from "rc-menu";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { routes } from "../../routes/routes";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { useLogout, useUser } from "../../auth/auth";
 import { toast } from "react-toastify";
+import { useProductState } from "../../store/useProductStore";
+import { useFetchAllProducts } from "../../Hooks/useProducts/useFetchAllProducts";
 const style = {
   container: `shadow-sm  md:flex bg-white p-[0em] py-2  overflow-hidden text-[#11142D] relative sticky  top-0 bottom-0 left-0 right-0 z-[99] overflow-hidden`,
   subContainer: `flex justify-between items-center w-[95%] m-auto `,
@@ -29,11 +31,19 @@ const style = {
 };
 const DashBoardHeader = () => {
   const navigate = useNavigate();
+  const { addToProducts, products } = useProductState();
+  const productss = useFetchAllProducts();
 
   const logout = useLogout();
   const user = useUser();
 
   const [drop, setDrop] = useState(false);
+
+  // useEffect(() => {
+  //   if (productss) {
+  //     productss.forEach((product: any) => addToProducts(product));
+  //   }
+  // }, [products]);
 
   let urlImg = user?.data?.profile?.profileImage?.thumbnail_url;
   function onVisibleChange(visible: any) {

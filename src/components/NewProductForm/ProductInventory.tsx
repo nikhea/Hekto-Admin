@@ -174,11 +174,6 @@ const ProductInventory = () => {
           </button>
         </span>
       </span>
-      <div className="flex justify-center mt-5 w-full ">
-        <button className="px-4 py-2 w-full text-white capitalize rounded-md  bg-primary">
-          create
-        </button>
-      </div>
     </Card>
   );
 };
