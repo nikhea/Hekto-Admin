@@ -10,7 +10,6 @@ import {
   trackWindowScroll,
 } from "react-lazy-load-image-component";
 import IconsLoading from "../Loading/IconsLoading";
-import { handleDelete } from "../ProductTable/ProductTableColumn";
 import Category from "../../../page/category/page";
 import useRemoveSubCategories from "../../Hooks/useSubCategory/useRemoveSubCategories";
 
