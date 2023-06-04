@@ -17,7 +17,7 @@ const Products = () => {
       <div className="flex justify-end">
         <Link
           to={routes.newProduct}
-          className="p-2 capitalize border rounded-md hover:border-primary"
+          className="p-2 capitalize border rounded-md hover:text-primary hover:border-primary"
         >
           add product
         </Link>

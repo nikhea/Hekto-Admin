@@ -52,6 +52,7 @@ const ProductReviewTable = ({ reviews }: any) => {
         type: "singleSelect",
         valueOptions: ["Published", "Unpublished"],
         editable: true,
+        sortable: false,
         renderCell: (params: any) => (
           <div>
             <Button
@@ -68,6 +69,7 @@ const ProductReviewTable = ({ reviews }: any) => {
       {
         field: "actions",
         headerName: "Remove",
+        sortable: false,
         width: 100,
         renderCell: (params: any) => (
           <TbTrashXFilled

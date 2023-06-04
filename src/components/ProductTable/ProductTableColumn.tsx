@@ -5,8 +5,8 @@ import { TbTrashXFilled } from "react-icons/tb";
 import { BsEyeFill } from "react-icons/bs";
 import { status } from "../NewProductForm/defaultValue";
 import useRemoveFromProducts from "../../Hooks/useProducts/useRemoveProducts";
-import { useProductState } from "../../store/useProductStore";
-const LiveView = `https://fortune-ecommerce.vercel.app/products/`;
+const LiveView = import.meta.env.VITE_Live_View;
+
 export const Productcolumns = [
   {
     field: "coverPhoto",
@@ -14,6 +14,8 @@ export const Productcolumns = [
     flex: 1,
     cellClassName: "name-column--cell",
     width: 50,
+    sortable: false,
+
     renderCell: (params: any) => (
       <LazyLoadImage
         width={100}
@@ -27,9 +29,9 @@ export const Productcolumns = [
   {
     field: "name",
     headerName: "Product Name",
-    flex: 1,
+    flex: 2,
     cellClassName: "name-column--cell",
-    width: 310,
+    width: 200,
     renderCell: (params: any) => (
       <Link to={`${routes.EditProduct}/${params.row.name}`}>
         {params.row.name}
@@ -45,7 +47,8 @@ export const Productcolumns = [
   {
     field: "subcategoryName",
     headerName: "Subcategory",
-    flex: 1,
+    flex: 1.5,
+    width: 50,
     cellClassName: "name-column--cell",
   },
   {
@@ -64,7 +67,8 @@ export const Productcolumns = [
   {
     field: "status",
     headerName: "Status",
-    flex: 1,
+    flex: 1.2,
+    // width: 10,
     cellClassName: "name-column--cell",
     renderCell: (params: any) => {
       let statusStyle;
@@ -92,6 +96,7 @@ export const Productcolumns = [
   {
     field: "action",
     headerName: "View Live",
+    sortable: false,
     width: 100,
     renderCell: (params: any) => (
       <Link target="_blank" to={`${LiveView}/${params.row.name}`}>
@@ -105,16 +110,19 @@ export const Productcolumns = [
   {
     field: "actions",
     headerName: "Remove",
+    sortable: false,
     width: 100,
     renderCell: (params: any) => {
       const { removeFromProducts } = useRemoveFromProducts();
-      // const { removeProduct } = useProductState();
 
+      const handleDeleteProduct = () => {
+        // removeFromProducts(params.row._id);
+      };
       return (
         <TbTrashXFilled
           className="cursor-pointer text-[#333] hover:text-red-500"
           size={20}
-          onClick={() => removeFromProducts(params.row._id)}
+          onClick={handleDeleteProduct}
         />
       );
     },

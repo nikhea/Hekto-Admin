@@ -15,9 +15,12 @@ const ProductState = () => {
   return (
     <Card>
       <CardHeader title="product state" />
-      <div className="flex justify-evenly">
-        <label id="neat-label" className="flex items-center gap-2">
-          <span>Bestseller:</span>
+      <div className="grid md:grid-cols-2 gap-y-3 lg:flex md:justify-evenly">
+        <label
+          id="neat-label"
+          className="grid items-center grid-cols-2 md:flex md:gap-2"
+        >
+          <span className="mr-10 lg:mr-0">Bestseller:</span>
           <Controller
             name="bestseller"
             control={control}
@@ -34,8 +37,8 @@ const ProductState = () => {
             )}
           />
         </label>
-        <label className="flex items-center gap-2">
-          <span>Featured:</span>
+        <label className="grid items-center grid-cols-2 md:flex md:gap-2">
+          <span className="mr-10 lg:mr-0">Featured:</span>
           <Controller
             name="featured"
             control={control}
@@ -49,8 +52,8 @@ const ProductState = () => {
             )}
           />
         </label>
-        <label className="flex items-center gap-2">
-          <span>New Arrival:</span>
+        <label className="grid items-center grid-cols-2 md:flex md:gap-2">
+          <span className="mr-5 lg:mr-0">New Arrival:</span>
           <Controller
             name="newArrival"
             control={control}
@@ -64,8 +67,8 @@ const ProductState = () => {
             )}
           />
         </label>
-        <label className="flex items-center gap-2">
-          <span>Special Offer:</span>
+        <label className="grid items-center grid-cols-2 md:flex md:gap-2">
+          <span className="mr-3 lg:mr-0">Special Offer:</span>
           <Controller
             name="specialOffer"
             control={control}
@@ -80,7 +83,7 @@ const ProductState = () => {
           />
         </label>
       </div>
-      <div className="flex justify-center w-full mt-5 ">
+      <div className="flex justify-center w-full mt-10 ">
         <button className="px-4 py-2 text-white capitalize rounded-md w-fit bg-primary">
           create
         </button>
