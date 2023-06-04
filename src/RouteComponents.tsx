@@ -14,13 +14,14 @@ import ProductReview from "../page/ProductReview/page";
 import Profile from "../page/profile/page";
 import Reports from "../page/Reports/page";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
-import NewProduct from "../page/newProduct/page";
+import NewProduct from "../page/products/newProduct/page";
 import NewCategory from "../page/category/newCategory/page";
 import UpdataCategory from "../page/category/updataCategory/page";
 import UserInfo from "../page/users/userInfo/page";
 import SubCategory from "../page/subCatrgories/page";
 import NewSubCategory from "../page/subCatrgories/newSubCategory/page";
 import UpdataSubCategory from "../page/subCatrgories/UpdataSubCategory/page";
+import EditProduct from "../page/products/editProduct/page";
 const ScrollToTopPage = () => {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -43,6 +44,10 @@ const RouteComponent = () => {
               <Route path={routes.dashboard} element={<Dashboard />} />
               <Route path={routes.products} element={<Products />} />
               <Route path={routes.newProduct} element={<NewProduct />} />
+              <Route
+                path={`${routes.EditProduct}/:name`}
+                element={<EditProduct />}
+              />
               <Route path={routes.category} element={<Category />} />
               <Route path={routes.newCategory} element={<NewCategory />} />
               <Route
@@ -67,7 +72,6 @@ const RouteComponent = () => {
               <Route path={routes.reports} element={<Reports />} />
             </Route>
           </Route>
-          a
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

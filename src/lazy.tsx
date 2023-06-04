@@ -17,7 +17,7 @@ const Orders = React.lazy(() => import("../page/Orders/page"));
 const ProductReview = React.lazy(() => import("../page/ProductReview/page"));
 const Profile = React.lazy(() => import("../page/profile/page"));
 const Reports = React.lazy(() => import("../page/Reports/page"));
-const NewProduct = React.lazy(() => import("../page/newProduct/page"));
+const NewProduct = React.lazy(() => import("../page/products/newProduct/page"));
 const NewCategory = React.lazy(
   () => import("../page/category/newCategory/page")
 );

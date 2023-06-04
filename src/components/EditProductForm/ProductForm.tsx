@@ -10,41 +10,33 @@ import ProductImages from "./ProductImages";
 import { useEffect } from "react";
 import useCreateProducts from "../../Hooks/useProducts/useCreateProducts";
 import ProductState from "./ProductState";
-const ProductForm = () => {
-  const { createNewProduct } = useCreateProducts();
+const ProductForm = ({ defaultValue }: any) => {
+  // console.log(defaultValue, "defaultValue");
+
   const methods = useForm<ProductForm>({
     resolver: yupResolver(productSchema),
     mode: "onChange",
+    defaultValues: defaultValue,
   });
   const {
-    register,
     handleSubmit,
-    watch,
     control,
-    reset,
-    setValue,
-    getValues,
     formState: { errors },
-  } = methods;
-  useFormPersist("products-storage", {
-    watch,
     setValue,
-    storage: window.localStorage,
-  });
+  } = methods;
   useEffect(() => {
-    const getData = () => {
-      setValue("availability.inStock", true);
-      setValue("availability.quantity", watch("quantity"));
-      setValue("availability.deliveryDate", getDateTwoWeeksFromNow());
-    };
-    getData();
-  }, [watch, setValue]);
+    if (defaultValue.name) {
+      setValue("category", defaultValue.category.name);
+      setValue("subcategory", defaultValue.subcategory.name);
+      setValue("coverPhoto", defaultValue.coverPhoto);
+      setValue("features", defaultValue.features);
+    }
+  }, [defaultValue, setValue]);
   const submitForm = (data: any) => {
     if (data) {
-      createNewProduct(data);
+      console.log(data);
     }
   };
-  console.log(errors);
 
   return (
     <FormProvider {...methods}>
@@ -52,15 +44,13 @@ const ProductForm = () => {
         <div className="flex flex-col gap-y-5">
           <ProductInformation />
           <ProductDescrption />
-          <ProductImages />
+          <ProductImages
+            productPhotos={defaultValue.photos}
+            coverPhotos={defaultValue.coverPhoto}
+          />
           <ProductInventory />
           <ProductState />
         </div>
-        {/* <div className="flex justify-center mt-2 ">
-          <button className="px-4 py-1 text-white capitalize rounded-md w-fit bg-primary">
-            create
-          </button>
-        </div> */}
       </form>
       <DevTool control={control} />
     </FormProvider>

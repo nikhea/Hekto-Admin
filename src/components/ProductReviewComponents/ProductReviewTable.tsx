@@ -49,6 +49,9 @@ const ProductReviewTable = ({ reviews }: any) => {
         field: "action",
         headerName: "Published",
         width: 200,
+        type: "singleSelect",
+        valueOptions: ["Published", "Unpublished"],
+        editable: true,
         renderCell: (params: any) => (
           <div>
             <Button
@@ -56,7 +59,6 @@ const ProductReviewTable = ({ reviews }: any) => {
               variant="outlined"
               color="secondary"
               size="small"
-              // style={{ backgroundColor: "pink" }}
             >
               {params.row.published ? "Unpublished" : "Published"}
             </Button>

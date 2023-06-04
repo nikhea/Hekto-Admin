@@ -9,7 +9,7 @@ import { useFetchAllUser } from "../../../Hooks/useUser/useFetchAllUser";
 import { useFetchAllProducts } from "../../../Hooks/useProducts/useFetchAllProducts";
 const TotalCard = () => {
   const users = useFetchAllUser();
-  // const products = useFetchAllProducts();
+  const products = useFetchAllProducts();
 
   return (
     <div style={{ gap: "12px" }} className="grid md:grid-cols-2">
@@ -62,7 +62,7 @@ const TotalCard = () => {
             <Text className="text-base font-normal uppercase">
               Total Products
             </Text>
-            {/* <Metric>{products && products.length}</Metric> */}
+            <Metric>{products && products.length}</Metric>
           </div>
           <Icon
             icon={ShoppingBagIcon}

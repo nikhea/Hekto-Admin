@@ -14,7 +14,7 @@ import ProductReview from "../page/ProductReview/page";
 import Profile from "../page/profile/page";
 import Reports from "../page/Reports/page";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
-import NewProduct from "../page/newProduct/page";
+import NewProduct from "../page/products/newProduct/page";
 import NewCategory from "../page/category/newCategory/page";
 import UpdataCategory from "../page/category/updataCategory/page";
 import UserInfo from "../page/users/userInfo/page";

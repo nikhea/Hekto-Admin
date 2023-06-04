@@ -31,7 +31,9 @@ export const Productcolumns = [
     cellClassName: "name-column--cell",
     width: 310,
     renderCell: (params: any) => (
-      <Link to={`${routes.users}/${params.row.name}`}>{params.row.name}</Link>
+      <Link to={`${routes.EditProduct}/${params.row.name}`}>
+        {params.row.name}
+      </Link>
     ),
   },
   {

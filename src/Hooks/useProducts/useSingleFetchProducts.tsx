@@ -4,17 +4,12 @@ import { queryKey } from "../queryKeys";
 import { FC } from "react";
 
 interface Props {
-  name?: any;
+  name?: string;
 }
 
-export const useSingleFetchProducts: FC<Props> = (props) => {
-  const { data: product } = useQuery(
-    [queryKey.products, props.name],
-    () => fetchSingleProducts(props.name)
-    // {
-    //   initialData: props.initialData.product,
-    //   refetchOnMount: true,
-    // }
+export const useSingleFetchProducts: FC<Props> = (name) => {
+  const { data: product } = useQuery([queryKey.products, name], () =>
+    fetchSingleProducts(name)
   );
 
   return product;

@@ -1,5 +1,4 @@
 import { FC } from "react";
-// import "./select.css";
 import CreatableSelect from "react-select/creatable";
 import classnames from "classnames";
 export interface optionsProps {
@@ -48,22 +47,22 @@ const InputSelect: FC<inputProps> = ({
     [`${style.inputFull}`]: inputFull,
     [`${style.inputHalf}`]: inputHalf,
     [`${style.isWhiteBg}`]: isWhiteBg,
-
-    // [`${style.curve}`]: isCurve,
-    // [`${style.rounded}`]: rounded,
-    // [`${style.bold}`]: bold,
   };
   const customStyles = {
     option: (provided: any, state: { isSelected: any }) => ({
       ...provided,
-      // color: state.isSelected ? "yellow" : "black",
-      // backgroundColor: state.isSelected ? "green" : "white",
     }),
     control: (provided: any) => ({
       ...provided,
-      // marginTop: "5%",
     }),
   };
+  const formatOptionLabel = (option: optionsProps) => (
+    <div>
+      <span>{option.label}</span>
+    </div>
+  );
+  const getOptionLabel = (option: optionsProps) => option.label;
+
   return (
     <div className={classnames(inputSelectContainer)}>
       <CreatableSelect
@@ -78,6 +77,8 @@ const InputSelect: FC<inputProps> = ({
         required={required}
         isClearable
         isMulti
+        formatOptionLabel={formatOptionLabel}
+        getOptionLabel={getOptionLabel}
       />
     </div>
   );
