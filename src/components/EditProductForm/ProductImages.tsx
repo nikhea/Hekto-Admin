@@ -15,8 +15,6 @@ const style = {
   btn: `bg-white p-3 rounded-md flex items-center justify-between capitalize absolute m-3`,
 };
 const ProductImages = ({ coverPhotos, productPhotos }: any) => {
-  console.log(productPhotos);
-
   const {
     register,
     control,

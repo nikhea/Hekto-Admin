@@ -56,8 +56,6 @@ const EditCategoryForm: FC<NewCategoryFormProps> = ({ defaultCategory }) => {
     let categoriesData = data;
     if (categoriesData) {
       if (defaultCategory.name) {
-        console.log(categoriesData);
-
         updateCategories(defaultCategory.name, categoriesData);
       }
     } else {

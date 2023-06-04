@@ -9,6 +9,10 @@ export const fetchAllProducts = async () => {
 
   return data.data;
 };
+export const fetchSingleProducts = async (name: any) => {
+  const { data } = await axios.get(`products/${name}`);
+  return data;
+};
 export const createProductServer = async (productData: any) => {
   const { data } = await axios.post(
     "products",
@@ -62,7 +66,36 @@ export const removeProductServer = async (id: string) => {
   // return data.data;
 };
 
-export const fetchSingleProducts = async (name: any) => {
-  const { data } = await axios.get(`products/${name}`);
-  return data;
+export const UpdateProductServer = async (
+  productId: string,
+  productData: any
+) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const { data } = await axios.patch(
+        `products/${productId}`,
+        { productData },
+        {
+          headers: {
+            Authorization: `Bearer ${storage.getToken()}`,
+          },
+        }
+      );
+      resolve(data);
+      if (data.statuscode === 200) {
+        notify({
+          type: "info",
+          message: data.message,
+        });
+      }
+      if (data.statuscode === 201) {
+        notify({
+          type: "success",
+          message: data.message,
+        });
+      }
+    } catch (err) {
+      reject(err);
+    }
+  });
 };

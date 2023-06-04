@@ -10,9 +10,11 @@ import ProductImages from "./ProductImages";
 import { useEffect } from "react";
 import useCreateProducts from "../../Hooks/useProducts/useCreateProducts";
 import ProductState from "./ProductState";
-const ProductForm = ({ defaultValue }: any) => {
-  // console.log(defaultValue, "defaultValue");
+import useUpdateProduct from "../../Hooks/useProducts/useUpdateProduct";
+const ProductForm = ({ defaultValue, productId }: any) => {
+  console.log(productId);
 
+  const { updateProduct } = useUpdateProduct();
   const methods = useForm<ProductForm>({
     resolver: yupResolver(productSchema),
     mode: "onChange",
@@ -33,8 +35,12 @@ const ProductForm = ({ defaultValue }: any) => {
     }
   }, [defaultValue, setValue]);
   const submitForm = (data: any) => {
+    const productData = data;
     if (data) {
-      console.log(data);
+      if (defaultValue.name) {
+        updateProduct(productId, productData);
+      }
+      // console.log(data);
     }
   };
 

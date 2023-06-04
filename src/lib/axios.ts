@@ -1,10 +1,10 @@
 import axios from "axios";
 import { storage } from "../auth/utils";
 
-let main = "https://backendfortuneecommerce-production.up.railway.app/api/";
-let test = "http://localhost:4000/api/";
+let main = import.meta.env.VITE_HEKTO_PRODUCT;
+let test = import.meta.env.VITE_HEKTO_DEVELOPMENT;
 const instance = axios.create({
-  baseURL: test,
+  baseURL: main,
   headers: {
     Authorization: `Bearer ${storage.getToken()}`,
   },
