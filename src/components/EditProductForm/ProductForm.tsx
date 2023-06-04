@@ -58,7 +58,7 @@ const ProductForm = ({ defaultValue, productId }: any) => {
           <ProductState />
         </div>
       </form>
-      <DevTool control={control} />
+      {/* <DevTool control={control} /> */}
     </FormProvider>
   );
 };

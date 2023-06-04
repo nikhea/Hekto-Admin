@@ -20,9 +20,9 @@ const ProductState = () => {
           id="neat-label"
           className="grid items-center grid-cols-2 md:flex md:gap-2"
         >
-          <span className="mr-10 lg:mr-0">Bestseller:</span>
+          <span className="mr-10 lg:mr-0">Best seller:</span>
           <Controller
-            name="bestseller"
+            name="bestSeller"
             control={control}
             render={({ field }) => (
               <Switch
