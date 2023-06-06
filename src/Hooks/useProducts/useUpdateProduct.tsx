@@ -15,7 +15,7 @@ const useUpdateProduct = () => {
       onSuccess: () => {
         queryClient.invalidateQueries([queryKey.products]);
         queryClient.invalidateQueries();
-        //   clearStore();
+        clearStore();
       },
     }
   );

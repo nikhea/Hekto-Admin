@@ -16,8 +16,8 @@ const useCreateProducts = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries([queryKey.products]);
-        // clearStore();
-        // ClearMultiple()
+        clearStore();
+        ClearMultiple();
       },
     }
   );

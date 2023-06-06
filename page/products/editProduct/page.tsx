@@ -25,7 +25,7 @@ const EditProduct = () => {
     <div>
       <Card className="relative flex items-center justify-center mb-3">
         <h1 className="flex justify-center text-center capitalize md:text-xl">
-          update - {name}
+          update - {product.data.name}
         </h1>
         <span className="absolute flex items-center gap-3 capitalize right-3 text-end md:text-xl">
           {/* <h6 className="text-green-500">live view</h6> */}

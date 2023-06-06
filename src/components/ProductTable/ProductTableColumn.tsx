@@ -33,7 +33,7 @@ export const Productcolumns = [
     cellClassName: "name-column--cell",
     width: 200,
     renderCell: (params: any) => (
-      <Link to={`${routes.EditProduct}/${params.row.name}`}>
+      <Link to={`${routes.EditProduct}/${params.row.slug}`}>
         {params.row.name}
       </Link>
     ),
@@ -99,7 +99,7 @@ export const Productcolumns = [
     sortable: false,
     width: 100,
     renderCell: (params: any) => (
-      <Link target="_blank" to={`${LiveView}/${params.row.name}`}>
+      <Link target="_blank" to={`${LiveView}/${params.row.slug}`}>
         <BsEyeFill
           className="cursor-pointer text-[#333] hover:text-red-500"
           size={20}
@@ -116,7 +116,7 @@ export const Productcolumns = [
       const { removeFromProducts } = useRemoveFromProducts();
 
       const handleDeleteProduct = () => {
-        // removeFromProducts(params.row._id);
+        removeFromProducts(params.row._id);
       };
       return (
         <TbTrashXFilled

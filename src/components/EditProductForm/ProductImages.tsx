@@ -53,20 +53,12 @@ const ProductImages = ({ coverPhotos, productPhotos }: any) => {
   }, [imageData, addImage, setValue]);
   const displayDefaultProductPhotos = productPhotos.map(
     (productPhoto: any, index: number) => {
+      console.log(productPhoto);
       if (productPhoto.secure_url) {
         return (
           <LazyLoadImage
             className="object-cover w-[150px] h-[150px] rounded-md"
             src={productPhoto.secure_url}
-            alt={productPhoto.public_id}
-            key={index}
-          />
-        );
-      } else {
-        return (
-          <LazyLoadImage
-            className="object-cover w-[150px] h-[150px] rounded-md"
-            src={productPhoto}
             alt={productPhoto.public_id}
             key={index}
           />
@@ -117,8 +109,7 @@ const ProductImages = ({ coverPhotos, productPhotos }: any) => {
       <div className="flex flex-col justify-between ">
         <h1 className="my-2 capitalize"> images* </h1>
         {!imageData[0] ? (
-          <div className="grid grid-cols-3 lg:flex flex-wrap gap-3 ">
-            {" "}
+          <div className="grid flex-wrap grid-cols-3 gap-3 lg:flex ">
             {displayDefaultProductPhotos}
           </div>
         ) : (

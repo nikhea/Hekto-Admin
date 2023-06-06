@@ -1,5 +1,6 @@
 export type Product = {
   _id: string;
+  slug: string;
   name: string;
   coverPhoto?: any;
   image?: any;
@@ -14,6 +15,7 @@ export type Product = {
 };
 export type IRelatedProductItem = {
   _id: string;
+  slug: string;
   image: string | any;
   name: string;
   price: number;
@@ -22,6 +24,7 @@ export type IRelatedProductItem = {
 };
 export type SingleInfoPageComponentProduct = {
   _id: string;
+  slug: string;
   name: string;
   price: number;
   rating: number;
