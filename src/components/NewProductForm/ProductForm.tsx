@@ -42,7 +42,7 @@ const ProductForm = () => {
   const submitForm = (data: any) => {
     if (data) {
       createNewProduct(data);
-      // reset();
+      reset();
     }
   };
   console.log(errors);

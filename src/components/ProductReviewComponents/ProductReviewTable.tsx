@@ -18,37 +18,35 @@ const ProductReviewTable = ({ reviews }: any) => {
 
   const columns = useMemo(
     () => [
-      // {
-      //   field: "checkboxSelection",
-      //   headerName: "Select",
-      //   width: 100,
-      //   sortable: false,
-      //   renderCell: (params: any) => (
-      //     <Checkbox
-      //       color="primary"
-      //         checked={selectedRows.includes(params.row._id)}
-      //     />
-      //   ),
-      // },
-      // { field: "_id", headerName: "Review ID", width: 100 },
-      { field: "customername", headerName: "Customer Name", width: 150 },
-      //   { field: "lastname", headerName: "Last Name", width: 150 },
-      { field: "productName", headerName: "Product Name", width: 200 },
+      {
+        field: "customername",
+        headerName: "Customer Name",
+        width: 150,
+      },
+      {
+        field: "productName",
+        headerName: "Product Name",
+        width: 200,
+      },
       {
         field: "rating",
         headerName: "Rating",
-        width: 200,
+        width: 150,
         renderCell: (params: any) => (
           <>
             <RatingStar value={params.row.rating} size={24} edit={false} />
           </>
         ),
       },
-      { field: "comment", headerName: "Comment", width: 300 },
+      {
+        field: "comment",
+        headerName: "Comment",
+        width: 300,
+      },
       {
         field: "action",
         headerName: "Published",
-        width: 200,
+        width: 130,
         type: "singleSelect",
         valueOptions: ["Published", "Unpublished"],
         editable: true,
@@ -73,7 +71,7 @@ const ProductReviewTable = ({ reviews }: any) => {
         width: 100,
         renderCell: (params: any) => (
           <TbTrashXFilled
-            className="cursor-pointer hover:text-red-500"
+            className="cursor-pointer text-center hover:text-red-500"
             // color="#8392A5"
             size={20}
             onClick={() => handleDelete(params.row._id)}
@@ -104,7 +102,7 @@ const ProductReviewTable = ({ reviews }: any) => {
             borderBottom: "none",
           },
           "& .name-column--cell": {
-            // color: "black",
+            color: "black",
             textTransform: "capitalize",
           },
           "& .MuiDataGrid-columnHeaders": {
@@ -133,7 +131,7 @@ const ProductReviewTable = ({ reviews }: any) => {
           //   components={{ Toolbar: GridToolbar }}
           getRowId={(row: any) => generateRandom()}
           columns={columns}
-          checkboxSelection
+          // checkboxSelection
           // selectionModel={selectedRows}
           // onSelectionModelChange={handleSelectionModelChange}
         />

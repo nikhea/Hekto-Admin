@@ -33,7 +33,10 @@ export const Productcolumns = [
     cellClassName: "name-column--cell",
     width: 200,
     renderCell: (params: any) => (
-      <Link to={`${routes.EditProduct}/${params.row.slug}`}>
+      <Link
+        className=" hover:text-primary"
+        to={`${routes.EditProduct}/${params.row.slug}`}
+      >
         {params.row.name}
       </Link>
     ),

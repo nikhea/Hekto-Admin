@@ -25,7 +25,7 @@ const ProfileUpdate = () => {
         </div>
 
         <div className={style.padding}>
-          <h1 className="mb-5 text-2xl uppercase">my details</h1>
+          <h1 className="mb-5 text-2xl container uppercase">my details</h1>
           <UpdateForm user={user} />
         </div>
       </div>

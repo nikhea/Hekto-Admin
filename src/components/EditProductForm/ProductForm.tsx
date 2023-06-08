@@ -12,8 +12,6 @@ import useCreateProducts from "../../Hooks/useProducts/useCreateProducts";
 import ProductState from "./ProductState";
 import useUpdateProduct from "../../Hooks/useProducts/useUpdateProduct";
 const ProductForm = ({ defaultValue, productId }: any) => {
-  console.log(productId);
-
   const { updateProduct } = useUpdateProduct();
   const methods = useForm<ProductForm>({
     resolver: yupResolver(productSchema),

@@ -11,6 +11,8 @@ import Select from "../../../FormElement/select/select";
 import Input from "../../../FormElement/input/input";
 import Button from "../../../FormElement/Button/Button";
 import { updateProfile } from "../../../../services/shared/profile";
+import useUpdateProfile from "../../../../Hooks/useUser/useUpdateProfile";
+import PageLoading from "../../../Loading/PageLoading";
 let profile = {
   gender: "male",
   country: "nigeria",
@@ -23,6 +25,13 @@ let profile = {
   updatedAt: "2023-03-01T17:15:28.482Z",
 };
 const UpdateForm = ({ user }: any) => {
+  console.log(user?.data?.profile, "uuuuuuuuuuuuuuu");
+
+  if (!user?.data?.profile) {
+    return <PageLoading />;
+  }
+
+  const { updateProfile } = useUpdateProfile();
   const queryClient = useQueryClient();
   const methods = useForm<FormData>({
     resolver: yupResolver(updateSchema),
@@ -54,7 +63,7 @@ const UpdateForm = ({ user }: any) => {
     },
   });
   const submitForm = async (formData: FormData) => {
-    console.log(formData);
+    updateProfile(formData);
     // if (formData && !isLoading) {
     //   await mutateAsync(formData);
     // }
