@@ -4,7 +4,8 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import { TiCamera } from "react-icons/ti";
 
 import useSingleImage from "../../../Hooks/useSingleImage";
-import { addProfileImage } from "../../../services/shared/profile";
+import { useProfileImageStore } from "../../../store/useProfileImageStore";
+import useProfileImage from "../../../Hooks/useProfileImage";
 interface Image {
   asset_id: any;
   secure_url: any;
@@ -19,14 +20,17 @@ const style = {
   btnContainer: `absolute left-3 top-[20px] `,
   btn: `bg-white p-3 rounded-md flex items-center justify-between capitalize`,
 };
+const addProfileImages = {};
 const BannerImage = ({ user }: any) => {
+  const { profileImageData, setProfileImageData } = useProfileImageStore();
+
   const foldername = `user/profile/${user?.data?.firstname} ${
     user?.data?.lastname
   }-${Date.now()}`;
   const widgetRef = useRef();
-  const s = useSingleImage(widgetRef, foldername, addProfileImage);
-  let urlImg = user?.profile?.profileImage?.secure_url;
-  let thumbnail = user?.profile?.profileImage?.secure_url;
+  const s = useProfileImage(widgetRef, foldername, addProfileImages);
+  let urlImg = user?.data?.profile?.profileImage?.secure_url;
+  let thumbnail = user?.data?.profile?.profileImage?.thumbnail_url;
   const openWidget = () => {
     //@ts-ignore
     widgetRef.current.open();

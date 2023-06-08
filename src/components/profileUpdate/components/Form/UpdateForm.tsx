@@ -1,16 +1,13 @@
 import ReactQuill from "react-quill";
 import "../../styles/updateForm.module.scss";
 import "react-quill/dist/quill.snow.css";
-import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { useForm, FormProvider, useController } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { updateSchema } from "./updateSchema";
-
 import { ThreeDots } from "react-loader-spinner";
 import Select from "../../../FormElement/select/select";
 import Input from "../../../FormElement/input/input";
 import Button from "../../../FormElement/Button/Button";
-import { updateProfile } from "../../../../services/shared/profile";
 import useUpdateProfile from "../../../../Hooks/useUser/useUpdateProfile";
 import PageLoading from "../../../Loading/PageLoading";
 let profile = {
@@ -25,14 +22,11 @@ let profile = {
   updatedAt: "2023-03-01T17:15:28.482Z",
 };
 const UpdateForm = ({ user }: any) => {
-  console.log(user?.data?.profile, "uuuuuuuuuuuuuuu");
-
   if (!user?.data?.profile) {
     return <PageLoading />;
   }
 
-  const { updateProfile } = useUpdateProfile();
-  const queryClient = useQueryClient();
+  const { updateProfile, isLoading } = useUpdateProfile();
   const methods = useForm<FormData>({
     resolver: yupResolver(updateSchema),
     mode: "onChange",
@@ -49,24 +43,8 @@ const UpdateForm = ({ user }: any) => {
     formState: { errors },
   } = methods;
 
-  const {
-    mutateAsync,
-    status,
-    isLoading,
-    data: ProfileData,
-  } = useMutation(updateProfile, {
-    onMutate: () => {},
-    onSettled: () => {
-      // @ts-ignore
-      queryClient.invalidateQueries("");
-      queryClient.invalidateQueries(["authenticated-user"]);
-    },
-  });
   const submitForm = async (formData: FormData) => {
     updateProfile(formData);
-    // if (formData && !isLoading) {
-    //   await mutateAsync(formData);
-    // }
   };
   const { field: genderField } = useController({
     name: "gender",
@@ -257,30 +235,22 @@ const UpdateForm = ({ user }: any) => {
               />
             </div>
           </div>
-          <div className="py-5 text-center">
-            <Button
-              // center
-              isCurve
-              primary
-              padding
-              uppercase
-              full
-            >
-              {/* save */}
+          <div className=" text-center">
+            <button className="px-4 py-1 text-white capitalize rounded-md w-fit bg-primary">
               {isLoading ? (
                 <ThreeDots
                   height="10"
-                  width="80"
+                  width="30"
                   radius="9"
-                  color="#FFF"
-                  wrapperClass="flex text-center cursor-not-allowed"
+                  color="#FFF "
+                  wrapperClass="flex text-center cursor-not-allowed py-2"
                   ariaLabel="three-dots-loading"
                   visible={true}
                 />
               ) : (
                 "save"
               )}
-            </Button>
+            </button>
           </div>
         </form>
         {/* <DevTool control={control} /> */}
