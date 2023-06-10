@@ -12,7 +12,8 @@ import useCreateProducts from "../../Hooks/useProducts/useCreateProducts";
 import ProductState from "./ProductState";
 import useUpdateProduct from "../../Hooks/useProducts/useUpdateProduct";
 const ProductForm = ({ defaultValue, productId }: any) => {
-  const { updateProduct } = useUpdateProduct();
+  const { updateProduct, isLoading } = useUpdateProduct();
+
   const methods = useForm<ProductForm>({
     resolver: yupResolver(productSchema),
     mode: "onChange",
@@ -38,9 +39,10 @@ const ProductForm = ({ defaultValue, productId }: any) => {
       if (defaultValue.name) {
         updateProduct(productId, productData);
       }
-      // console.log(data);
+      // console.log(isLoading, "isLoading");
     }
   };
+  // console.log(status);
 
   return (
     <FormProvider {...methods}>
@@ -53,7 +55,7 @@ const ProductForm = ({ defaultValue, productId }: any) => {
             coverPhotos={defaultValue.coverPhoto}
           />
           <ProductInventory />
-          <ProductState />
+          <ProductState isLoading={isLoading} />
         </div>
       </form>
       {/* <DevTool control={control} /> */}

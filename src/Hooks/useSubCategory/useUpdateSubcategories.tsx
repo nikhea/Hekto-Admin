@@ -29,10 +29,11 @@ const useUpdateSubcategories = () => {
       SubCategoriesData,
     });
   };
+
   return {
     updateSubCategories,
     status: UpdateSubCategories.status,
-    isLoading: UpdateSubCategories.isLoading,
+    updateSubCategoriesIsLoading: UpdateSubCategories.isLoading,
     data: UpdateSubCategories.data,
   };
 };

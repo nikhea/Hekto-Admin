@@ -17,6 +17,7 @@ import { TiCamera } from "react-icons/ti";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useSingleImageStore } from "../../store/useSingleImageStore";
 import useSingleImage from "../../Hooks/useSingleImage";
+import ButtonLoading from "../FormElement/Button/ButtonLoading";
 
 interface NewCategoryFormProps {
   defaultCategory?: any;
@@ -28,7 +29,10 @@ const EditSubCategoryForm: FC<NewCategoryFormProps> = ({
 }) => {
   const { name } = useParams<{ name?: string }>();
 
-  const { updateSubCategories } = useUpdateSubcategories();
+  const { updateSubCategories, updateSubCategoriesIsLoading } =
+    useUpdateSubcategories();
+  console.log(updateSubCategoriesIsLoading, "updateSubCategoriesIsLoading");
+
   const [categoryOptions, setCategoryOptions] = useState([""]);
   const { newImageData, setNewImageData } = useSingleImageStore();
   const foldername = `new-updated-subcategories-${Date.now()}`;
@@ -94,7 +98,6 @@ const EditSubCategoryForm: FC<NewCategoryFormProps> = ({
         updateSubCategories(name, subCategoriesData);
       }
     } else {
-      console.log(errors);
     }
   };
 
@@ -178,9 +181,13 @@ const EditSubCategoryForm: FC<NewCategoryFormProps> = ({
           />
         </div>
         <div className="flex justify-center mt-2 ">
-          <button className="px-4 py-1 text-white capitalize rounded-md w-fit bg-primary">
+          {/* <button className="px-4 py-1 text-white capitalize rounded-md w-fit bg-primary">
             update
-          </button>
+          </button> */}
+          <ButtonLoading
+            text="update"
+            isLoading={updateSubCategoriesIsLoading}
+          />
         </div>
       </div>
     </form>

@@ -4,6 +4,8 @@ import { routes } from "../../../routes/routes";
 import { Link } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import useDeviceProperties from "../../../Hooks/UseMediaQueries";
+import { Img } from "react-image";
+import VisibilitySensor from "react-visibility-sensor";
 
 const CategoriesList = () => {
   const { isTabletOrMobile } = useDeviceProperties();
@@ -14,12 +16,14 @@ const CategoriesList = () => {
     (category: any) => (
       <Link className="w-full" to={`${routes.category}`} key={category._id}>
         <div style={{ width: "100%", height: "100px", borderRadius: "10px" }}>
-          <LazyLoadImage
+          {/* <VisibilitySensor> */}
+          <img
             style={{ borderRadius: "10px" }}
             className="flex object-cover w-full h-full rounded-2xl"
             src={category.coverPhoto}
             alt={category.name}
           />
+          {/* </VisibilitySensor> */}
         </div>
         <h1 className="mt-3 text-center">{category.name}</h1>
       </Link>

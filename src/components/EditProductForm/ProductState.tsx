@@ -1,10 +1,14 @@
 import { Card } from "@tremor/react";
-import React from "react";
+import React, { FC } from "react";
 import CardHeader from "./CardHeader";
 import Switch from "react-switch";
 import { Controller, useFormContext } from "react-hook-form";
+import ButtonLoading from "../FormElement/Button/ButtonLoading";
+import useUpdateProduct from "../../Hooks/useProducts/useUpdateProduct";
 
-const ProductState = () => {
+const ProductState: FC<{
+  isLoading: boolean;
+}> = ({ isLoading }) => {
   const {
     register,
     watch,
@@ -15,9 +19,9 @@ const ProductState = () => {
   return (
     <Card>
       <CardHeader title="product state" />
-      <div className=" grid md:grid-cols-2 gap-y-3 lg:flex  md:justify-evenly">
-        <label className="grid grid-cols-2  md:flex items-center md:gap-2">
-          <span className=" mr-10 lg:mr-0">Featured:</span>
+      <div className="grid md:grid-cols-2 gap-y-3 lg:flex md:justify-evenly">
+        <label className="grid items-center grid-cols-2 md:flex md:gap-2">
+          <span className="mr-10 lg:mr-0">Featured:</span>
           <Controller
             name="featured"
             control={control}
@@ -33,9 +37,9 @@ const ProductState = () => {
         </label>
         <label
           id="neat-label"
-          className="grid grid-cols-2  md:flex items-center md:gap-2"
+          className="grid items-center grid-cols-2 md:flex md:gap-2"
         >
-          <span className=" mr-10 lg:mr-0">Best Seller:</span>
+          <span className="mr-10 lg:mr-0">Best Seller:</span>
           <Controller
             name="bestSeller"
             control={control}
@@ -50,8 +54,8 @@ const ProductState = () => {
             )}
           />
         </label>
-        <label className="grid grid-cols-2  md:flex items-center md:gap-2">
-          <span className=" mr-5 lg:mr-0">New Arrival:</span>
+        <label className="grid items-center grid-cols-2 md:flex md:gap-2">
+          <span className="mr-5 lg:mr-0">New Arrival:</span>
           <Controller
             name="newArrival"
             control={control}
@@ -65,8 +69,8 @@ const ProductState = () => {
             )}
           />
         </label>
-        <label className="grid grid-cols-2  md:flex items-center md:gap-2">
-          <span className=" mr-5 lg:mr-0">Special Offer:</span>
+        <label className="grid items-center grid-cols-2 md:flex md:gap-2">
+          <span className="mr-5 lg:mr-0">Special Offer:</span>
           <Controller
             name="specialOffer"
             control={control}
@@ -82,9 +86,10 @@ const ProductState = () => {
         </label>
       </div>
       <div className="flex justify-center w-full mt-10 ">
-        <button className="px-4 py-2 text-white capitalize rounded-md w-fit bg-primary">
+        {/* <button className="px-4 py-2 text-white capitalize rounded-md w-fit bg-primary">
           update
-        </button>
+        </button> */}
+        <ButtonLoading text="update" isLoading={isLoading} />
       </div>
     </Card>
   );

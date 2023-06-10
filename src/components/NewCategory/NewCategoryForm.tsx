@@ -10,6 +10,7 @@ import useCreateCategories from "../../Hooks/useCategories/useCreateCategories";
 import { useSingleImageStore } from "../../store/useSingleImageStore";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { TiCamera } from "react-icons/ti";
+import ButtonLoading from "../FormElement/Button/ButtonLoading";
 const style = {
   btn: `bg-white p-3 rounded-md flex items-center justify-between capitalize absolute m-3`,
 };
@@ -28,7 +29,8 @@ const NewCategoryForm: FC<NewCategoryFormProps> = () => {
     widgetRef.current.open();
   };
 
-  const { createNewCategories, status } = useCreateCategories();
+  const { createNewCategories, status, createCategoriesisLoading } =
+    useCreateCategories();
   const methods = useForm<newCategoryDataData>({
     resolver: yupResolver(newCategoryDataSchema),
     defaultValues: {},
@@ -51,7 +53,6 @@ const NewCategoryForm: FC<NewCategoryFormProps> = () => {
     if (categoriesData) {
       createNewCategories({ categoriesData });
     } else {
-      console.log(errors);
     }
   };
   useEffect(() => {
@@ -123,9 +124,10 @@ const NewCategoryForm: FC<NewCategoryFormProps> = () => {
           />
         </div>
         <div className="flex justify-center mt-2 ">
-          <button className="px-4 py-1 text-white capitalize rounded-md w-fit bg-primary">
+          {/* <button className="px-4 py-1 text-white capitalize rounded-md w-fit bg-primary">
             save
-          </button>
+          </button> */}
+          <ButtonLoading text="save" isLoading={createCategoriesisLoading} />
         </div>
       </div>
     </form>

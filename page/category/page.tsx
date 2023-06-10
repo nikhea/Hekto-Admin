@@ -15,6 +15,8 @@ import HeaderCate from "../../src/components/HeaderCate/HeaderCate";
 import { TbTrashXFilled } from "react-icons/tb";
 import useRemoveCategories from "../../src/Hooks/useCategories/useRemoveCategories";
 import IconsLoading from "../../src/components/Loading/IconsLoading";
+import { Img } from "react-image";
+import VisibilitySensor from "react-visibility-sensor";
 
 const Category = () => {
   const { removeFromCategories, removeFromCategoriesisLoading } =
@@ -34,7 +36,7 @@ const Category = () => {
     setHoveredCategory(null);
   };
   const handleDelete = (Id: any) => {
-    removeFromCategories(Id);
+    // removeFromCategories(Id);
   };
   const displayCategories = categories.map((category: any) => (
     <div
@@ -49,12 +51,14 @@ const Category = () => {
         to={`${routes.updateCategory}/${category.name}`}
         style={{ width: "50%", height: "250px", borderRadius: "10px" }}
       >
-        <LazyLoadImage
-          style={{ borderRadius: "10px" }}
-          className="flex object-cover w-full h-full rounded-2xl"
-          src={category.coverPhoto}
-          alt={category.name}
-        />
+        <VisibilitySensor>
+          <Img
+            style={{ borderRadius: "10px" }}
+            className="flex object-cover w-full h-full rounded-2xl"
+            src={category.coverPhoto}
+            alt={category.name}
+          />
+        </VisibilitySensor>
       </Link>
       <div
         className={`absolute right-0 ${

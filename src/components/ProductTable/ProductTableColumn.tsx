@@ -119,7 +119,7 @@ export const Productcolumns = [
       const { removeFromProducts } = useRemoveFromProducts();
 
       const handleDeleteProduct = () => {
-        removeFromProducts(params.row._id);
+        // removeFromProducts(params.row._id);
       };
       return (
         <TbTrashXFilled

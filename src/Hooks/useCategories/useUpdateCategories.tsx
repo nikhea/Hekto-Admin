@@ -29,7 +29,7 @@ const useUpdateCategories = () => {
   return {
     updateCategories,
     status: UpdateCategories.status,
-    isLoading: UpdateCategories.isLoading,
+    isLoadingUpdateCategories: UpdateCategories.isLoading,
     data: UpdateCategories.data,
   };
 };

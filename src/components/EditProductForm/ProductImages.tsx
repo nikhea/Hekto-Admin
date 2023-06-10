@@ -53,7 +53,6 @@ const ProductImages = ({ coverPhotos, productPhotos }: any) => {
   }, [imageData, addImage, setValue]);
   const displayDefaultProductPhotos = productPhotos.map(
     (productPhoto: any, index: number) => {
-      console.log(productPhoto);
       if (productPhoto.secure_url) {
         return (
           <LazyLoadImage

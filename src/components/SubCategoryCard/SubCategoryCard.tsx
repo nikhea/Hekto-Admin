@@ -5,12 +5,15 @@ import { useState } from "react";
 import { FaStore } from "react-icons/fa";
 import { MdStore } from "react-icons/md";
 import { TbTrashXFilled } from "react-icons/tb";
+import { Img } from "react-image";
+import VisibilitySensor from "react-visibility-sensor";
 import {
   LazyLoadImage,
   trackWindowScroll,
 } from "react-lazy-load-image-component";
 import IconsLoading from "../Loading/IconsLoading";
 import Category from "../../../page/category/page";
+
 import useRemoveSubCategories from "../../Hooks/useSubCategory/useRemoveSubCategories";
 
 const SubCategoryCard = ({ subcategory }: any) => {
@@ -27,7 +30,7 @@ const SubCategoryCard = ({ subcategory }: any) => {
     setHoveredSubcategory(null);
   };
   const handleDelete = (Id: any) => {
-    removeFromSubCategories(Id);
+    // removeFromSubCategories(Id);
   };
   return (
     <div
@@ -42,12 +45,14 @@ const SubCategoryCard = ({ subcategory }: any) => {
         to={`${routes.updateSubCategory}/${subcategory.name}`}
         style={{ width: "50%", height: "250px", borderRadius: "10px" }}
       >
-        <LazyLoadImage
-          style={{ borderRadius: "10px" }}
-          className="flex object-cover w-full h-full rounded-2xl"
-          src={subcategory.coverPhoto}
-          alt={subcategory.name}
-        />
+        <VisibilitySensor>
+          <Img
+            style={{ borderRadius: "10px" }}
+            className="flex object-cover w-full h-full rounded-2xl"
+            src={subcategory.photo.url}
+            alt={subcategory.name}
+          />
+        </VisibilitySensor>
       </Link>
       <div
         className={`absolute right-0 ${

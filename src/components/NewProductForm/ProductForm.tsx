@@ -45,7 +45,6 @@ const ProductForm = () => {
       reset();
     }
   };
-  console.log(errors);
 
   return (
     <FormProvider {...methods}>

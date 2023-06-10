@@ -14,11 +14,14 @@ import { BsUpload } from "react-icons/bs";
 import { TiCamera } from "react-icons/ti";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import useCreateSubCategories from "../../Hooks/useSubCategory/useCreateSubCategories";
+import ButtonLoading from "../FormElement/Button/ButtonLoading";
 
 const style = {
   btn: `bg-white p-3 rounded-md flex items-center justify-between capitalize absolute m-3`,
 };
 const NewSubCategoryForm = ({ categories }: any) => {
+  const { createNewSubCategories, status, createSubCategoriesisLoading } =
+    useCreateSubCategories();
   const [categoryOptions, setCategoryOptions] = useState([""]);
   const { newImageData, setNewImageData } = useSingleImageStore();
 
@@ -29,7 +32,6 @@ const NewSubCategoryForm = ({ categories }: any) => {
     //@ts-ignore
     widgetRef.current.open();
   };
-  const { createNewSubCategories, status } = useCreateSubCategories();
 
   useEffect(() => {
     const getData = async () => {
@@ -74,10 +76,7 @@ const NewSubCategoryForm = ({ categories }: any) => {
     let subCategoriesData = data;
     if (subCategoriesData) {
       createNewSubCategories({ subCategoriesData });
-
-      console.log(subCategoriesData, "sub");
     } else {
-      console.log(errors);
     }
   };
   useEffect(() => {
@@ -162,9 +161,10 @@ const NewSubCategoryForm = ({ categories }: any) => {
           />
         </div>
         <div className="flex justify-center mt-2 ">
-          <button className="px-4 py-1 text-white capitalize rounded-md w-fit bg-primary">
+          {/* <button className="px-4 py-1 text-white capitalize rounded-md w-fit bg-primary">
             save
-          </button>
+          </button> */}
+          <ButtonLoading text="save" isLoading={createSubCategoriesisLoading} />
         </div>
       </div>
     </form>

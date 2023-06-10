@@ -7,7 +7,7 @@ import { queryKey } from "../queryKeys";
 const useUpdateProduct = () => {
   const { clearStore } = useSingleImageStore();
   const queryClient = useQueryClient();
-  const UpdateProduct = useMutation(
+  const { mutateAsync, status, isLoading, data } = useMutation(
     async ({ productId, productData }: any) => {
       await UpdateProductServer(productId, productData);
     },
@@ -21,13 +21,15 @@ const useUpdateProduct = () => {
   );
 
   const updateProduct = async (productId: string, productData: any) => {
-    await UpdateProduct.mutateAsync({ productId, productData });
+    await mutateAsync({ productId, productData });
   };
+  // console.log(isLoading);
+
   return {
     updateProduct,
-    status: UpdateProduct.status,
-    isLoading: UpdateProduct.isLoading,
-    data: UpdateProduct.data,
+    status,
+    isLoading,
+    data,
   };
 };
 

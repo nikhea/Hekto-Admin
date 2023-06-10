@@ -9,6 +9,7 @@ import { TiCamera } from "react-icons/ti";
 import { useSingleImageStore } from "../../store/useSingleImageStore";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import useSingleImage from "../../Hooks/useSingleImage";
+import ButtonLoading from "../FormElement/Button/ButtonLoading";
 
 const style = {
   btn: `bg-white p-3 rounded-md flex items-center justify-between capitalize absolute m-3`,
@@ -27,7 +28,7 @@ const EditCategoryForm: FC<NewCategoryFormProps> = ({ defaultCategory }) => {
     widgetRef.current.open();
   };
 
-  const { updateCategories } = useUpdateCategories();
+  const { updateCategories, isLoadingUpdateCategories } = useUpdateCategories();
 
   const methods = useForm<newCategoryDataData>({
     resolver: yupResolver(newCategoryDataSchema),
@@ -59,7 +60,6 @@ const EditCategoryForm: FC<NewCategoryFormProps> = ({ defaultCategory }) => {
         updateCategories(defaultCategory.name, categoriesData);
       }
     } else {
-      console.log(errors);
     }
   };
   return (
@@ -126,9 +126,10 @@ const EditCategoryForm: FC<NewCategoryFormProps> = ({ defaultCategory }) => {
           />
         </div>
         <div className="flex justify-center mt-2 ">
-          <button className="px-4 py-1 text-white capitalize rounded-md w-fit bg-primary">
+          {/* <button className="px-4 py-1 text-white capitalize rounded-md w-fit bg-primary">
             update
-          </button>
+          </button> */}
+          <ButtonLoading text="update" isLoading={isLoadingUpdateCategories} />
         </div>
       </div>
     </form>

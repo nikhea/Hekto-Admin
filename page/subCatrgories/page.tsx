@@ -7,6 +7,7 @@ import PageLoading from "../../src/components/Loading/PageLoading";
 import { useFetchCategories } from "../../src/Hooks/useCategories/useFetchCategories";
 import SubCategoryCard from "../../src/components/SubCategoryCard/SubCategoryCard";
 import { Card } from "@tremor/react";
+import { ThreeDots } from "react-loader-spinner";
 // const SubCategoryCard = lazy(
 //   () => import("../../src/components/SubCategoryCard/SubCategoryCard")
 // );
@@ -51,7 +52,19 @@ const SubCategory = () => {
               disabled={isFetchingNextPage}
               className="p-2 text-white capitalize rounded-md bg-primary"
             >
-              {isFetchingNextPage ? "Loading..." : "Load More"}
+              {isFetchingNextPage ? (
+                <ThreeDots
+                  height="10"
+                  width="30"
+                  radius="9"
+                  color="#FFF "
+                  wrapperClass="flex text-center cursor-not-allowed py-2 px-5"
+                  ariaLabel="three-dots-loading"
+                  visible={true}
+                />
+              ) : (
+                "Load More"
+              )}
             </button>
           )}
         </div>

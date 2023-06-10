@@ -235,8 +235,8 @@ const UpdateForm = ({ user }: any) => {
               />
             </div>
           </div>
-          <div className=" text-center">
-            <button className="px-4 py-1 text-white capitalize rounded-md w-fit bg-primary">
+          <div className="text-center ">
+            <button className="px-4 py-1 mb-5 text-white capitalize rounded-md w-fit bg-primary">
               {isLoading ? (
                 <ThreeDots
                   height="10"

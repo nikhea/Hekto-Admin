@@ -3,8 +3,11 @@ import React from "react";
 import CardHeader from "./CardHeader";
 import Switch from "react-switch";
 import { Controller, useFormContext } from "react-hook-form";
+import useCreateProducts from "../../Hooks/useProducts/useCreateProducts";
+import ButtonLoading from "../FormElement/Button/ButtonLoading";
 
 const ProductState = () => {
+  const { createProductLoading } = useCreateProducts();
   const {
     register,
     watch,
@@ -84,9 +87,10 @@ const ProductState = () => {
         </label>
       </div>
       <div className="flex justify-center w-full mt-10 ">
-        <button className="px-4 py-2 text-white capitalize rounded-md w-fit bg-primary">
+        {/* <button className="px-4 py-2 text-white capitalize rounded-md w-fit bg-primary">
           create
-        </button>
+        </button> */}
+        <ButtonLoading text="create" isLoading={createProductLoading} />
       </div>
     </Card>
   );
