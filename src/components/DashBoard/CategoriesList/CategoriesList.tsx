@@ -17,7 +17,7 @@ const CategoriesList = () => {
       <Link className="w-full" to={`${routes.category}`} key={category._id}>
         <div style={{ width: "100%", height: "100px", borderRadius: "10px" }}>
           {/* <VisibilitySensor> */}
-          <img
+          <Img
             style={{ borderRadius: "10px" }}
             className="flex object-cover w-full h-full rounded-2xl"
             src={category.coverPhoto}
