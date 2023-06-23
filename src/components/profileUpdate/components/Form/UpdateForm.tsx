@@ -22,9 +22,9 @@ let profile = {
   updatedAt: "2023-03-01T17:15:28.482Z",
 };
 const UpdateForm = ({ user }: any) => {
-  if (!user?.data?.profile) {
-    return <PageLoading />;
-  }
+  // if (!user?.data?.profile) {
+  //   return <PageLoading />;
+  // }
 
   const { updateProfile, isLoading } = useUpdateProfile();
   const methods = useForm<FormData>({

@@ -95,8 +95,9 @@ const DashBoardHeader = () => {
       <div className={style.subContainer}>
         <div className={style.colRight}>
           <h1 className={style.h1}>
-            {" "}
-            {user && `welcome ${user?.data?.firstname}`}
+            {user?.data?.firstname
+              ? user && `welcome ${user?.data?.firstname}`
+              : "welcome guest"}
           </h1>
         </div>
         <div className={style.colLeft}>
@@ -137,9 +138,11 @@ const DashBoardHeader = () => {
           </p>
           <div className=" flex flex-col text-[.7rem] lg:text-[1rem]">
             <h1>
-              {user && ` ${user?.data?.firstname} ${user?.data?.lastname}`}
+              {user?.data?.firstname
+                ? user && ` ${user?.data?.firstname} ${user?.data?.lastname}`
+                : "You are in guest mode"}
             </h1>
-            <p>{user && ` ${user?.data?.role}`}</p>
+            <p>{user?.data?.role ? user && ` ${user?.data?.role}` : "Guest"}</p>
           </div>
         </div>
       </div>

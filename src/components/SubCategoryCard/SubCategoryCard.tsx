@@ -75,7 +75,7 @@ const SubCategoryCard = ({ subcategory }: any) => {
       >
         <Link
           className="font-bold group-hover:text-primary"
-          to={`${routes.subCategory}/${subcategory.name}`}
+          to={`${routes.updateSubCategory}/${subcategory.name}`}
         >
           {subcategory.name}
         </Link>
