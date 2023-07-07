@@ -22,6 +22,7 @@ import SubCategory from "../page/subCatrgories/page";
 import NewSubCategory from "../page/subCatrgories/newSubCategory/page";
 import UpdataSubCategory from "../page/subCatrgories/UpdataSubCategory/page";
 import EditProduct from "../page/products/editProduct/page";
+import Home from "../page/Home/Home";
 const ScrollToTopPage = () => {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -38,7 +39,7 @@ const RouteComponent = () => {
       <ScrollToTopPage />
       <Suspense fallback={<PageLoading />}>
         <Routes>
-          <Route path={routes.home} element={<Login />} />
+          <Route path={routes.home} element={<Home />} />
           <Route element={<ProtectedRoutes />}>
             <Route path="" element={<SideBarLayout />}>
               <Route path={routes.dashboard} element={<Dashboard />} />

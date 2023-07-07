@@ -6,7 +6,9 @@
 // containerForm: ` w-full md:grid grid-cols-1 md:grid-cols-2   m-0 p-0 `,
 
 .formMainContainer {
-  @apply my-20 grid place-items-center;
+  // @apply my-20 grid place-items-center;
+  @apply w-full h-full flex flex-col justify-center;
+  // my-20
 }
 .formContainer {
   box-shadow: 0px 3px 35px 0px rgb(0 0 0 / 6%);
