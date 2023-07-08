@@ -36,7 +36,7 @@ const Sider = () => {
           and efficient e-commerce operations.
         </p>
       </div>
-      <div className="cursor-pointer hover:text-primary w-fit ">
+      <div className="text-center cursor-pointer hover:text-primary w-fit ">
         Copyright {currentYear()} &copy;{" "}
         <span className="uppercase ">Hekto</span>
       </div>

@@ -64,6 +64,10 @@ const AccountForm: FC = () => {
   };
   const guestLogIn = () => {
     navigate(routes.dashboard);
+    notify({
+      type: "success",
+      message: "Logged In As Guest",
+    });
   };
   return (
     <div className={style.formMainContainer}>
