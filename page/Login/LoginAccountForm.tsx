@@ -89,7 +89,12 @@ const AccountForm: FC = () => {
                 inputRef={register("email")}
               />
             </div>
-            <div className={style.inputContainer}>
+            <div
+              className={`${style.inputContainer} `}
+              style={{
+                marginBottom: "2rem",
+              }}
+            >
               <label className={style.label}>password</label>
               <Input
                 type="password"
@@ -115,7 +120,7 @@ const AccountForm: FC = () => {
         <h1>{AccountFormDefaultText.altBase} </h1>{" "}
         <span
           onClick={guestLogIn}
-          className="cursor-pointer hover:text-primary"
+          className="mx-2 text-lg cursor-pointer hover:text-primary"
         >
           sign in as guest
         </span>
