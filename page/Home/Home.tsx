@@ -1,18 +1,15 @@
 import React from "react";
 import LoginAccountForm from "../Login/LoginAccountForm";
-import HeaderIcon from "../../src/components/icons/HeaderIcon";
+import Sider from "./Sider";
 
-const style = {
-  logo: ` w-[80%] `,
-};
+const i = `https://images.unsplash.com/photo-1688542900887-347bd5febd96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80`;
+
 const Home = () => {
   return (
     <div className="h-screen overflow-hidden ">
       <div className="grid h-full grid-cols-6">
-        <div className="hidden w-full col-span-2 bg-pink-400 lg:flex ">
-          <div className={style.logo}>
-            <HeaderIcon />
-          </div>
+        <div className="hidden w-full h-full col-span-2 px-8 text-white bg-pink-300 lg:flex ">
+          <Sider />
         </div>
         <div className="w-full col-span-6 lg:col-span-4">
           <LoginAccountForm />;
@@ -23,3 +20,5 @@ const Home = () => {
 };
 
 export default Home;
+// bg-pink-400
+// bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-red-200 via-red-300 to-yellow-200
