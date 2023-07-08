@@ -24,6 +24,7 @@ const AccountFormDefaultText = {
 
 const AccountForm: FC = () => {
   const login = useLogin();
+
   let navigate = useNavigate();
   const user = useUser();
   // useEffect(() => {
@@ -61,7 +62,9 @@ const AccountForm: FC = () => {
       },
     });
   };
-
+  const guestLogIn = () => {
+    navigate(routes.dashboard);
+  };
   return (
     <div className={style.formMainContainer}>
       {/* <div className={style.formContainer}> */}
@@ -109,7 +112,13 @@ const AccountForm: FC = () => {
         </form>
       </FormProvider>
       <div className={style.TextContainerFooter}>
-        <h1>{AccountFormDefaultText.altBase}</h1>
+        <h1>{AccountFormDefaultText.altBase} </h1>{" "}
+        <span
+          onClick={guestLogIn}
+          className="cursor-pointer hover:text-primary"
+        >
+          sign in as guest
+        </span>
         {/* <Link to={AccountFormDefaultText. altLink}>{AccountFormDefaultText. altLinkText}</Link> */}
       </div>
       {/* </div> */}
