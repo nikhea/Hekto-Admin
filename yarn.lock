@@ -2324,6 +2324,11 @@ graceful-fs@^4.2.6:
   resolved "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.11.tgz"
   integrity sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==
 
+hamburger-react@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/hamburger-react/-/hamburger-react-2.5.0.tgz#7c0148af8f02f3b693564d69e590d02db8ffc221"
+  integrity sha512-5GSXe+ucxTPJ0SkhIsPQ/PRDweZPIKya1lfahAuExx31SdheeUA4uOPfQIAirbKona8hvo79VDr5LJQzPXsdpw==
+
 hard-rejection@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/hard-rejection/-/hard-rejection-2.1.0.tgz"
@@ -3490,6 +3495,11 @@ react-loader-spinner@^5.3.4:
     react-is "^18.2.0"
     styled-components "^5.3.5"
     styled-tools "^1.7.2"
+
+react-modern-drawer@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-modern-drawer/-/react-modern-drawer-1.2.0.tgz#1604acab03facac03945fc3cfc61e59d535ca6e8"
+  integrity sha512-GBQaeDNpnt6GFm3U9y/wzkZerP6R92CrgC9ge3/PHCm0F0LdUzt7rjFSwdd47Pdy6+FhXKR2rn7VxW3pl/+m9w==
 
 react-query-auth@^2.2.0:
   version "2.2.0"

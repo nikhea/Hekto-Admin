@@ -13,13 +13,14 @@ import { useLogout, useUser } from "../../auth/auth";
 import { toast } from "react-toastify";
 import { useProductState } from "../../store/useProductStore";
 import { useFetchAllProducts } from "../../Hooks/useProducts/useFetchAllProducts";
+import HumburgerLayout from "./HumburgerLayout";
 const style = {
   container: `shadow-sm  md:flex bg-white p-[0em] py-2  overflow-hidden text-[#11142D] relative sticky  top-0 bottom-0 left-0 right-0 z-[99] overflow-hidden`,
   subContainer: `flex justify-between items-center w-[95%] m-auto `,
   colRight: ``,
   colLeft: `flex items-center`,
   header: ``,
-  h1: ` text-[#11142D] font-normal text-[.9rem] lg:text-[2rem] capitalize`,
+  h1: ` text-[#11142D] font-normal text-[.9rem] lg:text-[2rem] capitalize hidden lg:block`,
   // agentImage: ` max-w-[35px]  h-[35px] rounded-full flex items-center`,
   img: ` w-full h-full rounded-full`,
   profileImg: `shadow-xl h-[50px] w-[50px] bg-red-500 rounded-full mr-3 border-2 object-cover`,
@@ -94,6 +95,7 @@ const DashBoardHeader = () => {
     <div className={style.container}>
       <div className={style.subContainer}>
         <div className={style.colRight}>
+          <HumburgerLayout />
           <h1 className={style.h1}>
             {user?.data?.firstname
               ? user && `welcome ${user?.data?.firstname}`
