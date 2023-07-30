@@ -27,7 +27,7 @@ const HumburgerData = ({ onClose }: any) => {
     </NavLink>
   ));
   return (
-    <div className="flex flex-col h-full mt-6 justify-evenly">
+    <div className="flex flex-col h-full mt-10 md:mt-6 justify-evenly">
       {displayData}
     </div>
   );

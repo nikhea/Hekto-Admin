@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <div className="h-screen overflow-hidden ">
       <div className="grid h-full grid-cols-6">
-        <div className="hidden w-full h-full col-span-2 px-8 text-white bg-pink-300 lg:flex ">
+        <div className="hidden w-full h-full col-span-2 px-8 text-white bg-pink-600 lg:flex ">
           <Sider />
         </div>
         <div className="w-full col-span-6 lg:col-span-4">
@@ -18,7 +18,7 @@ const Home = () => {
     </div>
   );
 };
-
+// FF1493
 export default Home;
 // bg-pink-400
 // bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-red-200 via-red-300 to-yellow-200
