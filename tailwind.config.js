@@ -17,6 +17,7 @@ module.exports = {
       }, //end of fontFamily
       colors: {
         primary: "#FB2E86",
+        deepPink: "#FF1493",
         secondary: "#EEEFFB",
         sub: "#0d0e43",
       },

@@ -1,4 +1,3 @@
-import React from "react";
 import LoginAccountForm from "../Login/LoginAccountForm";
 import Sider from "./Sider";
 
@@ -8,7 +7,7 @@ const Home = () => {
   return (
     <div className="h-screen overflow-hidden ">
       <div className="grid h-full grid-cols-6">
-        <div className="hidden w-full h-full col-span-2 px-8 text-white bg-pink-600 lg:flex ">
+        <div className="hidden w-full h-full col-span-2 px-8 text-white bg-deepPink lg:flex ">
           <Sider />
         </div>
         <div className="w-full col-span-6 lg:col-span-4">
