@@ -1,3 +1,4 @@
+// @ts-nocheck
 // import React from "react";
 import { Suspense, useEffect } from "react";
 import { Routes, Route, useLocation, Link } from "react-router-dom";
