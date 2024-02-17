@@ -29,8 +29,8 @@ export const dashboardRoutes = [
   },
   {
     icon: <FiUsers />,
-    name: "users",
-    link: routes.users,
+    name: "customers",
+    link: routes.customers,
   },
   {
     icon: <SiGoogletagmanager />,
