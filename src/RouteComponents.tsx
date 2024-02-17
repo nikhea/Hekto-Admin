@@ -64,8 +64,11 @@ const RouteComponent = () => {
                 path={`${routes.updateSubCategory}/:name`}
                 element={<UpdataSubCategory />}
               />
-              <Route path={routes.users} element={<Users />} />
-              <Route path={`${routes.users}/:name`} element={<UserInfo />} />
+              <Route path={routes.customers} element={<Users />} />
+              <Route
+                path={`${routes.customers}/:name`}
+                element={<UserInfo />}
+              />
 
               <Route path={routes.orders} element={<Orders />} />
               <Route path={routes.productReview} element={<ProductReview />} />

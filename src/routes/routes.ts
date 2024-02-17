@@ -10,7 +10,7 @@ export const routes = {
   subCategory: "/subcategory",
   newSubCategory: "/subcategory/new",
   updateSubCategory: "/subcategory/update",
-  users: "/users",
+  customers: "/customers",
   orders: "/orders",
   productReview: "/product-review",
   profile: "/profile",
