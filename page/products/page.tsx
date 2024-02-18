@@ -4,6 +4,7 @@ import ProductTable from "../../src/components/ProductTable/ProductTable";
 import { useFetchAllProducts } from "../../src/Hooks/useProducts/useFetchAllProducts";
 import PageLoading from "../../src/components/Loading/PageLoading";
 import { useProductState } from "../../src/store/useProductStore";
+import { Card } from "@tremor/react";
 
 const Products = () => {
   const products = useFetchAllProducts();
@@ -13,7 +14,7 @@ const Products = () => {
     return <PageLoading />;
   }
   return (
-    <div>
+    <Card>
       <div className="flex justify-end">
         <Link
           to={routes.newProduct}
@@ -23,7 +24,7 @@ const Products = () => {
         </Link>
       </div>
       <ProductTable products={products} />
-    </div>
+    </Card>
   );
 };
 

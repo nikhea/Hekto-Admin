@@ -22,6 +22,7 @@ export const Productcolumns = [
         height={100}
         src={params.row.coverPhoto}
         alt={params.row.coverPhoto}
+        className="mb-5 rounded-full w-30 h-30 "
       />
     ),
   },

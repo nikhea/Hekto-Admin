@@ -6,7 +6,7 @@ const theme = createTheme({
       main: "#FB2E86",
     },
     background: {
-      default: "#00FF00",
+      //   default: "#00FF00",
     },
   },
   typography: {

@@ -20,6 +20,7 @@ import useUpdateReviewStatus from "../../Hooks/useReview/useReviewStatus";
 import { notify } from "../../utils/notify";
 import theme from "../../MUI/themeDefalut";
 import { Card } from "@tremor/react";
+import { ThreeDots } from "react-loader-spinner";
 
 const useStyles = makeStyles((theme: any) => ({
   customButton: {
@@ -120,7 +121,15 @@ const ProductReviewTable = ({ reviews }: any) => {
                   onClick={handleButtonClick}
                 >
                   {isRowLoading ? (
-                    <Typography>Loading...</Typography>
+                    <ThreeDots
+                      height="10"
+                      width="30"
+                      radius="9"
+                      color="#FFF "
+                      wrapperClass="flex text-center cursor-not-allowed py-2"
+                      ariaLabel="three-dots-loading"
+                      visible={true}
+                    />
                   ) : (
                     <Typography className="capitalize">
                       {params.row.published ? "unpublished" : "published"}
@@ -178,6 +187,7 @@ const ProductReviewTable = ({ reviews }: any) => {
       <Box
         m="40px 0 0 0"
         // height="73vh"
+        height="70vh"
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
@@ -188,7 +198,7 @@ const ProductReviewTable = ({ reviews }: any) => {
           },
           "& .MuiDataGrid-row": {
             // borderBottom: "none",
-            marginY: "20px",
+            marginY: "10px",
             borderBottom: "1px solid #E0E0E0 !important",
           },
           "& .name-column--cell": {
@@ -226,7 +236,7 @@ const ProductReviewTable = ({ reviews }: any) => {
                 border: "none",
                 outline: "none",
                 borderRadius: "14px",
-              }, // Replace 'Your Custom Font' with your actual font name
+              },
             }}
             onChange={(e) => setFilterText(e.target.value)}
           />
@@ -237,6 +247,8 @@ const ProductReviewTable = ({ reviews }: any) => {
             components={{ Toolbar: GridToolbar }}
             getRowId={(row: any) => generateRandom()}
             columns={columns}
+            // pageSizeOptions={[3, 5, 10]}
+
             // checkboxSelection
             // selectionModel={selectedRows}
             // onSelectionModelChange={handleSelectionModelChange}
@@ -252,11 +264,8 @@ const ProductReviewTable = ({ reviews }: any) => {
   }
 
   return (
-    <Card className="flex items-center justify-center h-full">
-      <Box className="text-gray-500">
-        {gridComponent}
-        {/* {`${isLoading}`} */}
-      </Box>
+    <Card className="flex justify-center h-full text-gray-500">
+      <Box className="">{gridComponent}</Box>
     </Card>
   );
 };

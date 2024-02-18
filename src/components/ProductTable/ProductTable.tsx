@@ -7,6 +7,7 @@ import { mockDataContacts } from "../../data/mockData";
 import { generateRandom } from "../../utils/generateRandomID";
 import "./product.module.scss";
 import theme from "../../MUI/themeDefalut";
+import { Card } from "@tremor/react";
 
 const ProductTable = ({ products }: any) => {
   const gridComponent = useMemo(

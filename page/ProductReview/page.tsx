@@ -32,9 +32,8 @@ const ProductReview = () => {
     });
   }
   return (
-    // <div className="grid h-screen place-items-center">
-
-    <div className="grid mt-10 place-items-center">
+    // <div className="flex place-items-center">
+    <div className="grid h-screen place-items-center">
       <ProductReviewTable reviews={reviews} />
     </div>
   );
