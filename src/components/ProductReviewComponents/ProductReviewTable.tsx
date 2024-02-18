@@ -1,6 +1,12 @@
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { Checkbox } from "@material-ui/core";
-import { Box, Button, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  TextField,
+  ThemeProvider,
+  Typography,
+} from "@mui/material";
 import React, { useMemo, useState } from "react";
 import usefetchAllReviews from "../../Hooks/useReview/usefetchAllReviews";
 import RatingStar from "../FormElement/RatingStar/RatingStar";
@@ -10,18 +16,26 @@ import PageLoading from "../Loading/PageLoading";
 import { generateRandom } from "../../utils/generateRandomID";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { makeStyles } from "@mui/styles";
+import useUpdateReviewStatus from "../../Hooks/useReview/useReviewStatus";
+import { notify } from "../../utils/notify";
+import theme from "../../MUI/themeDefalut";
 
 const useStyles = makeStyles((theme: any) => ({
   customButton: {
-    backgroundColor: "purple", // Your custom color here
-    color: "white", // Text color
+    textTransform: "lowercase",
+    width: "100%",
+    outline: " 1px solid pink !important",
+    backgroundColor: "#FB2E86 !important",
+    color: "white !important",
     "&:hover": {
-      backgroundColor: "darkpurple", // Change color on hover
+      backgroundColor: "pink !important",
     },
   },
 }));
 
 const ProductReviewTable = ({ reviews }: any) => {
+  const [filterText, setFilterText] = useState("");
+  const { updateReviewStatus, isLoading } = useUpdateReviewStatus();
   const classes = useStyles();
 
   const [selectedRows, setSelectedRows] = useState([]);
@@ -35,7 +49,7 @@ const ProductReviewTable = ({ reviews }: any) => {
       {
         field: "customer",
         headerName: "customer",
-        sortable: false,
+        // sortable: false,
         width: 300,
         renderCell: (params: any) => (
           <div className="flex flex-row w-full ">
@@ -78,38 +92,50 @@ const ProductReviewTable = ({ reviews }: any) => {
       {
         field: "comment",
         headerName: "Comment",
-        width: 400,
+        width: 390,
       },
       {
-        field: "action",
-        headerName: "status",
+        field: "Actions",
+        // headerName: "status",
         width: 130,
         type: "singleSelect",
-        valueOptions: ["Published", "Unpublished"],
+        valueOptions: ["published", "unpublished"],
         editable: true,
         sortable: false,
-        renderCell: (params: any) => (
-          <div>
-            <Button
-              onClick={() => handleUpdate(params.row._id)}
-              variant="outlined"
-              // color="secondary"
-              size="small"
-              className={classes.customButton}
-            >
-              {params.row.published ? "Unpublished" : "Published"}
-            </Button>
-          </div>
-        ),
+        renderCell: (params: any) => {
+          const [isRowLoading, setRowLoading] = useState(isLoading);
+
+          const handleButtonClick = async () => {
+            setRowLoading(true);
+            const i = handleUpdate(params.row._id, params.id);
+          };
+          return (
+            <div onClick={handleButtonClick} className="w-full h-full">
+              <Button
+                size="medium"
+                className={classes.customButton}
+                disabled={isRowLoading}
+              >
+                {isRowLoading ? (
+                  <Typography>Loading...</Typography>
+                ) : (
+                  <Typography className="capitalize">
+                    {params.row.published ? "unpublished" : "published"}
+                  </Typography>
+                )}
+              </Button>
+            </div>
+          );
+        },
       },
       {
-        field: "actions",
+        field: " ",
         // headerName: "Remove",
         sortable: false,
         width: 100,
         renderCell: (params: any) => (
           <TbTrashXFilled
-            className="text-center cursor-pointer hover:text-red-500"
+            className="text-center cursor-pointer mb-7 hover:text-red-500"
             // color="#8392A5"
             size={20}
             onClick={() => handleDelete(params.row._id)}
@@ -117,16 +143,24 @@ const ProductReviewTable = ({ reviews }: any) => {
         ),
       },
     ],
-    []
+    [isLoading]
   );
 
-  const handleUpdate = (reviewId: any) => {
-    console.log("updating review with ID:", reviewId);
+  const handleUpdate = (reviewId: any, params: any) => {
+    updateReviewStatus(reviewId);
+    return isLoading;
   };
   const handleDelete = (reviewId: any) => {
     console.log("Deleting review with ID:", reviewId);
   };
-
+  const filteredRows = useMemo(() => {
+    if (!filterText) return reviews;
+    return reviews.filter(
+      (row: any) =>
+        row.customer.name.toLowerCase().includes(filterText.toLowerCase()) ||
+        row.customer.email.toLowerCase().includes(filterText.toLowerCase())
+    );
+  }, [filterText, reviews]);
   const gridComponent = useMemo(
     () => (
       <Box
@@ -137,12 +171,12 @@ const ProductReviewTable = ({ reviews }: any) => {
             border: "none",
           },
           "& .MuiDataGrid-cell": {
-            borderBottom: "block",
+            // borderBottom: "block",
           },
           "& .name-column--cell": {
             color: "black",
             marginTop: "30px",
-            textTransform: "capitalize",
+            // textTransform: "capitalize",
           },
           "& .MuiDataGrid-columnHeaders": {
             backgroundColor: "white",
@@ -164,19 +198,27 @@ const ProductReviewTable = ({ reviews }: any) => {
           },
         }}
       >
-        <DataGrid
-          density="comfortable"
-          rows={reviews}
-          components={{ Toolbar: GridToolbar }}
-          getRowId={(row: any) => generateRandom()}
-          columns={columns}
-          // checkboxSelection
-          // selectionModel={selectedRows}
-          // onSelectionModelChange={handleSelectionModelChange}
-        />
+        <ThemeProvider theme={theme}>
+          <TextField
+            label="filter by name or email"
+            value={filterText}
+            onChange={(e) => setFilterText(e.target.value)}
+          />
+          <DataGrid
+            density="comfortable"
+            rows={filteredRows}
+            // rows={reviews}
+            components={{ Toolbar: GridToolbar }}
+            getRowId={(row: any) => generateRandom()}
+            columns={columns}
+            // checkboxSelection
+            // selectionModel={selectedRows}
+            // onSelectionModelChange={handleSelectionModelChange}
+          />
+        </ThemeProvider>
       </Box>
     ),
-    [reviews, columns]
+    [reviews, columns, filterText, isLoading]
   );
 
   if (!reviews) {
@@ -186,6 +228,7 @@ const ProductReviewTable = ({ reviews }: any) => {
   return (
     <Box m="20px" className="text-gray-500">
       {gridComponent}
+      {/* {`${isLoading}`} */}
     </Box>
   );
 };
