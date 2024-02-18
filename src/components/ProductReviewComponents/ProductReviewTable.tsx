@@ -21,6 +21,7 @@ import { notify } from "../../utils/notify";
 import theme from "../../MUI/themeDefalut";
 import { Card } from "@tremor/react";
 import { ThreeDots } from "react-loader-spinner";
+import useRemoveReview from "../../Hooks/useReview/useRemoveReview";
 
 const useStyles = makeStyles((theme: any) => ({
   customButton: {
@@ -38,6 +39,8 @@ const useStyles = makeStyles((theme: any) => ({
 const ProductReviewTable = ({ reviews }: any) => {
   const [filterText, setFilterText] = useState("");
   const { updateReviewStatus, isLoading } = useUpdateReviewStatus();
+  const { removeReview, removeReviewisLoading } = useRemoveReview();
+
   const classes = useStyles();
 
   const [selectedRows, setSelectedRows] = useState([]);
@@ -106,10 +109,18 @@ const ProductReviewTable = ({ reviews }: any) => {
         sortable: false,
         renderCell: (params: any) => {
           const [isRowLoading, setRowLoading] = useState(isLoading);
+          const [isRowRemoveLoading, setisRowRemoveLoading] = useState(
+            removeReviewisLoading
+            // true
+          );
 
           const handleButtonClick = async () => {
             setRowLoading(true);
-            const i = handleUpdate(params.row._id, params.id);
+            handleUpdate(params.row._id, params.id);
+          };
+          const handleButtonRemove = async () => {
+            setisRowRemoveLoading(true);
+            handleDelete(params.row._id, params.id);
           };
           return (
             <div className="flex items-center w-full gap-10 my-4">
@@ -138,12 +149,24 @@ const ProductReviewTable = ({ reviews }: any) => {
                 </Button>
               </Box>
               <Box>
-                <TbTrashXFilled
-                  className="text-center cursor-pointer hover:text-red-500"
-                  // color="#8392A5"
-                  size={20}
-                  onClick={() => handleDelete(params.row._id)}
-                />
+                {isRowRemoveLoading ? (
+                  <ThreeDots
+                    height="10"
+                    width="30"
+                    radius="9"
+                    color="#8392A5"
+                    wrapperClass="flex text-center cursor-not-allowed py-2"
+                    ariaLabel="three-dots-loading"
+                    visible={true}
+                  />
+                ) : (
+                  <TbTrashXFilled
+                    className="text-center cursor-pointer hover:text-red-500"
+                    color="#8392A5"
+                    size={20}
+                    onClick={handleButtonRemove}
+                  />
+                )}
               </Box>
             </div>
           );
@@ -171,8 +194,9 @@ const ProductReviewTable = ({ reviews }: any) => {
     updateReviewStatus(reviewId);
     return isLoading;
   };
-  const handleDelete = (reviewId: any) => {
+  const handleDelete = (reviewId: any, params: any) => {
     console.log("Deleting review with ID:", reviewId);
+    removeReview(reviewId);
   };
   const filteredRows = useMemo(() => {
     if (!filterText) return reviews;
