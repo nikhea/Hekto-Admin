@@ -91,9 +91,10 @@ const LineCharts = () => (
     <AreaChart
       className="mt-8 "
       data={data}
+      colors={["pink"]}
       categories={["Gross Volume"]}
       index="Month"
-      colors={["indigo"]}
+      // colors={["indigo"]}
       valueFormatter={valueFormatter}
       showYAxis={false}
       // showLegend={false}

@@ -44,7 +44,8 @@ const AreaCharts = () => {
         data={chartdata}
         index="date"
         categories={["SemiAnalysis", "The Pragmatic Engineer"]}
-        colors={["indigo", "cyan"]}
+        // colors={["indigo", "cyan"]}
+        colors={["indigo", "pink"]}
         valueFormatter={dataFormatter}
         showGridLines={false}
         showAnimation={true}
