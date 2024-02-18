@@ -19,7 +19,7 @@ const ProductTable = ({ products }: any) => {
             border: "none",
           },
           "& .MuiDataGrid-cell": {
-            borderBottom: "none",
+            borderBottom: "none !important",
             textTransform: "capitalize",
           },
           "& .name-column--cell": {
