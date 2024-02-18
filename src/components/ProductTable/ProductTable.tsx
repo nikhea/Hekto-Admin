@@ -15,18 +15,7 @@ const theme = createTheme({
       // default: "#00FF00",
     },
   },
-  overrides: {
-    MuiDataGrid: {
-      root: {
-        border: "none !important",
-      },
-      row: {
-        borderBottom: "none",
-      },
-    },
-  },
 });
-
 const ProductTable = ({ products }: any) => {
   const gridComponent = useMemo(
     () => (
