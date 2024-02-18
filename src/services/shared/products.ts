@@ -1,12 +1,11 @@
 import axios from "../../lib/axios";
 import { storage } from "../../auth/utils";
 import { notify } from "../../utils/notify";
-import { ProductForm } from "../../components/NewProductForm/ProductShcema";
 
-export const fetchAllProducts = async () => {
-  const { data } = await axios.get("products/all");
-  // console.log(data);
-
+export const fetchAllProducts = async (filterProducts?: any) => {
+  const { data } = await axios.get("products/all", {
+    params: filterProducts,
+  });
   return data.data;
 };
 export const fetchSingleProducts = async (name: any) => {
