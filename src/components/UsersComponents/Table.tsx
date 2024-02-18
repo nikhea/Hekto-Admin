@@ -6,6 +6,7 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import mockDataContacts from "../../data/MOCK_DATA.json";
 import { useFetchAllUser } from "../../Hooks/useUser/useFetchAllUser";
 import { routes } from "../../routes/routes";
+import { Card } from "@tremor/react";
 
 const Users = () => {
   const users = useFetchAllUser();
@@ -107,7 +108,11 @@ const Users = () => {
     [columns]
   );
 
-  return <Box m="20px"> {gridComponent}</Box>;
+  return (
+    <Card>
+      <Box m="20px"> {gridComponent}</Box>
+    </Card>
+  );
 };
 
 export default Users;

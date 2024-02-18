@@ -19,6 +19,8 @@ import { makeStyles } from "@mui/styles";
 import useUpdateReviewStatus from "../../Hooks/useReview/useReviewStatus";
 import { notify } from "../../utils/notify";
 import theme from "../../MUI/themeDefalut";
+import { Card } from "@tremor/react";
+import { ThreeDots } from "react-loader-spinner";
 
 const useStyles = makeStyles((theme: any) => ({
   customButton: {
@@ -97,7 +99,7 @@ const ProductReviewTable = ({ reviews }: any) => {
       {
         field: "Actions",
         // headerName: "status",
-        width: 130,
+        width: 230,
         type: "singleSelect",
         valueOptions: ["published", "unpublished"],
         editable: true,
@@ -110,38 +112,57 @@ const ProductReviewTable = ({ reviews }: any) => {
             const i = handleUpdate(params.row._id, params.id);
           };
           return (
-            <div onClick={handleButtonClick} className="w-full h-full">
-              <Button
-                size="medium"
-                className={classes.customButton}
-                disabled={isRowLoading}
-              >
-                {isRowLoading ? (
-                  <Typography>Loading...</Typography>
-                ) : (
-                  <Typography className="capitalize">
-                    {params.row.published ? "unpublished" : "published"}
-                  </Typography>
-                )}
-              </Button>
+            <div className="flex items-center w-full gap-10 my-4">
+              <Box className="w-[50%] my-4 ">
+                <Button
+                  size="medium"
+                  className={classes.customButton}
+                  disabled={isRowLoading}
+                  onClick={handleButtonClick}
+                >
+                  {isRowLoading ? (
+                    <ThreeDots
+                      height="10"
+                      width="30"
+                      radius="9"
+                      color="#FFF "
+                      wrapperClass="flex text-center cursor-not-allowed py-2"
+                      ariaLabel="three-dots-loading"
+                      visible={true}
+                    />
+                  ) : (
+                    <Typography className="capitalize">
+                      {params.row.published ? "unpublished" : "published"}
+                    </Typography>
+                  )}
+                </Button>
+              </Box>
+              <Box>
+                <TbTrashXFilled
+                  className="text-center cursor-pointer hover:text-red-500"
+                  // color="#8392A5"
+                  size={20}
+                  onClick={() => handleDelete(params.row._id)}
+                />
+              </Box>
             </div>
           );
         },
       },
-      {
-        field: " ",
-        // headerName: "Remove",
-        sortable: false,
-        width: 100,
-        renderCell: (params: any) => (
-          <TbTrashXFilled
-            className="text-center cursor-pointer mb-7 hover:text-red-500"
-            // color="#8392A5"
-            size={20}
-            onClick={() => handleDelete(params.row._id)}
-          />
-        ),
-      },
+      // {
+      //   field: " ",
+      //   // headerName: "Remove",
+      //   sortable: false,
+      //   width: 100,
+      //   renderCell: (params: any) => (
+      //     <TbTrashXFilled
+      //       className="text-center cursor-pointer hover:text-red-500"
+      //       // color="#8392A5"
+      //       size={20}
+      //       onClick={() => handleDelete(params.row._id)}
+      //     />
+      //   ),
+      // },
     ],
     [isLoading]
   );
@@ -165,17 +186,24 @@ const ProductReviewTable = ({ reviews }: any) => {
     () => (
       <Box
         m="40px 0 0 0"
-        height="73vh"
+        // height="73vh"
+        height="70vh"
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
           },
           "& .MuiDataGrid-cell": {
-            // borderBottom: "block",
+            // borderBottom: "none",
+            // marginTop: "30px",
+          },
+          "& .MuiDataGrid-row": {
+            // borderBottom: "none",
+            marginY: "10px",
+            borderBottom: "1px solid #E0E0E0 !important",
           },
           "& .name-column--cell": {
             color: "black",
-            marginTop: "30px",
+            // marginTop: "30px",
             // textTransform: "capitalize",
           },
           "& .MuiDataGrid-columnHeaders": {
@@ -202,6 +230,14 @@ const ProductReviewTable = ({ reviews }: any) => {
           <TextField
             label="filter by name or email"
             value={filterText}
+            InputProps={{
+              disableUnderline: true,
+              style: {
+                border: "none",
+                outline: "none",
+                borderRadius: "14px",
+              },
+            }}
             onChange={(e) => setFilterText(e.target.value)}
           />
           <DataGrid
@@ -211,6 +247,8 @@ const ProductReviewTable = ({ reviews }: any) => {
             components={{ Toolbar: GridToolbar }}
             getRowId={(row: any) => generateRandom()}
             columns={columns}
+            // pageSizeOptions={[3, 5, 10]}
+
             // checkboxSelection
             // selectionModel={selectedRows}
             // onSelectionModelChange={handleSelectionModelChange}
@@ -226,10 +264,9 @@ const ProductReviewTable = ({ reviews }: any) => {
   }
 
   return (
-    <Box m="20px" className="text-gray-500">
-      {gridComponent}
-      {/* {`${isLoading}`} */}
-    </Box>
+    <Card className="flex justify-center h-full text-gray-500">
+      <Box className="">{gridComponent}</Box>
+    </Card>
   );
 };
 

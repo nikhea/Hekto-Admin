@@ -7,6 +7,7 @@ import { mockDataContacts } from "../../data/mockData";
 import { generateRandom } from "../../utils/generateRandomID";
 import "./product.module.scss";
 import theme from "../../MUI/themeDefalut";
+import { Card } from "@tremor/react";
 
 const ProductTable = ({ products }: any) => {
   const gridComponent = useMemo(
@@ -19,7 +20,7 @@ const ProductTable = ({ products }: any) => {
             border: "none",
           },
           "& .MuiDataGrid-cell": {
-            borderBottom: "none",
+            borderBottom: "none !important",
             textTransform: "capitalize",
           },
           "& .name-column--cell": {

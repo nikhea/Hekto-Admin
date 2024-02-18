@@ -131,3 +131,8 @@ li {
   border-bottom: none !important;
   /* text-transform: capitalize; */
 }
+
+.MuiOutlinedInput-root.MuiTextField-root.no-border
+  .MuiOutlinedInput-notchedOutline {
+  border: none;
+}

@@ -5,6 +5,7 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { generateRandom } from "../../utils/generateRandomID";
 import { Ordercolumns } from "./OrdersTableColumn";
 import { OrdersTableData } from "./OrdersTableData";
+import { Card } from "@tremor/react";
 
 const OrdersTable = () => {
   const gridComponent = useMemo(
@@ -68,7 +69,11 @@ const OrdersTable = () => {
     [Ordercolumns]
   );
 
-  return <Box m="20px"> {gridComponent}</Box>;
+  return (
+    <Card>
+      <Box m="20px"> {gridComponent}</Box>
+    </Card>
+  );
 };
 
 export default OrdersTable;
