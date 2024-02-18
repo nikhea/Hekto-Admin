@@ -137,12 +137,12 @@ const ProductReviewTable = ({ reviews }: any) => {
             border: "none",
           },
           "& .MuiDataGrid-cell": {
-            borderBottom: "none",
+            borderBottom: "block",
           },
           "& .name-column--cell": {
             color: "black",
             marginTop: "30px",
-            // textTransform: "capitalize",
+            textTransform: "capitalize",
           },
           "& .MuiDataGrid-columnHeaders": {
             backgroundColor: "white",
