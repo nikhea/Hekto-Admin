@@ -8,6 +8,8 @@ const ProductReview = () => {
     return <PageLoading />;
   }
   const reviews: any = [];
+  console.log(data);
+
   if (data) {
     data.forEach((item: any) => {
       const review = {
@@ -15,7 +17,15 @@ const ProductReview = () => {
         published: item.published,
         comment: item.comment,
         rating: item.rating,
-        customername: `${item.user.firstname} ${item.user.lastname}`,
+        customer: {
+          name: `${item.user.firstname} ${item.user.lastname}`,
+          email: item.user.email,
+          image:
+            "https://res.cloudinary.com/djkqaqoj3/image/upload/v1686218309/user/profile/imonikhea%20ugbodaga-1686218049954/jznnmwxvb5e6yhovkwfo.jpg",
+        },
+        // customername: `${item.user.firstname} ${item.user.lastname}`,
+        // image:
+        //   "https://res.cloudinary.com/djkqaqoj3/image/upload/v1686218309/user/profile/imonikhea%20ugbodaga-1686218049954/jznnmwxvb5e6yhovkwfo.jpg",
         lastname: item.user.lastname,
         productName: item.product.name,
       };

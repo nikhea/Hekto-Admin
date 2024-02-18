@@ -2,8 +2,20 @@ import React, { useMemo } from "react";
 import { Productcolumns } from "./ProductTableColumn";
 import { Box } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { mockDataContacts } from "../../data/mockData";
 import { generateRandom } from "../../utils/generateRandomID";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#FB2E86",
+    },
+    background: {
+      // default: "#00FF00",
+    },
+  },
+});
 
 const ProductTable = ({ products }: any) => {
   const gridComponent = useMemo(
@@ -17,17 +29,18 @@ const ProductTable = ({ products }: any) => {
           },
           "& .MuiDataGrid-cell": {
             borderBottom: "none",
-            // textTransform: "capitalize",
+            textTransform: "capitalize",
           },
           "& .name-column--cell": {
             color: "#333",
             textTransform: "capitalize",
+            marginTop: "20px",
           },
           "& .MuiDataGrid-columnHeaders": {
             backgroundColor: "white",
             borderBottom: "none",
             color: "gray",
-            // textTransform: "capitalize",
+            textTransform: "capitalize",
           },
           "& .MuiDataGrid-virtualScroller": {
             backgroundColor: "white",
@@ -44,19 +57,20 @@ const ProductTable = ({ products }: any) => {
           },
         }}
       >
-        <DataGrid
-          density="comfortable"
-          rows={products}
-          components={{ Toolbar: GridToolbar }}
-          columns={Productcolumns}
-          getRowId={(row: any) => generateRandom()}
-          getRowHeight={() => "auto"}
-
-          //   initialState={{
-          //     pagination: { paginationModel: { pageSize: 25 } },
-          //   }}
-          //   pageSizeOptions={[25, 50, 100]}
-        />
+        <ThemeProvider theme={theme}>
+          <DataGrid
+            density="comfortable"
+            rows={products}
+            components={{ Toolbar: GridToolbar }}
+            columns={Productcolumns}
+            getRowId={(row: any) => generateRandom()}
+            getRowHeight={() => "auto"}
+            //   initialState={{
+            //     pagination: { paginationModel: { pageSize: 25 } },
+            //   }}
+            // pageSizeOptions={[25, 50, 100]}
+          />
+        </ThemeProvider>
       </Box>
     ),
     [products]

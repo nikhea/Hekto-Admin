@@ -1,6 +1,6 @@
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { Checkbox } from "@material-ui/core";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import React, { useMemo, useState } from "react";
 import usefetchAllReviews from "../../Hooks/useReview/usefetchAllReviews";
 import RatingStar from "../FormElement/RatingStar/RatingStar";
@@ -8,8 +8,22 @@ import ProductReviewTableDropDown from "./ProductReviewTableDropDown";
 import { TbTrashXFilled } from "react-icons/tb";
 import PageLoading from "../Loading/PageLoading";
 import { generateRandom } from "../../utils/generateRandomID";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles((theme: any) => ({
+  customButton: {
+    backgroundColor: "purple", // Your custom color here
+    color: "white", // Text color
+    "&:hover": {
+      backgroundColor: "darkpurple", // Change color on hover
+    },
+  },
+}));
 
 const ProductReviewTable = ({ reviews }: any) => {
+  const classes = useStyles();
+
   const [selectedRows, setSelectedRows] = useState([]);
 
   const handleSelectionModelChange = (selectionModel: any) => {
@@ -19,19 +33,42 @@ const ProductReviewTable = ({ reviews }: any) => {
   const columns = useMemo(
     () => [
       {
-        field: "customername",
-        headerName: "Customer Name",
-        width: 150,
+        field: "customer",
+        headerName: "customer",
+        sortable: false,
+        width: 300,
+        renderCell: (params: any) => (
+          <div className="flex flex-row w-full ">
+            <Box>
+              <LazyLoadImage
+                className="w-10 h-10 ml-2 rounded-full"
+                width={100}
+                height={100}
+                src={params.row.customer.image}
+                alt={params.row.customer.name}
+              />
+            </Box>
+            <Box className="flex flex-col w-full ml-5 ">
+              <Typography className="text-gray-500 ">
+                {params.row.customer.name}
+              </Typography>
+              <Typography className="!text-sm text-gray-400 ">
+                {params.row.customer.email}
+              </Typography>
+            </Box>
+          </div>
+        ),
       },
+
       {
         field: "productName",
         headerName: "Product Name",
-        width: 200,
+        width: 350,
       },
       {
         field: "rating",
         headerName: "Rating",
-        width: 150,
+        width: 200,
         renderCell: (params: any) => (
           <>
             <RatingStar value={params.row.rating} size={24} edit={false} />
@@ -41,7 +78,7 @@ const ProductReviewTable = ({ reviews }: any) => {
       {
         field: "comment",
         headerName: "Comment",
-        width: 300,
+        width: 400,
       },
       {
         field: "action",
@@ -56,8 +93,9 @@ const ProductReviewTable = ({ reviews }: any) => {
             <Button
               onClick={() => handleUpdate(params.row._id)}
               variant="outlined"
-              color="secondary"
+              // color="secondary"
               size="small"
+              className={classes.customButton}
             >
               {params.row.published ? "Unpublished" : "Published"}
             </Button>
@@ -71,7 +109,7 @@ const ProductReviewTable = ({ reviews }: any) => {
         width: 100,
         renderCell: (params: any) => (
           <TbTrashXFilled
-            className="cursor-pointer text-center hover:text-red-500"
+            className="text-center cursor-pointer hover:text-red-500"
             // color="#8392A5"
             size={20}
             onClick={() => handleDelete(params.row._id)}
@@ -103,6 +141,7 @@ const ProductReviewTable = ({ reviews }: any) => {
           },
           "& .name-column--cell": {
             color: "black",
+            marginTop: "30px",
             textTransform: "capitalize",
           },
           "& .MuiDataGrid-columnHeaders": {
@@ -128,7 +167,7 @@ const ProductReviewTable = ({ reviews }: any) => {
         <DataGrid
           density="comfortable"
           rows={reviews}
-          //   components={{ Toolbar: GridToolbar }}
+          components={{ Toolbar: GridToolbar }}
           getRowId={(row: any) => generateRandom()}
           columns={columns}
           // checkboxSelection
