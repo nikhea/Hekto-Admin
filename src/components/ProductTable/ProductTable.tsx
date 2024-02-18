@@ -6,17 +6,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { mockDataContacts } from "../../data/mockData";
 import { generateRandom } from "../../utils/generateRandomID";
 import "./product.module.scss";
+import theme from "../../MUI/themeDefalut";
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#FB2E86",
-    },
-    background: {
-      // default: "#00FF00",
-    },
-  },
-});
 const ProductTable = ({ products }: any) => {
   const gridComponent = useMemo(
     () => (

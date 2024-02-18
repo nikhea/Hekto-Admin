@@ -8,8 +8,6 @@ const ProductReview = () => {
     return <PageLoading />;
   }
   const reviews: any = [];
-  console.log(data);
-
   if (data) {
     data.forEach((item: any) => {
       const review = {
