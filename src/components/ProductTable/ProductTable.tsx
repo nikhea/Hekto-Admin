@@ -5,6 +5,7 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { mockDataContacts } from "../../data/mockData";
 import { generateRandom } from "../../utils/generateRandomID";
+import "./product.module.scss";
 
 const theme = createTheme({
   palette: {
@@ -27,8 +28,8 @@ const ProductTable = ({ products }: any) => {
             border: "none",
           },
           "& .MuiDataGrid-cell": {
-            // borderBottom: "none",
-            // textTransform: "capitalize",
+            borderBottom: "none",
+            textTransform: "capitalize",
           },
           "& .name-column--cell": {
             color: "#333",

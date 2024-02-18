@@ -64,7 +64,9 @@ const Users = () => {
             border: "none",
           },
           "& .MuiDataGrid-cell": {
+            borderBottom: "none !important",
             borderBottom: "none",
+            textTransform: "capitalize",
           },
           "& .name-column--cell": {
             color: "black",
