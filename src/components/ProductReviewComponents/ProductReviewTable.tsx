@@ -82,7 +82,7 @@ const ProductReviewTable = ({ reviews }: any) => {
       },
       {
         field: "action",
-        headerName: "Published",
+        headerName: "status",
         width: 130,
         type: "singleSelect",
         valueOptions: ["Published", "Unpublished"],
@@ -104,7 +104,7 @@ const ProductReviewTable = ({ reviews }: any) => {
       },
       {
         field: "actions",
-        headerName: "Remove",
+        // headerName: "Remove",
         sortable: false,
         width: 100,
         renderCell: (params: any) => (

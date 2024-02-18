@@ -79,7 +79,7 @@ li {
 /* table */
 .MuiDataGrid-cell:focus,
 .MuiDataGrid-cell:focus-within {
-  outline: none;
+  outline: none !important;
   box-shadow: none !important;
   border-color: transparent !important;
 }
@@ -107,7 +107,7 @@ li {
 }
 .MuiDataGrid-columnHeader.MuiDataGrid-columnHeader--alignLeft.MuiDataGrid-columnHeader--sortable.MuiDataGrid-columnHeader--sorted.MuiDataGrid-columnHeader--numeric.MuiDataGrid-withBorderColor {
   outline: none !important;
-  border: none;
+  border: none !important;
 }
 .MuiDataGrid-columnHeader.MuiDataGrid-columnHeader--sortable.MuiDataGrid-withBorderColor {
   outline: none !important;
@@ -119,4 +119,15 @@ li {
 .MuiDataGrid-root.MuiDataGrid-columnHeader:focus-within,
 .MuiDataGrid-root.MuiDataGrid-cell:focus-within {
   outline: none;
+}
+.MuiDataGrid-root {
+  border: none !important;
+}
+
+.MuiDataGrid-row {
+  border-bottom: none !important;
+}
+.MuiDataGrid-cell {
+  border-bottom: none !important;
+  /* text-transform: capitalize; */
 }

@@ -15,6 +15,16 @@ const theme = createTheme({
       // default: "#00FF00",
     },
   },
+  overrides: {
+    MuiDataGrid: {
+      root: {
+        border: "none !important",
+      },
+      row: {
+        borderBottom: "none",
+      },
+    },
+  },
 });
 
 const ProductTable = ({ products }: any) => {
@@ -28,8 +38,8 @@ const ProductTable = ({ products }: any) => {
             border: "none",
           },
           "& .MuiDataGrid-cell": {
-            borderBottom: "none",
-            textTransform: "capitalize",
+            // borderBottom: "none",
+            // textTransform: "capitalize",
           },
           "& .name-column--cell": {
             color: "#333",
@@ -54,6 +64,10 @@ const ProductTable = ({ products }: any) => {
           },
           "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
             color: `gray !important`,
+          },
+          "& .MuiDataGrid-row": {
+            // borderBottom: "none",
+            // display: "none",
           },
         }}
       >
