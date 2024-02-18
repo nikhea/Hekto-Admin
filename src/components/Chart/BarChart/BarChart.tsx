@@ -13,6 +13,18 @@ const chartdata = [
     name: "Crustaceans",
     "Number of threatened species": 743,
   },
+  {
+    name: "Crustaceans",
+    "Number of threatened species": 5743,
+  },
+  {
+    name: "Crustaceans",
+    "Number of threatened species": 9743,
+  },
+  {
+    name: "Crustaceans",
+    "Number of threatened species": 10743,
+  },
 ];
 
 const dataFormatter = (number: number) => {
@@ -31,8 +43,9 @@ const BarCharts = () => (
       data={chartdata}
       index="name"
       categories={["Number of threatened species"]}
-      colors={["blue"]}
-      valueFormatter={dataFormatter}
+      // colors={["blue"]}
+      colors={["pink"]}
+      // valueFormatter={dataFormatter}
       yAxisWidth={48}
       showGridLines={false}
     />

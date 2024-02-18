@@ -14,6 +14,8 @@ const BarChartGroup = () => {
         index="Month"
         categories={["Sales", "Profit"]}
         colors={["indigo", "fuchsia"]}
+        // colors={["indigo", "purple"]}
+        // colors={["red", "pink"]}
         stack={false}
         showGridLines={false}
         valueFormatter={valueFormatter}
