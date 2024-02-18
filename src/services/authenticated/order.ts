@@ -5,9 +5,9 @@ import { notify } from "../../utils/notify";
 
 export const fetchOrders = async () => {
   const { data } = await axios.get("orders", {
-    // headers: {
-    //   Authorization: `Bearer ${storage.getToken()}`,
-    // },
+    headers: {
+      Authorization: `Bearer ${storage.getToken()}`,
+    },
   });
 
   return data.data;
