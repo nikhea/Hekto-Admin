@@ -13,48 +13,60 @@ export const fetchAllReview = async () => {
 };
 
 export const UpdateReviewStatusServer = async (reviewId: string) => {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const { data } = await axios.patch(`review/${reviewId}/status`, {
+  try {
+    const token = storage.getToken();
+    const { data } = await axios.patch(
+      `review/${reviewId}/status`,
+      {},
+      {
         headers: {
-          Authorization: `Bearer ${storage.getToken()}`,
+          Authorization: `Bearer ${token}`,
         },
+      }
+    );
+    if (data.statuscode === 200) {
+      notify({
+        type: "info",
+        message: data.message,
       });
-      resolve(data);
-      if (data.statuscode === 200) {
-        notify({
-          type: "info",
-          message: data.message,
-        });
-      }
-      if (data.statuscode === 201) {
-        notify({
-          type: "success",
-          message: data.message,
-        });
-      }
-      if (data.statuscode === 404) {
-        notify({
-          type: "error",
-          message: data.message,
-        });
-      }
-      if (data.statuscode === 400) {
-        notify({
-          type: "error",
-          message: data.message,
-        });
-      }
-      if (data.statuscode === 500) {
-        notify({
-          type: "error",
-          message: data.message,
-        });
-      }
-    } catch (err) {
-      reject(err);
     }
-  });
+    if (data.statuscode === 201) {
+      notify({
+        type: "success",
+        message: data.message,
+      });
+    }
+    if (data.statuscode === 404) {
+      notify({
+        type: "error",
+        message: data.message,
+      });
+    }
+    if (data.statuscode === 400) {
+      notify({
+        type: "error",
+        message: data.message,
+      });
+    }
+    if (data.statuscode === 500) {
+      notify({
+        type: "error",
+        message: data.message,
+      });
+    }
+  } catch (error: any) {
+    if (error.response && error.response.status === 404) {
+      notify({
+        type: "error",
+        message: error.response.data.message,
+      });
+    } else {
+      notify({
+        type: "error",
+        message: error.response.data.message,
+      });
+    }
+  }
 };
 
 export const removeReviewServer = async (id: string) => {
@@ -80,8 +92,6 @@ export const removeReviewServer = async (id: string) => {
       });
     }
   } catch (error: any) {
-    console.log(error);
-
     if (error.response && error.response.status === 404) {
       notify({
         type: "error",
@@ -90,10 +100,9 @@ export const removeReviewServer = async (id: string) => {
     } else {
       notify({
         type: "error",
-        message: "An error occurred while deleting the review.",
+        message: error.response.data.message,
       });
     }
-    console.error("Error:", error.message);
   }
 };
 
