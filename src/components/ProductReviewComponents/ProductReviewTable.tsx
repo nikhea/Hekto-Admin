@@ -192,10 +192,8 @@ const ProductReviewTable = ({ reviews }: any) => {
 
   const handleUpdate = (reviewId: any, params: any) => {
     updateReviewStatus(reviewId);
-    return isLoading;
   };
   const handleDelete = (reviewId: any, params: any) => {
-    console.log("Deleting review with ID:", reviewId);
     removeReview(reviewId);
   };
   const filteredRows = useMemo(() => {
