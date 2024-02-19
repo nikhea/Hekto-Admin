@@ -3,12 +3,13 @@ import { useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { status, getStatusBackground, getStatusColor } from "./Status";
+import useUpdateOrderStatus from "../../Hooks/useOrder/useOrderStatus";
 
 export const Ordercolumns = [
   {
     field: " name",
     width: 300,
-    headerName: "customer ",
+    headerName: "Customer ",
     cellClassName: "name-column--cell",
     headerAlign: "center",
     renderCell: (params: any) => {
@@ -37,14 +38,14 @@ export const Ordercolumns = [
   },
   {
     field: "shippingAddress",
-    headerName: "shipping address",
+    headerName: "Shipping Address",
     cellClassName: "name-column--cell",
     headerAlign: "center",
     width: 350,
   },
   {
     field: "time",
-    headerName: "time",
+    headerName: "Time",
     width: 130,
     cellClassName: "name-column--cell",
     headerAlign: "start",
@@ -55,7 +56,7 @@ export const Ordercolumns = [
   },
   {
     field: "date",
-    headerName: "date",
+    headerName: "Date",
     cellClassName: "name-column--cell",
     headerAlign: "start",
     width: 130,
@@ -65,14 +66,14 @@ export const Ordercolumns = [
   },
   {
     field: "totalItem",
-    headerName: "total item",
+    headerName: "Total Item",
     cellClassName: "name-column--cell",
     headerAlign: "start",
     width: 130,
   },
   {
     field: "total",
-    headerName: "total amount",
+    headerName: "Total Amount",
     cellClassName: "name-column--cell",
     headerAlign: "start",
     width: 200,
@@ -82,16 +83,23 @@ export const Ordercolumns = [
   },
   {
     field: "action",
-    headerName: "delivery status",
+    headerName: "Delivery Status",
     flex: 1,
     headerAlign: "center",
     cellClassName: "name-column--cell",
     renderCell: (params: any) => {
       const [value, setValue] = useState(params.row.deliveryStatus);
+
+      const { updateReviewStatus, isLoading } = useUpdateOrderStatus();
+
+      const onSelectChange = (e: any) => {
+        setValue(e.target.value);
+        updateReviewStatus(params.row._id, e.target.value);
+      };
       return (
         <Select
           value={value}
-          onChange={(event: any) => setValue(event.target.value)}
+          onChange={onSelectChange}
           IconComponent={FaAngleDown}
           id="custom-select"
           sx={{
@@ -119,6 +127,9 @@ export const Ordercolumns = [
                 right: "20px !important",
                 borderColor: "transparent !important",
               },
+            " .MuiSelect-icon": {
+              right: "20px !important",
+            },
           }}
           style={{
             width: "100%",
