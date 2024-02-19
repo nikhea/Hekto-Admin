@@ -150,7 +150,10 @@ li {
 } */
 
 .MuiMenu-paper {
-  margin-top: 8px;
+  margin-top: 8px !important;
+}
+.MuiSelect-icon {
+  /* right: 20px !important; */
 }
 /* .MuiOutlinedInput-notchedOutline {
   border: none !important;
@@ -166,9 +169,6 @@ li {
   outline: none !important;
   border: none !important;
 } */
-.MuiSelect-icon {
-  right: 20px !important;
-}
 
 /* .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
   border: none !important;
@@ -203,10 +203,6 @@ li {
 .MuiSelect-select {
   padding: 10px !important;
 } */
-
-.MuiMenu-paper {
-  margin-top: 8px !important;
-}
 
 /* termor select */
 
