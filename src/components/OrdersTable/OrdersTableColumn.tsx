@@ -1,17 +1,14 @@
-import { Box, Select, Typography } from "@mui/material";
-import { MenuItem } from "rc-menu";
+import { Box, MenuItem, Select, Typography } from "@mui/material";
 import { useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-
-const statusState = ["pending", "processing", "shipped", "delivered"];
+import { status, getStatusBackground, getStatusColor } from "./Status";
 
 export const Ordercolumns = [
   {
     field: " name",
     width: 300,
     headerName: "customer ",
-    // flex: 1,
     cellClassName: "name-column--cell",
     headerAlign: "center",
     renderCell: (params: any) => {
@@ -41,7 +38,6 @@ export const Ordercolumns = [
   {
     field: "shippingAddress",
     headerName: "shipping address",
-    // flex: 1,
     cellClassName: "name-column--cell",
     headerAlign: "center",
     width: 350,
@@ -50,7 +46,6 @@ export const Ordercolumns = [
     field: "time",
     headerName: "time",
     width: 130,
-    // flex: 1,
     cellClassName: "name-column--cell",
     headerAlign: "start",
 
@@ -61,12 +56,9 @@ export const Ordercolumns = [
   {
     field: "date",
     headerName: "date",
-    // flex: 1,
     cellClassName: "name-column--cell",
     headerAlign: "start",
-    // width: 150,
     width: 130,
-
     renderCell: (params: any) => (
       <span className="w-full uppercase">{params.row.date}</span>
     ),
@@ -74,7 +66,6 @@ export const Ordercolumns = [
   {
     field: "totalItem",
     headerName: "total item",
-    // flex: 1,
     cellClassName: "name-column--cell",
     headerAlign: "start",
     width: 130,
@@ -82,7 +73,6 @@ export const Ordercolumns = [
   {
     field: "total",
     headerName: "total amount",
-    // flex: 1,
     cellClassName: "name-column--cell",
     headerAlign: "start",
     width: 200,
@@ -90,80 +80,63 @@ export const Ordercolumns = [
       <span className="w-full uppercase">$ {params.row.total}</span>
     ),
   },
-  // {
-  //   field: "deliveryStatus",
-  //   headerName: "delivery",
-  //   // flex: 1,
-  //   cellClassName: "name-column--cell",
-  //   headerAlign: "start",
-  //   width: 100,
-  // },
-  // {
-  //   field: "status",
-  //   headerName: "status",
-  //   flex: 1,
-  //   cellClassName: "name-column--cell",
-  //   headerAlign: "center",
-  // },
   {
     field: "action",
-    headerName: "status",
+    headerName: "delivery status",
     flex: 1,
-    // width: "70%",
     headerAlign: "center",
     cellClassName: "name-column--cell",
     renderCell: (params: any) => {
-      const status = params.row.status;
-      const [selectedStatus, setSelectedStatus] = useState(status);
-
-      const handleStatusChange = (event: any) => {
-        const newStatus = event.target.value;
-        setSelectedStatus(newStatus);
-      };
-
-      let statusStyle;
-      switch (status) {
-        case "pending":
-          statusStyle = "text-yellow-500 bg-yellow-100";
-          break;
-        case "processing":
-          statusStyle = "text-blue-500 bg-blue-100";
-          break;
-        case "shipped":
-          statusStyle = "text-green-500 bg-green-100";
-          break;
-        case "delivered":
-          statusStyle = "text-gray-500 bg-gray-100";
-          break;
-        default:
-          statusStyle = "text-gray-500 bg-gray-100";
-      }
-
+      const [value, setValue] = useState(params.row.deliveryStatus);
       return (
-        <div className="flex items-center w-[100%] !text-xs border-none">
-          <Select
-            value={selectedStatus}
-            onChange={handleStatusChange}
-            className={`${statusStyle} rounded-[25px]`}
-            IconComponent={FaAngleDown}
-            style={{
-              width: "100%",
-              borderRadius: "10px",
-              outline: "none",
-              border: "none",
-              padding: 0,
-            }}
-          >
-            {statusState.map((state: any, i: number) => (
-              <div key={i}> {state}</div>
-            ))}
-          </Select>
-        </div>
+        <Select
+          value={value}
+          onChange={(event: any) => setValue(event.target.value)}
+          IconComponent={FaAngleDown}
+          id="custom-select"
+          sx={{
+            "& .MuiOutlinedInput-notchedOutline": {
+              borderColor: "transparent !important",
+            },
+            "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+              {
+                borderColor: "transparent !important",
+                boxShadow: "none !important",
+              },
+            "& .MuiSelect-select": {
+              padding: "10px !important",
+            },
+            "& .MuiMenu-paper": {
+              marginTop: "8px !important",
+            },
+            "& .MuiSelect-icon.MuiSelect-iconOutlined.css-3qbkez-MuiSelect-icon":
+              {
+                right: "20px !important",
+                borderColor: "transparent !important",
+              },
+            " .MuiSelect-icon.MuiSelect-iconOutlined.css-3qbkez-MuiSelect-icon:focus":
+              {
+                right: "20px !important",
+                borderColor: "transparent !important",
+              },
+          }}
+          style={{
+            width: "100%",
+            height: "50%",
+            borderRadius: "50px",
+            paddingLeft: "10px",
+            paddingRight: "40px",
+            background: `${getStatusBackground(value)}`,
+            color: `${getStatusColor(value)}`,
+          }}
+        >
+          {Object.values(status).map((statusValue) => (
+            <MenuItem key={statusValue} value={statusValue}>
+              {statusValue}
+            </MenuItem>
+          ))}
+        </Select>
       );
     },
   },
 ];
-{
-  /* <MenuItem key={i} value={state}> */
-}
-//  </MenuItem>
