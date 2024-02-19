@@ -1,0 +1,65 @@
+/* select */
+
+/* Apply styles to the custom-select ID */
+#custom-select
+  .MuiOutlinedInput-root.Mui-focused
+  .MuiOutlinedInput-notchedOutline {
+  border-color: transparent;
+  box-shadow: none;
+}
+
+/* Adjust padding to prevent text cutoff */
+#custom-select .MuiSelect-select.MuiSelect-select.MuiSelect-select {
+  padding: 10px;
+}
+
+#custom-select .MuiMenu-paper {
+  margin-top: 8px;
+}
+#custom-select .MuiOutlinedInput-notchedOutline {
+  border: none !important;
+  outline: none !important;
+  border: none !important;
+}
+#custom-select .MuiSelect-root {
+  outline: none !important;
+  border: none !important;
+  outline: none !important;
+}
+#custom-select .MuiSelect-root:focus {
+  outline: none !important;
+  border: none !important;
+}
+#custom-select .MuiSelect-icon {
+  right: 20px !important;
+}
+#custom-select
+  .MuiOutlinedInput-root.Mui-focused
+  .MuiOutlinedInput-notchedOutline {
+  border: none !important;
+  outline: none !important;
+}
+
+#custom-select
+  .MuiSelect-icon.MuiSelect-iconOutlined.css-3qbkez-MuiSelect-icon {
+  right: 20px !important;
+  border-color: transparent !important;
+}
+#custom-select
+  .MuiSelect-icon.MuiSelect-iconOutlined.css-3qbkez-MuiSelect-icon:focus {
+  right: 20px !important;
+  /* border-color: transparent !important; */
+}
+#custom-select
+  .MuiOutlinedInput-root.Mui-focused
+  .MuiOutlinedInput-notchedOutline {
+  border-color: transparent !important;
+  /* border: 1px solid gray !important; */
+  outline: none !important;
+}
+#custom-select .MuiSelect-select.MuiSelect-select.MuiSelect-select {
+  /* padding: 5px;
+    margin-top: 12px;
+    margin-bottom: 12px; */
+  position: absolute;
+}

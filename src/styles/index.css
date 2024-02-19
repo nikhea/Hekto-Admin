@@ -136,3 +136,103 @@ li {
   .MuiOutlinedInput-notchedOutline {
   border: none;
 }
+
+/* select */
+/* select */
+
+/* .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.MuiSelect-select.MuiSelect-select.MuiSelect-select {
+  padding: 10px;
+} */
+
+.MuiMenu-paper {
+  margin-top: 8px;
+}
+/* .MuiOutlinedInput-notchedOutline {
+  border: none !important;
+  outline: none !important;
+  border: none !important;
+}
+.MuiSelect-root {
+  outline: none !important;
+  border: none !important;
+  outline: none !important;
+}
+.MuiSelect-root:focus {
+  outline: none !important;
+  border: none !important;
+} */
+.MuiSelect-icon {
+  right: 20px !important;
+}
+
+/* .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border: none !important;
+  outline: none !important;
+} */
+
+/* .MuiSelect-icon.MuiSelect-iconOutlined.css-3qbkez-MuiSelect-icon {
+  right: 20px !important;
+  border-color: transparent !important;
+}
+
+.MuiSelect-icon.MuiSelect-iconOutlined.css-3qbkez-MuiSelect-icon:focus {
+  right: 20px !important;
+  border-color: transparent !important;
+} */
+/* 
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: transparent !important;
+  outline: none !important;
+} */
+/* .MuiSelect-select.MuiSelect-select.MuiSelect-select {
+  position: absolute;
+} */
+/* Apply styles to the custom-select ID */
+
+/* .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.MuiSelect-select {
+  padding: 10px !important;
+} */
+
+.MuiMenu-paper {
+  margin-top: 8px !important;
+}
+
+/* termor select */
+
+.tremor-SelectBox-root {
+  @apply w-full ring-0 focus:ring-0 rounded-2xl;
+}
+
+/* .tremor-SelectBox-root * {
+  background: red !important;
+}
+
+.tremor-SelectBox-root:focus {
+  background: red !important;
+
+}
+.tremor-SelectBox-root:hover {
+  background: red !important;
+
+}
+.tremor-SelectBox-root input {
+  @apply bg-green-200;
+}
+.tremor-SelectBox-root svg {
+  @apply bg-green-200;
+}
+.tremor-SelectBox-input button {
+  @apply bg-green-200;
+} */
+/* class="tremor-SelectBox-root flex w-full items-center overflow-hidden cursor-text focus:outline-none focus:ring-2 bg-white hover:bg-gray-50 text-gray-500 border-gray-300 ring-2 ring-blue-300 focus:ring-blue-200 rounded-md border shadow-sm */
