@@ -54,7 +54,7 @@ const ProductReviewTable = ({ reviews }: any) => {
       {
         field: "customer",
         headerName: "customer",
-        // sortable: false,
+        sortable: false,
         width: 300,
         renderCell: (params: any) => (
           <div className="flex flex-row w-full ">
@@ -101,7 +101,6 @@ const ProductReviewTable = ({ reviews }: any) => {
       },
       {
         field: "Actions",
-        // headerName: "status",
         width: 230,
         type: "singleSelect",
         valueOptions: ["published", "unpublished"],
@@ -111,7 +110,6 @@ const ProductReviewTable = ({ reviews }: any) => {
           const [isRowLoading, setRowLoading] = useState(isLoading);
           const [isRowRemoveLoading, setisRowRemoveLoading] = useState(
             removeReviewisLoading
-            // true
           );
 
           const handleButtonClick = async () => {
@@ -172,20 +170,6 @@ const ProductReviewTable = ({ reviews }: any) => {
           );
         },
       },
-      // {
-      //   field: " ",
-      //   // headerName: "Remove",
-      //   sortable: false,
-      //   width: 100,
-      //   renderCell: (params: any) => (
-      //     <TbTrashXFilled
-      //       className="text-center cursor-pointer hover:text-red-500"
-      //       // color="#8392A5"
-      //       size={20}
-      //       onClick={() => handleDelete(params.row._id)}
-      //     />
-      //   ),
-      // },
     ],
     [isLoading]
   );
@@ -244,7 +228,7 @@ const ProductReviewTable = ({ reviews }: any) => {
             color: `white !important`,
           },
           "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-            color: `black !important`,
+            color: `grey !important`,
           },
         }}
       >
@@ -269,11 +253,7 @@ const ProductReviewTable = ({ reviews }: any) => {
             components={{ Toolbar: GridToolbar }}
             getRowId={(row: any) => generateRandom()}
             columns={columns}
-            // pageSizeOptions={[3, 5, 10]}
-
-            // checkboxSelection
-            // selectionModel={selectedRows}
-            // onSelectionModelChange={handleSelectionModelChange}
+            // columns={columnsMobile}
           />
         </ThemeProvider>
       </Box>
@@ -293,25 +273,3 @@ const ProductReviewTable = ({ reviews }: any) => {
 };
 
 export default ProductReviewTable;
-
-// function getProductReviews() {
-//   const data = usefetchAllReviews();
-//   const reviews: any = [];
-//   if (data) {
-//     data.forEach((item: any) => {
-//       const review = {
-//         _id: item._id,
-//         published: item.published,
-//         comment: item.comment,
-//         rating: item.rating,
-//         customername: `${item.user.firstname} ${item.user.lastname}`,
-//         lastname: item.user.lastname,
-//         productName: item.product.name,
-//       };
-
-//       reviews.push(review);
-//     });
-//   }
-
-//   return reviews;
-// }

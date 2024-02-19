@@ -21,9 +21,6 @@ const ProductReview = () => {
           image:
             "https://res.cloudinary.com/djkqaqoj3/image/upload/v1686218309/user/profile/imonikhea%20ugbodaga-1686218049954/jznnmwxvb5e6yhovkwfo.jpg",
         },
-        // customername: `${item.user.firstname} ${item.user.lastname}`,
-        // image:
-        //   "https://res.cloudinary.com/djkqaqoj3/image/upload/v1686218309/user/profile/imonikhea%20ugbodaga-1686218049954/jznnmwxvb5e6yhovkwfo.jpg",
         lastname: item.user.lastname,
         productName: item.product.name,
       };
@@ -32,7 +29,6 @@ const ProductReview = () => {
     });
   }
   return (
-    // <div className="flex place-items-center">
     <div className="grid h-screen place-items-center">
       <ProductReviewTable reviews={reviews} />
     </div>
@@ -40,21 +36,3 @@ const ProductReview = () => {
 };
 
 export default ProductReview;
-
-// {
-//   field: "actions",
-//   headerName: "Actions",
-//   width: 100,
-//   renderCell: (params: any) => (
-//     <div>
-//       <Button
-//         onClick={() => handleDelete(params._id)}
-//         variant="outlined"
-//         color="secondary"
-//         size="small"
-//       >
-//         Delete
-//       </Button>
-//     </div>
-//   ),
-// },
