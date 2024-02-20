@@ -13,18 +13,18 @@ const TranscaionList = (props?: Props) => {
   const { orders, isLoading } = useFetchOrders(props);
 
   return (
-    <Card className="overflow-auto m-0 p-0 full h-[380px] relative bg-white ">
+    <Card className="overflow-auto m-0 p-0 w-full h-[380px] relative bg-white ">
       <Typography className="sticky top-0 w-full pt-10 text-lg font-medium text-center text-gray-700 bg-white">
         Recent Transactions
       </Typography>
-      <div className="pr-6 ">
+      <div className="lg:w-[400px] ">
         {orders &&
           orders.slice(0, 10).map((order: any, index: number) => (
             <Box
               key={order._id}
-              className="flex justify-between p-4 border-b border-gray-200"
+              className="flex justify-between w-full py-4 border-b border-gray-200"
             >
-              <Box className="flex items-center justify-center ">
+              <Box className="flex items-center justify-center px-2">
                 <Box>
                   <div
                     className={`
@@ -48,7 +48,7 @@ const TranscaionList = (props?: Props) => {
                   </Typography>
                 </Box>
               </Box>
-              <Box className="text-green-500">
+              <Box className="pr-3 text-green-500">
                 ${formatToCurrency(order.total)}
               </Box>
             </Box>

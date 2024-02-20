@@ -4,7 +4,9 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { TbTrashXFilled } from "react-icons/tb";
 import { BsEyeFill } from "react-icons/bs";
 import { status } from "../NewProductForm/defaultValue";
+import { StopIcon } from "@heroicons/react/outline";
 import useRemoveFromProducts from "../../Hooks/useProducts/useRemoveProducts";
+import { Icon } from "@tremor/react";
 const LiveView = import.meta.env.VITE_Live_View;
 
 export const Productcolumns = [
@@ -78,22 +80,35 @@ export const Productcolumns = [
       let statusStyle;
       switch (params.value) {
         case status.instock:
-          statusStyle = " text-green-500";
+          statusStyle = " text-green-500  ";
           break;
         case status.beingrestocked:
-          statusStyle = "text-blue-500";
+          statusStyle = "text-blue-500 ";
           break;
         case status.outofstock:
-          statusStyle = "text-yellow-500";
+          statusStyle = "text-yellow-500 ";
           break;
         case "delivered":
-          statusStyle = "text-gray-500 bg-gray-100";
+          statusStyle = "text-gray-500 bg-gray-100 ";
           break;
         default:
           statusStyle = "text-gray-500 bg-gray-100";
       }
       return (
-        <div className={`${statusStyle} text-[12px]`}> {params.value}</div>
+        <div
+          className={`${statusStyle} text-[12px] flex items-center  w-full py-2 rounded-md`}
+        >
+          <Icon
+            icon={StopIconr}
+            className={`hidden xl:block rounded-full ${statusStyle} text-[10px]`}
+            // variant="solid"
+            style={{
+              fontSize: "10px",
+            }}
+            tooltip="Sum of Products"
+          />
+          <p className="mt-1"> {params.value}</p>
+        </div>
       );
     },
   },
@@ -103,9 +118,9 @@ export const Productcolumns = [
     sortable: false,
     width: 100,
     renderCell: (params: any) => (
-      <Link target="_blank" to={`${LiveView}/${params.row.slug}`}>
+      <Link target="_blank" to={`${LiveView}${params.row.slug}`}>
         <BsEyeFill
-          className="cursor-pointer text-[#333] hover:text-red-500"
+          className="text-gray-500 cursor-pointer hover:text-primary"
           size={20}
         />
       </Link>
@@ -124,7 +139,7 @@ export const Productcolumns = [
       };
       return (
         <TbTrashXFilled
-          className="cursor-pointer text-[#333] hover:text-red-500"
+          className="text-gray-500 cursor-pointer hover:text-red-500"
           size={20}
           onClick={handleDeleteProduct}
         />
@@ -136,3 +151,21 @@ export const Productcolumns = [
 // export const handleDelete = (reviewId: any) => {
 //   console.log("Deleting product with ID:", reviewId);
 // };
+// text-[#333]
+
+const StopIconr = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className="w-4 h-4"
+    >
+      <path
+        fillRule="evenodd"
+        d="M4.5 7.5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-9a3 3 0 0 1-3-3v-9Z"
+        clipRule="evenodd"
+      />
+    </svg>
+  );
+};

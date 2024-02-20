@@ -4,7 +4,7 @@ import {
   DatabaseIcon,
   ShoppingBagIcon,
   UserIcon,
-} from "@heroicons/react/outline";
+} from "@heroicons/react/solid";
 import { useFetchAllUser } from "../../../Hooks/useUser/useFetchAllUser";
 import { useFetchAllProducts } from "../../../Hooks/useProducts/useFetchAllProducts";
 const TotalCard = () => {
@@ -27,11 +27,12 @@ const TotalCard = () => {
           </div>
           <Icon
             icon={CashIcon}
-            className="bg-green-100 rounded-md"
+            className="bg-green-100 rounded-[8px] text-2xl"
             color="green"
             // variant="solid"
             tooltip="Sum of Revenue"
-            size="lg"
+            size="xl"
+            // size=""
           />
         </Flex>
       </Card>
