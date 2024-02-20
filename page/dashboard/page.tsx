@@ -10,33 +10,13 @@ const Dashboard = () => {
     <div className="">
       <TotalCard />
       <CategoriesList />
-      <Grid
-        // numCols={1}
-        // numColsSm={2}
-        // numColsLg={3}
-        className="gap-2"
-        style={{ margin: "12px 0", gap: "12px" }}
-      >
+      <Grid className="gap-2" style={{ margin: "12px 0", gap: "12px" }}>
         <Col numColSpan={1} numColSpanLg={2}>
           <AreaCharts />
         </Col>
 
         <TranscaionList />
 
-        {/* <Col>
-          <Card>
-            <Text>Title</Text>
-            <Metric>KPI 3</Metric>
-          </Card>
-        </Col>
-        <Card>
-          <Text>Title</Text>
-          <Metric>KPI 4</Metric>
-        </Card>
-        <Card>
-          <Text>Title</Text>
-          <Metric>KPI 5</Metric>
-        </Card> */}
         <Col numColSpan={1} numColSpanLg={3}>
           <BarChartGroup />
         </Col>

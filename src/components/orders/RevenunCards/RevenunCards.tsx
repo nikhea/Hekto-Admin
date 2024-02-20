@@ -46,7 +46,7 @@ const RevenunCards = () => {
         <div className="flex items-start justify-between">
           <div className="">
             <h1 className="capitalize text-[2D2D2D] text-[18px]">
-              pending orders{" "}
+              shipped orders
             </h1>
             <h1 className="capitalize text-[#111111] text-[32px] font-bold">
               3725
