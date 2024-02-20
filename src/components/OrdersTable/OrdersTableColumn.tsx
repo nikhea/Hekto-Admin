@@ -4,6 +4,7 @@ import { FaAngleDown } from "react-icons/fa";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { status, getStatusBackground, getStatusColor } from "./Status";
 import useUpdateOrderStatus from "../../Hooks/useOrder/useOrderStatus";
+import { ThreeDots } from "react-loader-spinner";
 
 export const Ordercolumns = [
   {
@@ -91,63 +92,129 @@ export const Ordercolumns = [
       const [value, setValue] = useState(params.row.deliveryStatus);
 
       const { updateReviewStatus, isLoading } = useUpdateOrderStatus();
-
       const onSelectChange = (e: any) => {
         setValue(e.target.value);
         updateReviewStatus(params.row._id, e.target.value);
       };
       return (
-        <Select
-          value={value}
-          onChange={onSelectChange}
-          IconComponent={FaAngleDown}
-          id="custom-select"
-          sx={{
-            "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: "transparent !important",
-            },
-            "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
-              {
-                borderColor: "transparent !important",
-                boxShadow: "none !important",
-              },
-            "& .MuiSelect-select": {
-              padding: "10px !important",
-            },
-            "& .MuiMenu-paper": {
-              marginTop: "8px !important",
-            },
-            "& .MuiSelect-icon.MuiSelect-iconOutlined.css-3qbkez-MuiSelect-icon":
-              {
-                right: "20px !important",
-                borderColor: "transparent !important",
-              },
-            " .MuiSelect-icon.MuiSelect-iconOutlined.css-3qbkez-MuiSelect-icon:focus":
-              {
-                right: "20px !important",
-                borderColor: "transparent !important",
-              },
-            " .MuiSelect-icon": {
-              right: "20px !important",
-            },
-          }}
-          style={{
-            width: "100%",
-            height: "50%",
-            borderRadius: "50px",
-            paddingLeft: "10px",
-            paddingRight: "40px",
-            background: `${getStatusBackground(value)}`,
-            color: `${getStatusColor(value)}`,
-          }}
-        >
-          {Object.values(status).map((statusValue) => (
-            <MenuItem key={statusValue} value={statusValue}>
-              {statusValue}
-            </MenuItem>
-          ))}
-        </Select>
+        <div className="flex flex-row items-center justify-center w-full ">
+          {isLoading ? (
+            <ThreeDots
+              height="10"
+              width="30"
+              radius="9"
+              color="#111111 "
+              wrapperClass="flex text-center  cursor-not-allowed py-2"
+              ariaLabel="three-dots-loading"
+              visible={true}
+            />
+          ) : (
+            <Select
+              value={value}
+              onChange={onSelectChange}
+              IconComponent={FaAngleDown}
+              id="custom-select"
+              sx={{
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "transparent !important",
+                },
+                "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+                  {
+                    borderColor: "transparent !important",
+                    boxShadow: "none !important",
+                  },
+                "& .MuiSelect-select": {
+                  padding: "10px !important",
+                },
+                "& .MuiMenu-paper": {
+                  marginTop: "8px !important",
+                },
+                "& .MuiSelect-icon.MuiSelect-iconOutlined.css-3qbkez-MuiSelect-icon":
+                  {
+                    right: "20px !important",
+                    borderColor: "transparent !important",
+                  },
+                ".MuiSelect-icon.MuiSelect-iconOutlined.css-3qbkez-MuiSelect-icon:focus":
+                  {
+                    right: "20px !important",
+                    borderColor: "transparent !important",
+                  },
+                ".MuiSelect-icon": {
+                  right: "20px !important",
+                },
+              }}
+              style={{
+                width: "100%",
+                height: "50%",
+                borderRadius: "50px",
+                paddingLeft: "10px",
+                paddingRight: "40px",
+                background: `${getStatusBackground(value)}`,
+                color: `${getStatusColor(value)}`,
+              }}
+            >
+              {Object.values(status).map((statusValue) => (
+                <MenuItem key={statusValue} value={statusValue}>
+                  {statusValue}
+                </MenuItem>
+              ))}
+            </Select>
+          )}
+        </div>
       );
     },
   },
 ];
+
+{
+  /* <Select
+value={value}
+onChange={onSelectChange}
+IconComponent={FaAngleDown}
+id="custom-select"
+sx={{
+  "& .MuiOutlinedInput-notchedOutline": {
+    borderColor: "transparent !important",
+  },
+  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+    {
+      borderColor: "transparent !important",
+      boxShadow: "none !important",
+    },
+  "& .MuiSelect-select": {
+    padding: "10px !important",
+  },
+  "& .MuiMenu-paper": {
+    marginTop: "8px !important",
+  },
+  "& .MuiSelect-icon.MuiSelect-iconOutlined.css-3qbkez-MuiSelect-icon":
+    {
+      right: "20px !important",
+      borderColor: "transparent !important",
+    },
+  " .MuiSelect-icon.MuiSelect-iconOutlined.css-3qbkez-MuiSelect-icon:focus":
+    {
+      right: "20px !important",
+      borderColor: "transparent !important",
+    },
+  " .MuiSelect-icon": {
+    right: "20px !important",
+  },
+}}
+style={{
+  width: "100%",
+  height: "50%",
+  borderRadius: "50px",
+  paddingLeft: "10px",
+  paddingRight: "40px",
+  background: `${getStatusBackground(value)}`,
+  color: `${getStatusColor(value)}`,
+}}
+>
+{Object.values(status).map((statusValue) => (
+  <MenuItem key={statusValue} value={statusValue}>
+    {statusValue}
+  </MenuItem>
+))}
+</Select> */
+}

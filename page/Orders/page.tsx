@@ -25,11 +25,11 @@ const Orders = (props: Props) => {
           name: `${item.user.firstname} ${item.user.lastname}`,
           email: item.user.email,
           image:
-            "https://res.cloudinary.com/djkqaqoj3/image/upload/v1686218309/user/profile/imonikhea%20ugbodaga-1686218049954/jznnmwxvb5e6yhovkwfo.jpg",
+            "https://res.cloudinary.com/djkqaqoj3/image/upload/v1686020514/cover-productImages-undefined-1686020113705/qggstfyhcspzpklr4bhl.jpg",
         },
         name: `${item.user.firstname + item.user.lastname} ${item.user.email}`,
         image:
-          "https://res.cloudinary.com/djkqaqoj3/image/upload/v1686218309/user/profile/imonikhea%20ugbodaga-1686218049954/jznnmwxvb5e6yhovkwfo.jpg",
+          "https://res.cloudinary.com/djkqaqoj3/image/upload/v1686020514/cover-productImages-undefined-1686020113705/qggstfyhcspzpklr4bhl.jpg",
         total: formatToCurrency(item.total),
         deliveryStatus: item.deliveryStatus,
         date: formatDate(item.createdAt),

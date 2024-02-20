@@ -1,32 +1,85 @@
+import { Box, Typography } from "@mui/material";
 import { Card, Metric, Text } from "@tremor/react";
+import DeliveredIcon from "../../icons/DeliveredIcon";
+import TotalIcon from "../../icons/TotalIcon";
+import PendingIcon from "../../icons/PendingIcon";
+import ShippedIcon from "../../icons/ShippedIcon";
 
 const RevenunCards = () => {
   return (
-    <div
-      className="flex flex-col justify-between gap-4 mt-10 md:flex-row md:flex-wrap md:gap-4 lg:flex-wrap lg:gap-4 xl:flex-wrap xl:gap-4"
-      //  className="flex flex-col justify-between gap-4 mt-10 md:flex-row md:flex-wrap md:gap-4"
-    >
-      {/* flex flex-col  justify-between md:flex-row md:col-span-2 w-full gap-10 xl:grid-cols-4 mt-10 md:gap-x-[4px] */}
-      {/* flex flex-wrap justify-between w-full gap-4 */}
-      {/* lg:flex-row */}
-      {/* flex flex-col justify-between w-full gap-4 my-10 md:col-span-2 */}
+    <div className="flex flex-col justify-between gap-4 mt-10 md:flex-row md:flex-wrap md:gap-4 lg:flex-wrap lg:gap-4 xl:flex-wrap xl:gap-4">
       <Card className="md:max-w-xs " decoration="top" decorationColor="pink">
-        <p className="mb-5 capitalize text-tremor-default text-tremor-content dark:text-dark-tremor-content">
-          total orders
-        </p>
-        <div className="grid grid-cols-2 gap-4">
-          <p className="text-xl font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong">
-            34725
-          </p>
+        <div className="flex items-start justify-between">
+          <div className="">
+            <h1 className="capitalize text-[2D2D2D] text-[18px]">
+              total orders
+            </h1>
+            <h1 className="capitalize text-[#111111] text-[32px] font-bold">
+              3725
+            </h1>
+            <h1 className=" text-[15px]">
+              <span className=" text-[#1B1EC3]">Total amount</span>:{" "}
+              <span className="text-[#5f5f5f]">$34,725.38</span>
+            </h1>
+          </div>
           <div>
-            <h1 className="capitalize ">total amount</h1>
-            <p className="text-xl font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong">
-              $34,725
-            </p>
+            <TotalIcon />
           </div>
         </div>
       </Card>
       <Card className="md:max-w-xs " decoration="top" decorationColor="yellow">
+        <div className="flex items-start justify-between">
+          <div className="">
+            <h1 className="capitalize text-[2D2D2D] text-[18px]">
+              pending orders{" "}
+            </h1>
+            <h1 className="capitalize text-[#111111] text-[32px] font-bold">
+              3725
+            </h1>
+          </div>
+          <div>
+            <PendingIcon />
+          </div>
+        </div>
+      </Card>
+      <Card className="md:max-w-xs " decoration="top" decorationColor="indigo">
+        <div className="flex items-start justify-between">
+          <div className="">
+            <h1 className="capitalize text-[2D2D2D] text-[18px]">
+              pending orders{" "}
+            </h1>
+            <h1 className="capitalize text-[#111111] text-[32px] font-bold">
+              3725
+            </h1>
+          </div>
+          <div>
+            <ShippedIcon />
+          </div>
+        </div>
+      </Card>
+      <Card className="md:max-w-xs " decoration="top" decorationColor="green">
+        <div className="flex items-start justify-between">
+          <div className="">
+            <h1 className="capitalize text-[2D2D2D] text-[18px]">
+              delivered orders
+            </h1>
+            <h1 className="capitalize text-[#111111] text-[32px] font-bold">
+              3725
+            </h1>
+          </div>
+          <div>
+            <DeliveredIcon />
+          </div>
+        </div>
+      </Card>{" "}
+    </div>
+  );
+};
+
+export default RevenunCards;
+// DeliveredIcon
+{
+  /* <Card className="md:max-w-xs " decoration="top" decorationColor="yellow">
         <p className="mb-5 capitalize text-tremor-default text-tremor-content dark:text-dark-tremor-content">
           pending orders
         </p>
@@ -49,9 +102,5 @@ const RevenunCards = () => {
         <p className="text-xl font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong">
           44,743
         </p>
-      </Card>
-    </div>
-  );
-};
-
-export default RevenunCards;
+      </Card> */
+}
