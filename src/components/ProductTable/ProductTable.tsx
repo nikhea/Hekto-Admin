@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { Productcolumns } from "./ProductTableColumn";
 import { Box } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import { mockDataContacts } from "../../data/mockData";
 import { generateRandom } from "../../utils/generateRandomID";
 import "./product.module.scss";

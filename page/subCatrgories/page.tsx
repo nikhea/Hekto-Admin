@@ -38,7 +38,7 @@ const SubCategory = () => {
   ));
 
   return (
-    <div>
+    <div className="">
       <HeaderCate text={headerDetails.text} link={headerDetails.link} />
       <Card style={{ gap: 20 }}>
         <div className="grid grid-cols-1 py-20 md:grid-cols-2">

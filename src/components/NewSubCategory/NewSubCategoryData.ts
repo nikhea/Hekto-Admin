@@ -14,5 +14,5 @@ export const newSubCategoryDataSchema = yup.object().shape({
   description: yup.string().required(),
   category: yup.string().required(),
   // coverPhoto: yup.string().url().required(),
-  photo: yup.mixed().required(),
+  // photo: yup.mixed().required(),
 });
