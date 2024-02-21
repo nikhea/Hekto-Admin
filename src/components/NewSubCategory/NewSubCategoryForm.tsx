@@ -6,7 +6,7 @@ import {
   newSubCategoryDataData,
   newSubCategoryDataSchema,
 } from "./NewSubCategoryData";
-import { useEffect, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import Select from "../FormElement/select/select";
 import useSingleImage from "../../Hooks/useSingleImage";
 import { useSingleImageStore } from "../../store/useSingleImageStore";
@@ -15,14 +15,26 @@ import { TiCamera } from "react-icons/ti";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import useCreateSubCategories from "../../Hooks/useSubCategory/useCreateSubCategories";
 import ButtonLoading from "../FormElement/Button/ButtonLoading";
+import BasicModal from "../FormElement/model/model";
+import { useFetchCategories } from "../../Hooks/useCategories/useFetchCategories";
+import { useModelStore } from "../../store/useModelStore";
 
 const style = {
   btn: `bg-white p-3 rounded-md flex items-center justify-between capitalize absolute m-3`,
 };
-const NewSubCategoryForm = ({ categories }: any) => {
+interface INewCategories {
+  categories: any;
+}
+const NewSubCategoryForm: FC<INewCategories> = () => {
+  const { handleOpen } = useModelStore();
+  // const [open, setOpen] = useState(true);
+  // const handleOpen = () => setOpen(true);
+  // const handleClose = () => setOpen(false);
+  const categories = useFetchCategories();
+
   const { createNewSubCategories, status, createSubCategoriesisLoading } =
     useCreateSubCategories();
-  const [categoryOptions, setCategoryOptions] = useState([""]);
+
   const { newImageData, setNewImageData } = useSingleImageStore();
 
   const foldername = `subcategories-${Date.now()}`;
@@ -33,17 +45,6 @@ const NewSubCategoryForm = ({ categories }: any) => {
     widgetRef.current.open();
   };
 
-  useEffect(() => {
-    const getData = async () => {
-      const arr: any = [];
-      let result = categories;
-      result.map((countries: any) => {
-        return arr.push({ value: countries.name, label: countries.name });
-      });
-      setCategoryOptions(arr);
-    };
-    getData();
-  }, []);
   const methods = useForm<newSubCategoryDataData>({
     resolver: yupResolver(newSubCategoryDataSchema),
     defaultValues: {},
@@ -61,23 +62,17 @@ const NewSubCategoryForm = ({ categories }: any) => {
       setValue("photo", newImageData);
     }
   }, [newImageData, setNewImageData, setValue]);
-
-  const { field: categoryField } = useController({
-    name: "category",
-    control,
-  });
-  const handleCategoryChange = (option: any) => {
-    categoryField.onChange(option.value);
-
-    return categoryField.onChange(option.value);
+  const handleInputChange = (value: string) => {
+    setValue("category", value);
   };
 
   const submitForm = (data: any) => {
     let subCategoriesData = data;
-    if (subCategoriesData) {
-      createNewSubCategories({ subCategoriesData });
-    } else {
-    }
+    console.log(subCategoriesData);
+
+    // if (subCategoriesData) {
+    //   createNewSubCategories({ subCategoriesData });
+    // }
   };
   useEffect(() => {
     if (status === "success") {
@@ -139,18 +134,20 @@ const NewSubCategoryForm = ({ categories }: any) => {
             </div>
           )}
         </div>
-        <div className="flex flex-col justify-between ">
+        <div className="flex flex-col justify-between my-5 ">
           <Typography className="capitalize"> category</Typography>
-
-          <Select
-            placeholder="Category*"
-            // @ts-ignore
-            options={categoryOptions}
-            field={categoryOptions.find(
-              ({ value }: any) => value === categoryField.value
-            )}
-            handleSelectChange={handleCategoryChange}
-          />
+          <div onClick={handleOpen} className="">
+            <Input
+              type="text"
+              placeholder="Category*"
+              name="category"
+              required
+              isWhiteBg
+              isCurve
+              Width="100%"
+              inputRef={register("category")}
+            />
+          </div>
         </div>
         <div className="flex flex-col justify-between ">
           <Typography className="capitalize "> description</Typography>
@@ -161,9 +158,8 @@ const NewSubCategoryForm = ({ categories }: any) => {
           />
         </div>
         <div className="flex justify-center mt-2 ">
-          {/* <button className="px-4 py-1 text-white capitalize rounded-md w-fit bg-primary">
-            save
-          </button> */}
+          <BasicModal data={categories} onInputChange={handleInputChange} />
+
           <ButtonLoading text="save" isLoading={createSubCategoriesisLoading} />
         </div>
       </div>
@@ -183,3 +179,51 @@ export default NewSubCategoryForm;
 // // Width="70%"
 // inputRef={register("coverPhoto")}
 // />
+{
+  /* <Select
+placeholder="Category*"
+// @ts-ignore
+options={categoryOptions}
+field={categoryOptions.find(
+  ({ value }: any) => value === categoryField.value
+)}
+handleSelectChange={handleCategoryChange}
+/> */
+}
+{
+  /* <button className="px-4 py-1 text-white capitalize rounded-md w-fit bg-primary">
+            save
+          </button> */
+}
+// const { field: categoryField } = useController({
+//   name: "category",
+//   control,
+// });
+// const handleCategoryChange = (option: any) => {
+//   categoryField.onChange(option.value);
+
+//   return categoryField.onChange(option.value);
+// };
+
+// useEffect(() => {
+//   const getData = async () => {
+//     const arr: any = [];
+//     let result = categories;
+//     result.map((countries: any) => {
+//       return arr.push({ value: countries.name, label: countries.name });
+//     });
+//     setCategoryOptions(arr);
+//   };
+//   getData();
+// }, []);
+// const parentRef = useRef(null);
+// const [categoryOptions, setCategoryOptions] = useState([""]);
+{
+  /* <BasicModal
+open={open}
+handleOpen={handleOpen}
+handleClose={handleClose}
+data={categories}
+onInputChange={handleInputChange}
+/> */
+}

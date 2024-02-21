@@ -6,7 +6,7 @@ import { useFetchCategories } from "../../../src/Hooks/useCategories/useFetchCat
 const NewSubCategory = () => {
   const categories = useFetchCategories();
   return (
-    <Card>
+    <Card className="relative">
       <h1 className="text-center uppercase "> SubCategory information</h1>
       <NewSubCategoryForm categories={categories} />
     </Card>
