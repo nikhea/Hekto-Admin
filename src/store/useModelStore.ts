@@ -22,7 +22,7 @@ interface StoreState {
 
 export const useModelStore = create<StoreState>((set) => ({
   data: [],
-  open: true,
+  open: false,
   setOpen: (isOpen) => set({ open: isOpen }),
   handleOpen: () => set({ open: true }),
   handleClose: () => set({ open: false }),
