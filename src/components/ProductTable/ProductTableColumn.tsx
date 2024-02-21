@@ -105,7 +105,7 @@ export const Productcolumns = [
             style={{
               fontSize: "10px",
             }}
-            tooltip="Sum of Products"
+            // tooltip="Sum of Products"
           />
           <p className="mt-1"> {params.value}</p>
         </div>

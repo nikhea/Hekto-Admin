@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { Card, Metric, Text } from "@tremor/react";
+import { Card, Icon, Metric, Text } from "@tremor/react";
 import DeliveredIcon from "../../icons/DeliveredIcon";
 import TotalIcon from "../../icons/TotalIcon";
 import PendingIcon from "../../icons/PendingIcon";
@@ -8,7 +8,11 @@ import ShippedIcon from "../../icons/ShippedIcon";
 const RevenunCards = () => {
   return (
     <div className="flex flex-col justify-between gap-4 mt-10 md:flex-row md:flex-wrap md:gap-4 lg:flex-wrap lg:gap-4 xl:flex-wrap xl:gap-4">
-      <Card className="md:max-w-xs " decoration="top" decorationColor="pink">
+      <Card
+        className="cursor-pointer md:max-w-xs"
+        decoration="top"
+        decorationColor="pink"
+      >
         <div className="flex items-start justify-between">
           <div className="">
             <h1 className="capitalize text-[2D2D2D] text-[18px]">
@@ -23,11 +27,16 @@ const RevenunCards = () => {
             </h1>
           </div>
           <div>
+            <Icon icon={TotalIcon} tooltip="total numbers of orders" />
             <TotalIcon />
           </div>
         </div>
       </Card>
-      <Card className="md:max-w-xs " decoration="top" decorationColor="yellow">
+      <Card
+        className="cursor-pointer md:max-w-xs"
+        decoration="top"
+        decorationColor="yellow"
+      >
         <div className="flex items-start justify-between">
           <div className="">
             <h1 className="capitalize text-[2D2D2D] text-[18px]">
@@ -38,11 +47,19 @@ const RevenunCards = () => {
             </h1>
           </div>
           <div>
-            <PendingIcon />
+            <Icon
+              icon={PendingIcon}
+              tooltip="total numbers of pending orders"
+            />
+            {/* <PendingIcon /> */}
           </div>
         </div>
       </Card>
-      <Card className="md:max-w-xs " decoration="top" decorationColor="indigo">
+      <Card
+        className="cursor-pointer md:max-w-xs"
+        decoration="top"
+        decorationColor="indigo"
+      >
         <div className="flex items-start justify-between">
           <div className="">
             <h1 className="capitalize text-[2D2D2D] text-[18px]">
@@ -53,11 +70,19 @@ const RevenunCards = () => {
             </h1>
           </div>
           <div>
-            <ShippedIcon />
+            <Icon
+              icon={ShippedIcon}
+              tooltip="total numbers of shipped orders"
+            />
+            {/* <ShippedIcon /> */}
           </div>
         </div>
       </Card>
-      <Card className="md:max-w-xs " decoration="top" decorationColor="green">
+      <Card
+        className="cursor-pointer md:max-w-xs"
+        decoration="top"
+        decorationColor="green"
+      >
         <div className="flex items-start justify-between">
           <div className="">
             <h1 className="capitalize text-[2D2D2D] text-[18px]">
@@ -68,7 +93,11 @@ const RevenunCards = () => {
             </h1>
           </div>
           <div>
-            <DeliveredIcon />
+            <Icon
+              icon={DeliveredIcon}
+              tooltip="total numbers of delivered orders"
+            />
+            {/* <DeliveredIcon /> */}
           </div>
         </div>
       </Card>{" "}
