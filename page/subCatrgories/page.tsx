@@ -45,7 +45,7 @@ const SubCategory = () => {
           {displaySubcategories}
         </div>
 
-        <div className="grid my-3 mt-5 text-center place-content-center">
+        <div className="my-3 mt-5 text-center gri place-content-center">
           {hasNextPage && (
             <button
               onClick={() => fetchNextPage()}
