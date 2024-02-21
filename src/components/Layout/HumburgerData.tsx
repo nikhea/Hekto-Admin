@@ -27,8 +27,13 @@ const HumburgerData = ({ onClose }: any) => {
     </NavLink>
   ));
   return (
-    <div className="flex flex-col h-full justify-evenly">{displayData}</div>
+    <div className="flex flex-col h-[70vh]  mt-16 justify-evenly">
+      {displayData}
+    </div>
+
+    // <div className="flex flex-col h-full justify-evenly">{displayData}</div>
   );
 };
 // md:mt-6 mt-10
 export default HumburgerData;
+// nav: `flex   px-5 py-3 text-gray-500 font-bold  capitalize cursor-pointer hover:bg-pink-500 hover:text-white`,
