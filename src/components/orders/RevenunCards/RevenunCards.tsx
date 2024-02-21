@@ -28,7 +28,7 @@ const RevenunCards = () => {
           </div>
           <div>
             <Icon icon={TotalIcon} tooltip="total numbers of orders" />
-            <TotalIcon />
+            {/* <TotalIcon /> */}
           </div>
         </div>
       </Card>
