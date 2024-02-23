@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import Typography from "@mui/material/Typography";
 import Input from "../FormElement/input/input";
 import { useController, useForm } from "react-hook-form";
@@ -18,6 +16,9 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useSingleImageStore } from "../../store/useSingleImageStore";
 import useSingleImage from "../../Hooks/useSingleImage";
 import ButtonLoading from "../FormElement/Button/ButtonLoading";
+import { useFetchCategories } from "../../Hooks/useCategories/useFetchCategories";
+import { useModelStore } from "../../store/useModelStore";
+import BasicModal from "../FormElement/model/model";
 
 interface NewCategoryFormProps {
   defaultCategory?: any;
@@ -25,13 +26,16 @@ interface NewCategoryFormProps {
 }
 const EditSubCategoryForm: FC<NewCategoryFormProps> = ({
   defaultCategory,
-  categories,
+  // categories,
 }) => {
-  const { name } = useParams<{ name?: string }>();
+  const { handleOpen } = useModelStore();
+
+  const categories = useFetchCategories();
+
+  // const { name } = useParams<{ name?: string }>();
 
   const { updateSubCategories, updateSubCategoriesIsLoading } =
     useUpdateSubcategories();
-  console.log(updateSubCategoriesIsLoading, "updateSubCategoriesIsLoading");
 
   const [categoryOptions, setCategoryOptions] = useState([""]);
   const { newImageData, setNewImageData } = useSingleImageStore();
@@ -53,20 +57,21 @@ const EditSubCategoryForm: FC<NewCategoryFormProps> = ({
     setValue,
     getValues,
     control,
-
     formState: { errors },
   } = methods;
-  useEffect(() => {
-    const getData = async () => {
-      const arr: any = [];
-      let result = categories;
-      result.map((countries: any) => {
-        return arr.push({ value: countries.name, label: countries.name });
-      });
-      setCategoryOptions(arr);
-    };
-    getData();
-  }, []);
+
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const arr: any = [];
+  //     let result = categories;
+  //     result.map((countries: any) => {
+  //       return arr.push({ value: countries.name, label: countries.name });
+  //     });
+  //     setCategoryOptions(arr);
+  //   };
+  //   getData();
+  // }, []);
+
   useEffect(() => {
     if (defaultCategory.name) {
       setValue("name", defaultCategory.name);
@@ -76,29 +81,36 @@ const EditSubCategoryForm: FC<NewCategoryFormProps> = ({
     }
   }, [defaultCategory, setValue]);
 
-  const { field: categoryField } = useController({
-    name: "category",
-    control,
-  });
-  const handleCategoryChange = (option: any) => {
-    categoryField.onChange(option.value);
-
-    return categoryField.onChange(option.value);
+  const handleInputChange = (value: string) => {
+    setValue("category", value);
   };
+  // const { field: categoryField } = useController({
+  //   name: "category",
+  //   control,
+  // });
+  // const handleCategoryChange = (option: any) => {
+  //   categoryField.onChange(option.value);
+
+  //   return categoryField.onChange(option.value);
+  // };
+
   useEffect(() => {
     if (newImageData?.secure_url) {
       setValue("photo", newImageData);
     }
   }, [newImageData, setNewImageData, setValue]);
+
   const submitForm = (data: any) => {
-    let subCategoriesData = data;
-    if (subCategoriesData) {
-      if (defaultCategory.name) {
-        subCategoriesData;
-        updateSubCategories(name, subCategoriesData);
-      }
-    } else {
-    }
+    console.log(data);
+
+    // let subCategoriesData = data;
+    // if (subCategoriesData) {
+    //   if (defaultCategory.name) {
+    //     subCategoriesData;
+    //     updateSubCategories(name, subCategoriesData);
+    //   }
+    // } else {
+    // }
   };
 
   return (
@@ -120,8 +132,8 @@ const EditSubCategoryForm: FC<NewCategoryFormProps> = ({
             inputRef={register("name")}
           />
         </div>
-        <div className="flex flex-col justify-between ">
-          <Typography className="capitalize ">image url</Typography>
+        <div className="flex flex-col justify-between mt-2">
+          <Typography className="!mb-1 capitalize">image url</Typography>
           {!newImageData ? (
             <div className="relative w-full h-56 mb-3 rounded-md bg-fuchsia-500">
               <button type="button" className={style.btn} onClick={openWidget}>
@@ -156,21 +168,20 @@ const EditSubCategoryForm: FC<NewCategoryFormProps> = ({
             </div>
           )}
         </div>
-        <div className="flex flex-col justify-between ">
-          <Typography className="capitalize"> category</Typography>
-
-          <Select
-            placeholder="Category*"
-            // @ts-ignore
-            options={categoryOptions}
-            // field={categoryOptions.find(
-            //   ({ value }: any) => value === categoryField.value
-            // )}
-            field={categoryOptions.find(
-              (option) => option.value === getValues("category")
-            )}
-            handleSelectChange={handleCategoryChange}
-          />
+        <div className="flex flex-col justify-between my-2">
+          <Typography className="capitalize "> category</Typography>
+          <div onClick={handleOpen} className="">
+            <Input
+              type="text"
+              placeholder="Category*"
+              name="category"
+              required
+              isWhiteBg
+              isCurve
+              Width="100%"
+              inputRef={register("category")}
+            />
+          </div>
         </div>
         <div className="flex flex-col justify-between ">
           <Typography className="capitalize "> description</Typography>
@@ -181,6 +192,15 @@ const EditSubCategoryForm: FC<NewCategoryFormProps> = ({
           />
         </div>
         <div className="flex justify-center mt-2 ">
+          <BasicModal
+            data={categories}
+            onInputChange={handleInputChange}
+            titleText="select category"
+            subTitleText="Select the category too be added."
+            btnText="select category"
+            searchText="filter categories by name"
+          />
+
           {/* <button className="px-4 py-1 text-white capitalize rounded-md w-fit bg-primary">
             update
           </button> */}
@@ -199,6 +219,21 @@ export default EditSubCategoryForm;
 const style = {
   btn: `bg-white p-3 rounded-md flex items-center justify-between capitalize absolute m-3`,
 };
+
+{
+  /* <Select
+placeholder="Category*"
+// @ts-ignore
+options={categoryOptions}
+// field={categoryOptions.find(
+//   ({ value }: any) => value === categoryField.value
+// )}
+field={categoryOptions.find(
+  (option) => option.value === getValues("category")
+)}
+handleSelectChange={handleCategoryChange}
+/> */
+}
 {
   /* <div className="flex flex-col justify-between ">
 <Typography className="capitalize ">image url</Typography>

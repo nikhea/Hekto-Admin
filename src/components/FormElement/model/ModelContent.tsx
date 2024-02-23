@@ -42,7 +42,7 @@ const ModelContent: React.FC<BasicModalProps> = ({
   };
   const dataContent = filteredData.map((data: any, i: number) => (
     <div key={data._id} className="flex justify-between my-10 !capitalize">
-      <Box className="w-20 h-20">
+      <Box className="hidden w-20 h-20 lg:block ">
         <LazyLoadImage
           className="w-20 h-20 ml-2 rounded-[10px] object-cover
           "
@@ -65,14 +65,14 @@ const ModelContent: React.FC<BasicModalProps> = ({
     <div className="w-full">
       <Box className="flex justify-between px-10">
         <Box className="flex flex-col justify-start ">
-          <Typography className="!text-2xl capitalize text-[#202020]">
+          <Typography className=" !text-lg lg:!text-2xl capitalize text-[#202020]">
             {titleText}
           </Typography>
-          <Typography className="text-[#4E4E4E] !text-lg">
+          <Typography className="text-[#4E4E4E] text-sm lg:!text-lg">
             {subTitleText}
           </Typography>
         </Box>
-        <Button className=" !rounded-[14px]" onClick={onClose}>
+        <Button className="!rounded-[14px]" onClick={onClose}>
           <CloseIcon />
         </Button>
       </Box>
@@ -80,7 +80,7 @@ const ModelContent: React.FC<BasicModalProps> = ({
       <Box className="flex justify-between px-10 ">
         <TextField
           label={searchText}
-          className=" w-[50%]"
+          className=" lg:w-[50%]"
           InputProps={{
             disableUnderline: true,
             style: {
@@ -103,7 +103,7 @@ const ModelContent: React.FC<BasicModalProps> = ({
       </Box>
       <Box className="px-10">
         <Box className=" overflow-auto w-full capitalize !text-[#202020] flex justify-between px-5 py-5 rounded-[14px]  !bg-pink-100  my-5 ">
-          <Typography>image</Typography>
+          <Typography className="hidden lg:block">image</Typography>
           <Typography>name</Typography>
           <Typography>action</Typography>
         </Box>

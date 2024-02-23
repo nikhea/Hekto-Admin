@@ -158,7 +158,14 @@ const NewSubCategoryForm: FC<INewCategories> = () => {
           />
         </div>
         <div className="flex justify-center mt-2 ">
-          <BasicModal data={categories} onInputChange={handleInputChange} />
+          <BasicModal
+            data={categories}
+            onInputChange={handleInputChange}
+            titleText="select category"
+            subTitleText="Select the category too be added."
+            btnText="select category"
+            searchText="filter categories by name"
+          />
 
           <ButtonLoading text="save" isLoading={createSubCategoriesisLoading} />
         </div>

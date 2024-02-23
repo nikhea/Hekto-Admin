@@ -76,6 +76,11 @@ li {
   align-items: center;
 }
 
+/* text font family*/
+.MuiTypography-root {
+  font-family: inherit !important;
+}
+
 /* table */
 .MuiDataGrid-cell:focus,
 .MuiDataGrid-cell:focus-within {
