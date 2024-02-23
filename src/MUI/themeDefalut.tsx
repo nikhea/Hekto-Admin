@@ -10,7 +10,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: '"Josefin Sans", sans-serif', // Define your custom font family here
+    fontFamily: '"Josefin Sans", sans-serif',
   },
 });
 

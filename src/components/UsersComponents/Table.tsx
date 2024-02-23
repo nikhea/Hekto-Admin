@@ -7,6 +7,8 @@ import mockDataContacts from "../../data/MOCK_DATA.json";
 import { useFetchAllUser } from "../../Hooks/useUser/useFetchAllUser";
 import { routes } from "../../routes/routes";
 import { Card } from "@tremor/react";
+import theme from "../../MUI/themeDefalut";
+import { ThemeProvider } from "@mui/material/styles";
 
 const Users = () => {
   const users = useFetchAllUser();
@@ -93,16 +95,18 @@ const Users = () => {
           },
         }}
       >
-        <DataGrid
-          density="comfortable"
-          rows={mockDataContacts}
-          components={{ Toolbar: GridToolbar }}
-          columns={columns}
-          // initialState={{
-          //   pagination: { paginationModel: { pageSize: 25 } },
-          // }}
-          // pageSizeOptions={[25, 50, 100]}
-        />
+        <ThemeProvider theme={theme}>
+          <DataGrid
+            density="comfortable"
+            rows={mockDataContacts}
+            components={{ Toolbar: GridToolbar }}
+            columns={columns}
+            // initialState={{
+            //   pagination: { paginationModel: { pageSize: 25 } },
+            // }}
+            // pageSizeOptions={[25, 50, 100]}
+          />
+        </ThemeProvider>
       </Box>
     ),
     [columns]

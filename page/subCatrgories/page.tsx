@@ -8,6 +8,7 @@ import { useFetchCategories } from "../../src/Hooks/useCategories/useFetchCatego
 import SubCategoryCard from "../../src/components/SubCategoryCard/SubCategoryCard";
 import { Card } from "@tremor/react";
 import { ThreeDots } from "react-loader-spinner";
+
 // const SubCategoryCard = lazy(
 //   () => import("../../src/components/SubCategoryCard/SubCategoryCard")
 // );
