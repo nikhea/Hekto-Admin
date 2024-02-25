@@ -37,7 +37,7 @@ const dataFormatter = (number: number) => {
 };
 const AreaCharts = () => {
   return (
-    <Card>
+    <Card className="hidden lg:block">
       <Title>Newsletter revenue over time (USD)</Title>
       <AreaChart
         className="mt-4 h-72"

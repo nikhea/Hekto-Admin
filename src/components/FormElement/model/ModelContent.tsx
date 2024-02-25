@@ -63,12 +63,12 @@ const ModelContent: React.FC<BasicModalProps> = ({
   ));
   return (
     <div className="w-full">
-      <Box className="flex justify-between px-10">
+      <Box className="flex justify-between px-10 ">
         <Box className="flex flex-col justify-start ">
-          <Typography className=" !text-lg lg:!text-2xl capitalize text-[#202020]">
+          <Typography className=" md:!text-lg lg:!text-2xl capitalize text-[#202020]">
             {titleText}
           </Typography>
-          <Typography className="text-[#4E4E4E] text-sm lg:!text-lg">
+          <Typography className="text-[#4E4E4E] !text-[12px] md:text-sm lg:!text-lg">
             {subTitleText}
           </Typography>
         </Box>

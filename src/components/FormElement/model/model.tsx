@@ -48,7 +48,7 @@ const BasicModal: FC<BasicModalProps> = ({
     transform: "translate(-50%, -50%)",
     width: isMobile ? 390 : isTabletOrMobile ? 600 : 1000,
     // width: 300,
-
+    // higth: 180,
     // width: 390,
     marginX: "",
     bgcolor: "background.paper",
@@ -56,6 +56,7 @@ const BasicModal: FC<BasicModalProps> = ({
     borderRadius: "10px",
     boxShadow: 24,
     paddingY: 4,
+    overFlow: "hidden",
   };
 
   return (

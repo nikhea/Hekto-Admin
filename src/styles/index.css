@@ -212,7 +212,8 @@ li {
 /* termor select */
 
 .tremor-SelectBox-root {
-  @apply w-full ring-0 focus:ring-0 rounded-2xl;
+  /* w-[90%] */
+  @apply w-full capitalize cursor-pointer ring-0 focus:ring-0 rounded-2xl;
 }
 
 /* .tremor-SelectBox-root * {
@@ -221,11 +222,9 @@ li {
 
 .tremor-SelectBox-root:focus {
   background: red !important;
-
 }
 .tremor-SelectBox-root:hover {
   background: red !important;
-
 }
 .tremor-SelectBox-root input {
   @apply bg-green-200;

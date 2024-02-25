@@ -12,7 +12,7 @@ const style = {
   dashBoardLayout: `flex lg:grid grid-cols-6 relative`,
   dashBoardOutPut: `col-start-1 col-end-7 md:col-start-2 md:col-end-11 h-full w-full`,
   container: `  w-[95%]  m-auto my-5 `,
-  sidebar: `hidden w-[10%] lg:w-full bg-white md:block col-start-1   text-black h-screen  sticky overflow-y-hidden  top-0 bottom-0 left-0 right-0 `,
+  sidebar: `hidden w-[10%] lg:w-full bg-white md:block col-start-1   text-black h-screen  sticky fixe  overflow-y-hidde  top-0 bottom-0 left-0 right-0 `,
   sidebarNav: ``,
   Outlet: ``,
   logo: ` w-[80%] m-auto flex justify-center py-5   top-0 `,

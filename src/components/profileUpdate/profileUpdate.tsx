@@ -5,7 +5,7 @@ import HeaderNavigation from "./components/HeaderNavigation";
 import { useUser } from "../../auth/auth";
 
 const style = {
-  container: `w-[90%] m-auto my-[2rem] overflow-hidden text-[#11142D]`,
+  container: `w-full lg:w-[90%] m-auto my-[2rem] overflow-hidden text-[#11142D]`,
   profileInfo: `bg-white shadow-m  rounded-md  my-10`,
   ImgContainer: `rounded-md h-[400px] lg:h-[500px]  mb-20`,
   padding: `p`,
@@ -25,7 +25,7 @@ const ProfileUpdate = () => {
         </div>
 
         <div className={style.padding}>
-          <h1 className="mb-5 text-2xl container uppercase">my details</h1>
+          <h1 className="container mb-5 text-2xl uppercase">my details</h1>
           <UpdateForm user={user} />
         </div>
       </div>

@@ -1,9 +1,13 @@
+import useDeviceProperties from "../../src/Hooks/UseMediaQueries";
 import usefetchAllReviews from "../../src/Hooks/useReview/usefetchAllReviews";
 import PageLoading from "../../src/components/Loading/PageLoading";
 import ProductReviewTable from "../../src/components/ProductReviewComponents/ProductReviewTable";
+import ProductReviewCard from "../../src/components/ProductReviewComponents/productReviewCard";
 
 const ProductReview = () => {
   const data = usefetchAllReviews();
+  const { isTabletOrMobile, isMobile } = useDeviceProperties();
+
   if (!data) {
     return <PageLoading />;
   }
@@ -29,8 +33,14 @@ const ProductReview = () => {
     });
   }
   return (
-    <div className="grid h-screen place-items-center">
-      <ProductReviewTable reviews={reviews} />
+    // <div className="grid h-screen place-items-center">
+
+    <div className="grid place-items-center">
+      {isTabletOrMobile ? (
+        <ProductReviewCard reviews={reviews} />
+      ) : (
+        <ProductReviewTable reviews={reviews} />
+      )}
     </div>
   );
 };

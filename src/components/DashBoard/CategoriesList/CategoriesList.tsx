@@ -12,7 +12,7 @@ const CategoriesList = () => {
   const categories = useFetchCategories();
 
   const LoopedCategories = categories || [];
-  const displayCategories = LoopedCategories.slice(0, 4).map(
+  const displayCategories = LoopedCategories.slice(0, 3).map(
     (category: any) => (
       <Link className="w-full" to={`${routes.category}`} key={category._id}>
         <div style={{ width: "100%", height: "100px", borderRadius: "10px" }}>
@@ -47,7 +47,7 @@ const CategoriesList = () => {
       <h1 className="text-lg text-gray-500 capitalize">top categories</h1>
       {isTabletOrMobile ? (
         <div
-          className="grid grid-cols-4"
+          className="grid grid-cols-3"
           style={{ margin: "0px 0", gap: "12px" }}
         >
           {displayCategories}

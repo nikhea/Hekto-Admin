@@ -7,10 +7,14 @@ import OrderChart from "../../src/components/orders/orderChart/orderChart";
 import RevenunCards from "../../src/components/orders/RevenunCards/RevenunCards";
 import { formatDate, formatTime } from "../../src/utils/getFullYear";
 import { formatToCurrency } from "../../src/utils/formateNumbers";
+import useDeviceProperties from "../../src/Hooks/UseMediaQueries";
+import OrdersMobileCards from "../../src/components/orders/OrdersMobile/OrdersMobileCards";
 
 interface Props {}
 
 const Orders = (props: Props) => {
+  const { isTabletOrMobile, isMobile } = useDeviceProperties();
+
   const { orders, isLoading } = useFetchOrders(props);
   if (isLoading) {
     return <PageLoading />;
@@ -50,7 +54,11 @@ const Orders = (props: Props) => {
         <h1 className="text-xl font-bold capitalize">orders</h1>
         <RevenunCards />
         <OrderChart />
-        <OrdersTable orders={data} />
+        {isTabletOrMobile ? (
+          <OrdersMobileCards orders={data} />
+        ) : (
+          <OrdersTable orders={data} />
+        )}
       </Card>
     </div>
   );
