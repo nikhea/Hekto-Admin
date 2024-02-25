@@ -3,7 +3,8 @@ import { currentYear } from "../../utils/getFullYear";
 
 const Footer = () => {
   return (
-    <div className="sticky bottom-0 left-0 right-0 flex justify-center p-5 text-center bg-white">
+    // sticky
+    <div className="sticky bottom-0 left-0 right-0 flex justify-center p-5 text-center bg-white ">
       <div className="cursor-pointer hover:text-primary w-fit ">
         Copyright {currentYear()} &copy;{" "}
         <span className="uppercase ">Hekto</span>

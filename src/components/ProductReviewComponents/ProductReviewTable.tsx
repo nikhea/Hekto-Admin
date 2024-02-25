@@ -159,7 +159,7 @@ const ProductReviewTable = ({ reviews }: any) => {
                   />
                 ) : (
                   <TbTrashXFilled
-                    className="text-center cursor-pointer hover:text-red-500"
+                    className="text-center cursor-pointer hover:!text-red-500"
                     color="#8392A5"
                     size={20}
                     onClick={handleButtonRemove}
@@ -266,7 +266,7 @@ const ProductReviewTable = ({ reviews }: any) => {
   }
 
   return (
-    <Card className="flex justify-center h-full text-gray-500">
+    <Card className="flex justify-center h-screen text-gray-500">
       <Box className="">{gridComponent}</Box>
     </Card>
   );
