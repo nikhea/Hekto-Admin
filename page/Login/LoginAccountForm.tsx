@@ -77,8 +77,13 @@ const AccountForm: FC = () => {
         <p>{AccountFormDefaultText.subText}</p>
       </div>
       <FormProvider {...methods}>
-        <form onSubmit={handleSubmit(submitForm)}>
-          <div className="  w-[90%] m-auto ">
+        <form className="!w-[90%] !m-auto" onSubmit={handleSubmit(submitForm)}>
+          <div
+            style={{
+              width: "90%",
+              margin: "0 auto",
+            }}
+          >
             <div className={style.inputContainer}>
               <label className={style.label}>email</label>
               <Input
