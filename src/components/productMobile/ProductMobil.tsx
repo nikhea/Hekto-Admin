@@ -4,9 +4,11 @@ import theme from "../../MUI/themeDefalut";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Icon, ProgressBar } from "@tremor/react";
 import { TbTrashXFilled } from "react-icons/tb";
-import { StopIcon } from "@heroicons/react/solid";
+// import { StopIcon } from "@heroicons/react/solid";
 import { Link } from "react-router-dom";
 import { BsEyeFill } from "react-icons/bs";
+import { routes } from "../../routes/routes";
+import StopIcon from "../icons/StopIcon";
 const LiveView = import.meta.env.VITE_Live_View;
 
 const ProductMobile = ({ products }: any) => {
@@ -76,7 +78,7 @@ const ProductCardItems = ({ product }: any) => {
   return (
     <Box className="grid w-full grid-cols-2 gap-5 ">
       <Box className="mb-5 rounded-md !w-25 !h-25 relative ">
-        <Box className="absolute inset-0 bg-black rounded-md opacity-50"></Box>
+        <Box className="absolute inset-0 bg-black rounded-md opacity-50 cursor-pointer"></Box>
 
         <LazyLoadImage
           width={100}
@@ -95,9 +97,14 @@ const ProductCardItems = ({ product }: any) => {
         </Box>
       </Box>
       <Box className="flex flex-col h-full space-y-5">
-        <Typography className=" text-[#2D2D2D] md:!text-xl">
-          {product.name}
-        </Typography>
+        <Link
+          className=" hover:!text-primary"
+          to={`${routes.EditProduct}/${product.slug}`}
+        >
+          <Typography className=" text-[#2D2D2D] hover:!text-primary md:!text-xl">
+            {product.name}
+          </Typography>
+        </Link>
         <Box className="flex space-x-2 uppercase text-[#9C9C9C] md:!text-2xl">
           <Typography>{product.categoryName},</Typography>
           <Typography>{product.subcategoryName}</Typography>

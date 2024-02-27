@@ -4,9 +4,10 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { TbTrashXFilled } from "react-icons/tb";
 import { BsEyeFill } from "react-icons/bs";
 import { status } from "../NewProductForm/defaultValue";
-import { StopIcon } from "@heroicons/react/outline";
+// import { StopIcon } from "@heroicons/react/outline";
 import useRemoveFromProducts from "../../Hooks/useProducts/useRemoveProducts";
 import { Icon } from "@tremor/react";
+import StopIcon from "../icons/StopIcon";
 const LiveView = import.meta.env.VITE_Live_View;
 
 export const Productcolumns = [

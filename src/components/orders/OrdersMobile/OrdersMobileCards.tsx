@@ -106,7 +106,7 @@ const OrderCardItems = ({ order }: any) => {
               />
             </Box>
           ) : (
-            <Box className="flex justify-end my-2 lg:!w-[20%]">
+            <Box className="flex justify-end my-2 w-[50%] md:w-full">
               <Select
                 value={value}
                 onChange={onSelectChange}
