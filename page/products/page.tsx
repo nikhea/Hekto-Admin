@@ -5,8 +5,12 @@ import { useFetchAllProducts } from "../../src/Hooks/useProducts/useFetchAllProd
 import PageLoading from "../../src/components/Loading/PageLoading";
 import { useProductState } from "../../src/store/useProductStore";
 import { Card } from "@tremor/react";
+import ProductMobile from "../../src/components/productMobile/ProductMobil";
+import useDeviceProperties from "../../src/Hooks/UseMediaQueries";
 
 const Products = () => {
+  const { isTabletOrMobile, isMobile } = useDeviceProperties();
+
   const products = useFetchAllProducts();
   // const products = useProductState.getState().products;
 
@@ -23,7 +27,11 @@ const Products = () => {
           add product
         </Link>
       </div>
-      <ProductTable products={products} />
+      {isTabletOrMobile ? (
+        <ProductMobile products={products} />
+      ) : (
+        <ProductTable products={products} />
+      )}
     </Card>
   );
 };

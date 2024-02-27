@@ -99,7 +99,7 @@ export const Productcolumns = [
           className={`${statusStyle} text-[12px] flex items-center  w-full py-2 rounded-md`}
         >
           <Icon
-            icon={StopIconr}
+            icon={StopIcon}
             className={`hidden xl:block rounded-full ${statusStyle} text-[10px]`}
             // variant="solid"
             style={{
@@ -152,20 +152,3 @@ export const Productcolumns = [
 //   console.log("Deleting product with ID:", reviewId);
 // };
 // text-[#333]
-
-const StopIconr = () => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      className="w-4 h-4"
-    >
-      <path
-        fillRule="evenodd"
-        d="M4.5 7.5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-9a3 3 0 0 1-3-3v-9Z"
-        clipRule="evenodd"
-      />
-    </svg>
-  );
-};
