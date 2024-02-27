@@ -84,7 +84,7 @@ const NewSubCategoryForm: FC<INewCategories> = () => {
       onSubmit={handleSubmit(submitForm)}
       className="grid w-full place-items-center"
     >
-      <div className=" w-[80%]">
+      <div className="w-full lg:!w-[80%]">
         <div className="flex flex-col justify-between ">
           <Typography className="capitalize"> name</Typography>
           <Input
