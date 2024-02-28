@@ -31,8 +31,15 @@ const useUpdateOrderStatus = (): UpdateOrderStatusResult => {
     },
     {
       onSuccess: async () => {
+        // await Promise.all([
+        //   queryClient.invalidateQueries([queryKey.orders]),
+        //   queryClient.invalidateQueries([queryKey.orderstats]),
+        // ]);
         await queryClient.invalidateQueries([queryKey.orders]);
-        queryClient.invalidateQueries([queryKey.orderstats]);
+        setTimeout(() => {
+          queryClient.invalidateQueries([queryKey.orderstats]);
+        }, 2000);
+        // queryClient.invalidateQueries([queryKey.orderstats]);
       },
     }
   );
