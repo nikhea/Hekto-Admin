@@ -35,11 +35,11 @@ const Users = ({ users }: any) => {
         headerName: "First Name",
         flex: 1,
         cellClassName: "name-column--cell",
-        renderCell: (params) => (
-          <Link to={`${routes.customers}/${params.row.first_name}`}>
-            {params.row.first_name}
-          </Link>
-        ),
+        // renderCell: (params) => (
+        //   <Link to={`${routes.customers}/${params.row.first_name}`}>
+        //     {params.row.first_name}
+        //   </Link>
+        // ),
       },
       {
         field: "last_name",
