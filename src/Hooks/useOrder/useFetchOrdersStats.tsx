@@ -8,8 +8,8 @@ interface Props {
 
 export const useFetchOrdersStats = (props?: Props) => {
   const { data, isLoading } = useQuery(
-    [queryKey.orders, queryKey.orderstats],
-    fetchOrdersStats, // replace with your actual fetch function
+    [queryKey.orderstats],
+    fetchOrdersStats,
     {
       refetchOnMount: true,
     }
