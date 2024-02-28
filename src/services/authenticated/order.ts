@@ -12,6 +12,15 @@ export const fetchOrders = async () => {
 
   return data.data;
 };
+export const fetchOrdersStats = async () => {
+  const { data } = await axios.get("orders/stats", {
+    headers: {
+      Authorization: `Bearer ${storage.getToken()}`,
+    },
+  });
+  console.log(data, "end");
+  return data.data;
+};
 
 export const UpdateOrderStatusServer = async (
   orderId: string,

@@ -5,6 +5,7 @@ export const queryKey = {
   carts: "carts",
   wishlist: "wishlist",
   orders: "orders",
+  orderstats: "orders/stats",
   reviews: "reviews",
   users: "users",
   subcategory: "subcategory",

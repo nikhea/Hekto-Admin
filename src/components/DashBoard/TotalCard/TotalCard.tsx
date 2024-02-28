@@ -7,9 +7,14 @@ import {
 } from "@heroicons/react/solid";
 import { useFetchAllUser } from "../../../Hooks/useUser/useFetchAllUser";
 import { useFetchAllProducts } from "../../../Hooks/useProducts/useFetchAllProducts";
+import { useFetchOrders } from "../../../Hooks/useOrder/useFetchOrders";
+import { useFetchOrdersStats } from "../../../Hooks/useOrder/useFetchOrdersStats";
+import { formatToCurrency } from "../../../utils/formateNumbers";
 const TotalCard = () => {
-  const {users} = useFetchAllUser();
+  const { users } = useFetchAllUser();
   const products = useFetchAllProducts();
+  const { orders } = useFetchOrders();
+  const orderStats = useFetchOrdersStats();
 
   return (
     <div style={{ gap: "12px" }} className="grid md:grid-cols-2">
@@ -23,7 +28,7 @@ const TotalCard = () => {
             <Text className="text-base font-normal uppercase ">
               Total Revenue
             </Text>
-            <Metric>$ 34,743</Metric>
+            <Metric>$ {formatToCurrency(orderStats.totalSum)}</Metric>
           </div>
           <Icon
             icon={CashIcon}
@@ -46,7 +51,7 @@ const TotalCard = () => {
             <Text className="text-base font-normal uppercase">
               Total Orders
             </Text>
-            <Metric>$ 34,743</Metric>
+            <Metric>{orders.length}</Metric>
           </div>
           <Icon
             icon={DatabaseIcon}

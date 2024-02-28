@@ -9,6 +9,7 @@ import { formatDate, formatTime } from "../../src/utils/getFullYear";
 import { formatToCurrency } from "../../src/utils/formateNumbers";
 import useDeviceProperties from "../../src/Hooks/UseMediaQueries";
 import OrdersMobileCards from "../../src/components/orders/OrdersMobile/OrdersMobileCards";
+import { useFetchOrdersStats } from "../../src/Hooks/useOrder/useFetchOrdersStats";
 
 interface Props {}
 
@@ -16,6 +17,8 @@ const Orders = (props: Props) => {
   const { isTabletOrMobile, isMobile } = useDeviceProperties();
 
   const { orders, isLoading } = useFetchOrders(props);
+  const orderStats = useFetchOrdersStats();
+
   if (isLoading) {
     return <PageLoading />;
   }
@@ -57,7 +60,7 @@ const Orders = (props: Props) => {
       {/* className="overflow-hidden " */}
       <Card style={{ gap: 20 }}>
         <h1 className="text-xl font-bold capitalize">orders</h1>
-        <RevenunCards />
+        <RevenunCards data={orderStats} />
         <OrderChart />
         {isTabletOrMobile ? (
           <OrdersMobileCards orders={data} />
