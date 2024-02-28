@@ -28,7 +28,9 @@ const TotalCard = () => {
             <Text className="text-base font-normal uppercase ">
               Total Revenue
             </Text>
-            <Metric>$ {formatToCurrency(orderStats.totalSum)}</Metric>
+            <Metric>
+              {orderStats && `$ ${formatToCurrency(orderStats.totalSum)}`}
+            </Metric>
           </div>
           <Icon
             icon={CashIcon}
