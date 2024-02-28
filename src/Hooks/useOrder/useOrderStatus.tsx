@@ -26,9 +26,9 @@ const useUpdateOrderStatus = (): UpdateOrderStatusResult => {
     },
     {
       onSuccess: () => {
-        // queryClient.invalidateQueries([queryKey.orders]);
+        queryClient.invalidateQueries([queryKey.orders]);
         // queryClient.invalidateQueries([queryKey.orderstats]);
-        queryClient.invalidateQueries();
+        // queryClient.invalidateQueries();
       },
     }
   );
