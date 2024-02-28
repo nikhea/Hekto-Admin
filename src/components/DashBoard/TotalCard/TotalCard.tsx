@@ -8,7 +8,7 @@ import {
 import { useFetchAllUser } from "../../../Hooks/useUser/useFetchAllUser";
 import { useFetchAllProducts } from "../../../Hooks/useProducts/useFetchAllProducts";
 const TotalCard = () => {
-  const users = useFetchAllUser();
+  const {users} = useFetchAllUser();
   const products = useFetchAllProducts();
 
   return (
@@ -85,7 +85,7 @@ const TotalCard = () => {
             <Text className="text-base font-normal uppercase ">
               Total Customers
             </Text>
-            <Metric> {users && users.length}</Metric>
+            <Metric> {users && users?.length}</Metric>
           </div>
           <Icon
             icon={UserIcon}
