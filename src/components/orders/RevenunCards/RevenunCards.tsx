@@ -4,8 +4,9 @@ import DeliveredIcon from "../../icons/DeliveredIcon";
 import TotalIcon from "../../icons/TotalIcon";
 import PendingIcon from "../../icons/PendingIcon";
 import ShippedIcon from "../../icons/ShippedIcon";
+import { formatToCurrency } from "../../../utils/formateNumbers";
 
-const RevenunCards = () => {
+const RevenunCards = ({ data }: any) => {
   return (
     <div className="flex flex-col justify-between gap-4 mt-10 md:flex-row md:flex-wrap md:gap-4 lg:flex-wrap lg:gap-4 xl:flex-wrap xl:gap-4">
       <Card
@@ -19,11 +20,13 @@ const RevenunCards = () => {
               total orders
             </h1>
             <h1 className="capitalize text-[#111111] text-[32px] font-bold">
-              3725
+              {data.totalLengthByStatus.orders}
             </h1>
             <h1 className=" text-[15px]">
               <span className=" text-[#1B1EC3]">Total amount</span>:{" "}
-              <span className="text-[#5f5f5f]">$34,725.38</span>
+              <span className="text-[#5f5f5f]">
+                ${formatToCurrency(data.totalSum)}
+              </span>
             </h1>
           </div>
           <div>
@@ -40,10 +43,10 @@ const RevenunCards = () => {
         <div className="flex items-start justify-between">
           <div className="">
             <h1 className="capitalize text-[2D2D2D] text-[18px]">
-              pending orders{" "}
+              pending orders
             </h1>
             <h1 className="capitalize text-[#111111] text-[32px] font-bold">
-              3725
+              {data.totalLengthByStatus.pending}
             </h1>
           </div>
           <div>
@@ -66,7 +69,7 @@ const RevenunCards = () => {
               shipped orders
             </h1>
             <h1 className="capitalize text-[#111111] text-[32px] font-bold">
-              3725
+              {data.totalLengthByStatus.shipped}
             </h1>
           </div>
           <div>
@@ -89,7 +92,7 @@ const RevenunCards = () => {
               delivered orders
             </h1>
             <h1 className="capitalize text-[#111111] text-[32px] font-bold">
-              3725
+              {data.totalLengthByStatus.delivered}
             </h1>
           </div>
           <div>
