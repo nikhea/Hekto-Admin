@@ -53,7 +53,7 @@ const TotalCard = () => {
             <Text className="text-base font-normal uppercase">
               Total Orders
             </Text>
-            <Metric>{orders.length}</Metric>
+            <Metric>{orders && orders.length}</Metric>
           </div>
           <Icon
             icon={DatabaseIcon}
