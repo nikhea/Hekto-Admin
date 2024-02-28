@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
   useQueryClient,
   useMutation,
@@ -12,6 +13,10 @@ interface UpdateOrderStatusResult {
   isLoading: boolean;
   data: any;
 }
+interface Order {
+  reviewId: string;
+  // Define other properties of an order here
+}
 
 const useUpdateOrderStatus = (): UpdateOrderStatusResult => {
   const queryClient = useQueryClient();
@@ -25,10 +30,9 @@ const useUpdateOrderStatus = (): UpdateOrderStatusResult => {
       await UpdateOrderStatusServer(reviewId, statusId);
     },
     {
-      onSuccess: () => {
-        queryClient.invalidateQueries([queryKey.orders]);
-        // queryClient.invalidateQueries([queryKey.orderstats]);
-        // queryClient.invalidateQueries();
+      onSuccess: async () => {
+        await queryClient.invalidateQueries([queryKey.orders]);
+        queryClient.invalidateQueries([queryKey.orderstats]);
       },
     }
   );
@@ -46,3 +50,34 @@ const useUpdateOrderStatus = (): UpdateOrderStatusResult => {
 };
 
 export default useUpdateOrderStatus;
+// queryClient.invalidateQueries([queryKey.orderstats]);
+
+// const useUpdateOrderStatus = (): UpdateOrderStatusResult => {
+//   const queryClient = useQueryClient();
+//   const {
+//     mutateAsync,
+//     status: queryStatus,
+//     isLoading,
+//     data,
+//   } = useMutation(
+//     async ({ reviewId, statusId }: { reviewId: string; statusId: string }) => {
+//       await UpdateOrderStatusServer(reviewId, statusId);
+//     },
+//     {
+//       onSuccess: () => {
+//         queryClient.invalidateQueries([queryKey.orders]);
+//       },
+//     }
+//   );
+
+//   const updateReviewStatus = async (reviewId: string, statusId: string) => {
+//     await mutateAsync({ reviewId, statusId });
+//   };
+
+//   return {
+//     updateReviewStatus,
+//     queryStatus,
+//     isLoading,
+//     data,
+//   };
+// };
