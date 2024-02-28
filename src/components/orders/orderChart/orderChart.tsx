@@ -1,7 +1,8 @@
 import { AreaChart, Card, Metric, Text } from "@tremor/react";
 import { HiDotsVertical } from "react-icons/hi";
+import { formatToCurrency } from "../../../utils/formateNumbers";
 
-const OrderChart = () => {
+const OrderChart = ({ orderStats }: any) => {
   const data = [
     {
       Month: "Jan 21",
@@ -150,7 +151,7 @@ const OrderChart = () => {
       <div className="flex items-center justify-between">
         <div>
           <Text className="text-lg font-bold capitalize">Orders Overview</Text>
-          <Metric>$ 12,699</Metric>
+          <Metric>$ {formatToCurrency(orderStats.totalSum)}</Metric>
         </div>
         <HiDotsVertical className="text-2xl text-gray-500 " />
       </div>

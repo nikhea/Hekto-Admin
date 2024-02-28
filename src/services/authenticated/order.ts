@@ -39,18 +39,18 @@ export const UpdateOrderStatusServer = async (
         },
       }
     );
-    if (data.statuscode === 200) {
-      notify({
-        type: "success",
-        message: data.message,
-      });
-    }
-    if (data.statuscode === 201) {
-      notify({
-        type: "success",
-        message: data.message,
-      });
-    }
+    // if (data.statuscode === 200) {
+    //   notify({
+    //     type: "success",
+    //     message: data.message,
+    //   });
+    // }
+    // if (data.statuscode === 201) {
+    //   notify({
+    //     type: "success",
+    //     message: data.message,
+    //   });
+    // }
     if (data.statuscode === 404) {
       notify({
         type: "error",
