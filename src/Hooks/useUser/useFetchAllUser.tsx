@@ -3,7 +3,9 @@ import { fetchAllUser } from "../../services/authenticated/users";
 import { queryKey } from "../queryKeys";
 
 export const useFetchAllUser = () => {
-  const { data: product } = useQuery([queryKey.users], () => fetchAllUser());
+  const { data: users, isLoading } = useQuery([queryKey.users], () =>
+    fetchAllUser()
+  );
 
-  return product;
+  return { users, isLoading };
 };

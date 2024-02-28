@@ -21,6 +21,9 @@ const Orders = (props: Props) => {
   }
   orders;
   const data: any = [];
+  function formatShippingAddress(address: any) {
+    return `${address?.street}, ${address?.city}\n${address?.state}, ${address?.country}, ${address?.postalCode}`;
+  }
   if (orders) {
     orders.forEach((item: any) => {
       const review = {
@@ -38,7 +41,9 @@ const Orders = (props: Props) => {
         deliveryStatus: item.deliveryStatus,
         date: formatDate(item.createdAt),
         time: formatTime(item.createdAt),
-        shippingAddress: `Jane DoeFloral Solutions P.O. Box 98765, Queens, New York 34586`,
+        shippingAddress: item?.user?.shipping
+          ? formatShippingAddress(item?.user?.shipping?.address)
+          : `Jane DoeFloral Solutions P.O. Box 98765, Queens, New York 34586`,
         totalItem: 567,
       };
 

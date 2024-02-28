@@ -15,6 +15,7 @@ export interface User {
   password?: string;
   role?: string;
   profile?: any;
+  shipping?: any;
 }
 
 export async function handleApiResponse(response: any) {

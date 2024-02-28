@@ -29,6 +29,7 @@ async function handleUserResponse(data: any) {
     lastname,
     role,
     profile,
+    shipping,
   } = data.data;
 
   storage.setToken(jwt);
@@ -40,6 +41,7 @@ async function handleUserResponse(data: any) {
     lastname,
     role,
     profile,
+    shipping,
   };
   return user;
 }
@@ -50,15 +52,8 @@ async function userFn() {
   if (storage.getToken()) {
     const data = await getUserProfile();
     if (data) {
-      const {
-        _id,
-        email,
-        firstname,
-        lastname,
-
-        role,
-        profile,
-      } = data.data;
+      const { _id, email, firstname, lastname, shipping, role, profile } =
+        data.data;
       user = {
         _id,
         email,
@@ -66,6 +61,7 @@ async function userFn() {
         lastname,
         role,
         profile,
+        shipping,
       };
     }
   }

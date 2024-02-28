@@ -1,9 +1,15 @@
 import { routes } from "./routes";
-import { AiOutlineStar } from "react-icons/ai";
+import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { FaUser, FaStore } from "react-icons/fa";
+
 import { MdDashboard, MdStore } from "react-icons/md";
 import { SiGoogletagmanager } from "react-icons/si";
-import { HiOutlineDocumentReport } from "react-icons/hi";
+import {
+  HiOutlineDocumentReport,
+  HiDocumentReport,
+  HiUsers,
+} from "react-icons/hi";
+
 import { FiUsers } from "react-icons/fi";
 export const dashboardRoutes = [
   {
@@ -28,7 +34,7 @@ export const dashboardRoutes = [
     link: routes.subCategory,
   },
   {
-    icon: <FiUsers />,
+    icon: <HiUsers />,
     name: "customers",
     link: routes.customers,
   },
@@ -38,7 +44,7 @@ export const dashboardRoutes = [
     link: routes.orders,
   },
   {
-    icon: <AiOutlineStar />,
+    icon: <AiFillStar />,
     name: "product review",
     link: routes.productReview,
   },
@@ -48,7 +54,7 @@ export const dashboardRoutes = [
     link: routes.profile,
   },
   {
-    icon: <HiOutlineDocumentReport />,
+    icon: <HiDocumentReport />,
     name: "reports",
     link: routes.reports,
   },

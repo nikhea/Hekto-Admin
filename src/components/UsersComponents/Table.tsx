@@ -4,24 +4,39 @@ import { Box } from "@mui/material";
 import { Link } from "react-router-dom";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import mockDataContacts from "../../data/MOCK_DATA.json";
-import { useFetchAllUser } from "../../Hooks/useUser/useFetchAllUser";
 import { routes } from "../../routes/routes";
 import { Card } from "@tremor/react";
 import theme from "../../MUI/themeDefalut";
 import { ThemeProvider } from "@mui/material/styles";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
-const Users = () => {
-  const users = useFetchAllUser();
+const Users = ({ users }: any) => {
   const columns = useMemo(
     () => [
-      { field: "id", headerName: "ID", flex: 0.5 },
+      {
+        field: "Image",
+        flex: 0.5,
+        headerName: "image",
+        cellClassName: "name-column--cell",
+        renderCell: (params: any) => {
+          return (
+            <LazyLoadImage
+              className="w-10 h-10 rounded-full "
+              width={100}
+              height={100}
+              src={params.row.image}
+              alt={params.row.first_name}
+            />
+          );
+        },
+      },
       {
         field: "first_name",
         headerName: "First Name",
         flex: 1,
         cellClassName: "name-column--cell",
         renderCell: (params) => (
-          <Link to={`${routes.users}/${params.row.first_name}`}>
+          <Link to={`${routes.customers}/${params.row.first_name}`}>
             {params.row.first_name}
           </Link>
         ),
@@ -32,26 +47,26 @@ const Users = () => {
         flex: 1,
         cellClassName: "name-column--cell",
       },
-      {
-        field: "age",
-        headerName: "Age",
-        type: "number",
-        headerAlign: "left",
-        align: "left",
-      },
-      {
-        field: "phone",
-        headerName: "Phone Number",
-        flex: 1,
-      },
+
       {
         field: "email",
         headerName: "Email",
         flex: 1,
       },
       {
-        field: "countrys",
+        field: "phone",
+        headerName: "Phone Number",
+        flex: 1,
+      },
+
+      {
+        field: "country",
         headerName: "Country",
+        flex: 1,
+      },
+      {
+        field: "date",
+        headerName: "Date",
         flex: 1,
       },
     ],
@@ -98,9 +113,11 @@ const Users = () => {
         <ThemeProvider theme={theme}>
           <DataGrid
             density="comfortable"
-            rows={mockDataContacts}
+            rows={users}
             components={{ Toolbar: GridToolbar }}
             columns={columns}
+            rowHeight={60} // Adjust row height as needed
+
             // initialState={{
             //   pagination: { paginationModel: { pageSize: 25 } },
             // }}
