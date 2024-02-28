@@ -61,7 +61,7 @@ const Orders = (props: Props) => {
       <Card style={{ gap: 20 }}>
         <h1 className="text-xl font-bold capitalize">orders</h1>
         <RevenunCards data={orderStats} />
-        <OrderChart />
+        <OrderChart orderStats={orderStats} />
         {isTabletOrMobile ? (
           <OrdersMobileCards orders={data} />
         ) : (
