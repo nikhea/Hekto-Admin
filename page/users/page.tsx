@@ -1,9 +1,13 @@
+import useDeviceProperties from "../../src/Hooks/UseMediaQueries";
 import { useFetchAllUser } from "../../src/Hooks/useUser/useFetchAllUser";
 import PageLoading from "../../src/components/Loading/PageLoading";
 import Table from "../../src/components/UsersComponents/Table";
+import UserMobileCards from "../../src/components/UsersComponents/UserMobileCards";
 import { formatDate } from "../../src/utils/getFullYear";
 
 const Users = () => {
+  const { isTabletOrMobile, isMobile } = useDeviceProperties();
+
   const { users, isLoading } = useFetchAllUser();
 
   if (isLoading) {
@@ -32,7 +36,11 @@ const Users = () => {
 
   return (
     <div>
-      <Table users={data} />
+      {isTabletOrMobile ? (
+        <UserMobileCards users={data} />
+      ) : (
+        <Table users={data} />
+      )}
     </div>
   );
 };

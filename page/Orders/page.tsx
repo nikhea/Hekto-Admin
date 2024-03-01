@@ -47,7 +47,7 @@ const Orders = (props: Props) => {
         shippingAddress: item?.user?.shipping
           ? formatShippingAddress(item?.user?.shipping?.address)
           : `Jane DoeFloral Solutions P.O. Box 98765, Queens, New York 34586`,
-        totalItem: 567,
+        totalItem: item.items.length,
       };
 
       data.push(review);

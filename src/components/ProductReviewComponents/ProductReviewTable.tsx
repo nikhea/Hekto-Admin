@@ -7,7 +7,7 @@ import {
   ThemeProvider,
   Typography,
 } from "@mui/material";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import usefetchAllReviews from "../../Hooks/useReview/usefetchAllReviews";
 import RatingStar from "../FormElement/RatingStar/RatingStar";
 import ProductReviewTableDropDown from "./ProductReviewTableDropDown";
@@ -22,6 +22,8 @@ import theme from "../../MUI/themeDefalut";
 import { Card } from "@tremor/react";
 import { ThreeDots } from "react-loader-spinner";
 import useRemoveReview from "../../Hooks/useReview/useRemoveReview";
+import DraggableDialog from "../FormElement/dialog/dialog";
+import useDialogStore from "../../store/useDialogStore";
 
 const useStyles = makeStyles((theme: any) => ({
   customButton: {
@@ -107,11 +109,17 @@ const ProductReviewTable = ({ reviews }: any) => {
         editable: true,
         sortable: false,
         renderCell: (params: any) => {
+          const { open, setOpen } = useDialogStore();
           const [isRowLoading, setRowLoading] = useState(isLoading);
           const [isRowRemoveLoading, setisRowRemoveLoading] = useState(
             removeReviewisLoading
           );
 
+          useEffect(() => {
+            if (!isRowRemoveLoading) {
+              setOpen(false);
+            }
+          }, [isRowRemoveLoading]);
           const handleButtonClick = async () => {
             setRowLoading(true);
             handleUpdate(params.row._id, params.id);
@@ -119,6 +127,11 @@ const ProductReviewTable = ({ reviews }: any) => {
           const handleButtonRemove = async () => {
             setisRowRemoveLoading(true);
             handleDelete(params.row._id, params.id);
+            // if (isRowRemoveLoading === false) {
+            //   setTimeout(() => {
+            //     setOpen(false);
+            //   }, 5000);
+            // }
           };
           return (
             <div className="flex items-center w-full gap-10 my-4">
@@ -147,24 +160,20 @@ const ProductReviewTable = ({ reviews }: any) => {
                 </Button>
               </Box>
               <Box>
-                {isRowRemoveLoading ? (
-                  <ThreeDots
-                    height="10"
-                    width="30"
-                    radius="9"
-                    color="#8392A5"
-                    wrapperClass="flex text-center cursor-not-allowed py-2"
-                    ariaLabel="three-dots-loading"
-                    visible={true}
-                  />
-                ) : (
-                  <TbTrashXFilled
-                    className="text-center cursor-pointer hover:!text-red-500"
-                    color="#8392A5"
-                    size={20}
-                    onClick={handleButtonRemove}
-                  />
-                )}
+                <TbTrashXFilled
+                  className="text-center cursor-pointer hover:!text-red-500"
+                  color="#8392A5"
+                  size={20}
+                  onClick={() => setOpen(true)}
+                />
+
+                <DraggableDialog
+                  open={open}
+                  handleRemove={handleButtonRemove}
+                  title="product review"
+                  isLoading={isRowRemoveLoading}
+                  handleClose={() => setOpen(false)}
+                />
               </Box>
             </div>
           );
@@ -273,3 +282,21 @@ const ProductReviewTable = ({ reviews }: any) => {
 };
 
 export default ProductReviewTable;
+// {isRowRemoveLoading ? (
+//   <ThreeDots
+//     height="10"
+//     width="30"
+//     radius="9"
+//     color="#8392A5"
+//     wrapperClass="flex text-center cursor-not-allowed py-2"
+//     ariaLabel="three-dots-loading"
+//     visible={true}
+//   />
+// ) : (
+//   <TbTrashXFilled
+//     className="text-center cursor-pointer hover:!text-red-500"
+//     color="#8392A5"
+//     size={20}
+//     onClick={handleButtonRemove}
+//   />
+// )}

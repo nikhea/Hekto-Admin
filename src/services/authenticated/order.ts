@@ -18,7 +18,6 @@ export const fetchOrdersStats = async () => {
       Authorization: `Bearer ${storage.getToken()}`,
     },
   });
-  console.log(data, "end");
   return data.data;
 };
 

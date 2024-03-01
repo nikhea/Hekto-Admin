@@ -28,7 +28,8 @@ const OrdersTable = ({ orders }: any) => {
     return orders.filter(
       (row: any) =>
         row.customer.name.toLowerCase().includes(filterText.toLowerCase()) ||
-        row.customer.email.toLowerCase().includes(filterText.toLowerCase())
+        row.customer.email.toLowerCase().includes(filterText.toLowerCase()) ||
+        row.deliveryStatus.toLowerCase().includes(filterText.toLowerCase())
     );
   }, [filterText, orders]);
 
@@ -198,8 +199,9 @@ const OrdersTable = ({ orders }: any) => {
     () => (
       <Box
         m="40px 0 0 0"
-        // height="73vh"
-        // height="70vh"
+        className="  !mb-20"
+        // height="200vh"
+        height="100vh"
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
@@ -242,7 +244,7 @@ const OrdersTable = ({ orders }: any) => {
       >
         <ThemeProvider theme={theme}>
           <TextField
-            label="filter by name or email"
+            label="filter by name, email or status"
             value={filterText}
             InputProps={{
               disableUnderline: true,
@@ -250,6 +252,7 @@ const OrdersTable = ({ orders }: any) => {
                 borderRadius: "14px",
               },
             }}
+            className="w-[20%]"
             onChange={(e) => setFilterText(e.target.value)}
           />
           <DataGrid
