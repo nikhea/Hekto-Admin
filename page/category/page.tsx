@@ -22,13 +22,14 @@ const Category = () => {
   const handleRemove = () => {
     alert("Are you sure you want to delete this category?" + id);
     // removeFromCategories(id);
+    setOpen(false);
   };
 
-  useEffect(() => {
-    if (!removeFromCategoriesisLoading) {
-      setOpen(false);
-    }
-  }, [removeFromCategoriesisLoading]);
+  // useEffect(() => {
+  //   if (!removeFromCategoriesisLoading) {
+  //     setOpen(false);
+  //   }
+  // }, [removeFromCategoriesisLoading]);
 
   const displayCategories = categories.map((category: any) => (
     <CategortyListItem

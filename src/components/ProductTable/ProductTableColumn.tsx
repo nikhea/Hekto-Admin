@@ -135,27 +135,14 @@ export const Productcolumns = [
     sortable: false,
     width: 100,
     renderCell: (params: any) => {
-      const { removeFromProducts, removeFromProductsisLoading } =
-        useRemoveFromProducts();
       const { open, setOpen } = useDialogStore();
 
-      const handleRemove = async () => {
-        // await removeFromProducts(params.row._id);
-        setOpen(false);
-      };
       return (
         <>
           <TbTrashXFilled
             className="text-gray-500 cursor-pointer hover:text-red-500"
             size={20}
             onClick={() => setOpen(true)}
-          />
-          <DraggableDialog
-            open={open}
-            handleRemove={handleRemove}
-            title="product"
-            isLoading={removeFromProductsisLoading}
-            handleClose={() => setOpen(false)}
           />
         </>
       );
