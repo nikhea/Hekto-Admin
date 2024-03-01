@@ -35,12 +35,12 @@ const EditProduct = () => {
               size={20}
             />
           </Link>
-          <h6
+          {/* <h6
             onClick={() => deleteProduct(product.data._id)}
             className="px-2 py-1 text-red-500 rounded-md cursor-pointer hover:bg-red-100"
           >
             {removeFromProductsisLoading ? "deleting" : "delete"}
-          </h6>
+          </h6> */}
         </span>
       </Card>
       <EditProductForm

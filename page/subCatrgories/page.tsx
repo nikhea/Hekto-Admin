@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { routes } from "../../src/routes/routes";
 import HeaderCate from "../../src/components/HeaderCate/HeaderCate";
@@ -8,14 +8,20 @@ import { useFetchCategories } from "../../src/Hooks/useCategories/useFetchCatego
 import SubCategoryCard from "../../src/components/SubCategoryCard/SubCategoryCard";
 import { Card } from "@tremor/react";
 import { ThreeDots } from "react-loader-spinner";
+import DraggableDialog from "../../src/components/FormElement/dialog/dialog";
+import useDialogStore from "../../src/store/useDialogStore";
+import useRemoveSubCategories from "../../src/Hooks/useSubCategory/useRemoveSubCategories";
 
 // const SubCategoryCard = lazy(
 //   () => import("../../src/components/SubCategoryCard/SubCategoryCard")
 // );
 
 const SubCategory = () => {
+  const [id, setId] = useState(null);
+  const { open, setOpen } = useDialogStore();
   const categories = useFetchCategories();
-
+  const { removeFromSubCategories, removeSubCategoriesisLoading } =
+    useRemoveSubCategories();
   const {
     subcategories,
     isLoading,
@@ -28,11 +34,23 @@ const SubCategory = () => {
     return <PageLoading />;
   }
 
+  const handleRemove = () => {
+    alert("Are you sure you want to delete this category?" + id);
+    // removeFromCategories(id);
+    setOpen(false);
+  };
+
+  useEffect(() => {
+    if (!removeSubCategoriesisLoading) {
+      setOpen(false);
+    }
+  }, [removeSubCategoriesisLoading]);
+
   const displaySubcategories = subcategories?.pages.map((page, pageIndex) => (
     <React.Fragment key={pageIndex}>
       {page.data.map((subcategory: any) => (
         <div key={subcategory._id}>
-          <SubCategoryCard subcategory={subcategory} />
+          <SubCategoryCard handleSetId={setId} subcategory={subcategory} />
         </div>
       ))}
     </React.Fragment>
@@ -70,6 +88,13 @@ const SubCategory = () => {
           )}
         </div>
       </Card>
+      <DraggableDialog
+        open={open}
+        handleRemove={handleRemove}
+        title="subcategory"
+        isLoading={removeSubCategoriesisLoading}
+        handleClose={() => setOpen(false)}
+      />
     </div>
   );
 };

@@ -8,6 +8,8 @@ import { status } from "../NewProductForm/defaultValue";
 import useRemoveFromProducts from "../../Hooks/useProducts/useRemoveProducts";
 import { Icon } from "@tremor/react";
 import StopIcon from "../icons/StopIcon";
+import useDialogStore from "../../store/useDialogStore";
+import DraggableDialog from "../FormElement/dialog/dialog";
 const LiveView = import.meta.env.VITE_Live_View;
 
 export const Productcolumns = [
@@ -133,17 +135,29 @@ export const Productcolumns = [
     sortable: false,
     width: 100,
     renderCell: (params: any) => {
-      const { removeFromProducts } = useRemoveFromProducts();
+      const { removeFromProducts, removeFromProductsisLoading } =
+        useRemoveFromProducts();
+      const { open, setOpen } = useDialogStore();
 
-      const handleDeleteProduct = () => {
-        // removeFromProducts(params.row._id);
+      const handleRemove = async () => {
+        // await removeFromProducts(params.row._id);
+        setOpen(false);
       };
       return (
-        <TbTrashXFilled
-          className="text-gray-500 cursor-pointer hover:text-red-500"
-          size={20}
-          onClick={handleDeleteProduct}
-        />
+        <>
+          <TbTrashXFilled
+            className="text-gray-500 cursor-pointer hover:text-red-500"
+            size={20}
+            onClick={() => setOpen(true)}
+          />
+          <DraggableDialog
+            open={open}
+            handleRemove={handleRemove}
+            title="product"
+            isLoading={removeFromProductsisLoading}
+            handleClose={() => setOpen(false)}
+          />
+        </>
       );
     },
   },

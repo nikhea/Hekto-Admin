@@ -116,7 +116,7 @@ const Users = ({ users }: any) => {
             rows={users}
             components={{ Toolbar: GridToolbar }}
             columns={columns}
-            rowHeight={60} // Adjust row height as needed
+            rowHeight={60}
 
             // initialState={{
             //   pagination: { paginationModel: { pageSize: 25 } },
