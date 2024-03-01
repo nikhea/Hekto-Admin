@@ -8,8 +8,18 @@ import { generateRandom } from "../../utils/generateRandomID";
 import "./product.module.scss";
 import theme from "../../MUI/themeDefalut";
 import { Card } from "@tremor/react";
+import DraggableDialog from "../FormElement/dialog/dialog";
+import useDialogStore from "../../store/useDialogStore";
+import useRemoveFromProducts from "../../Hooks/useProducts/useRemoveProducts";
 
 const ProductTable = ({ products }: any) => {
+  const { removeFromProducts, removeFromProductsisLoading } =
+    useRemoveFromProducts();
+  const { open, setOpen } = useDialogStore();
+  const handleRemove = async () => {
+    // await removeFromProducts(params.row._id);
+    setOpen(false);
+  };
   const gridComponent = useMemo(
     () => (
       <Box
@@ -72,7 +82,18 @@ const ProductTable = ({ products }: any) => {
     [products]
   );
 
-  return <Box m="20px"> {gridComponent}</Box>;
+  return (
+    <Box m="20px">
+      {gridComponent}
+      <DraggableDialog
+        open={open}
+        handleRemove={handleRemove}
+        title="product"
+        isLoading={removeFromProductsisLoading}
+        handleClose={() => setOpen(false)}
+      />
+    </Box>
+  );
 };
 
 export default ProductTable;

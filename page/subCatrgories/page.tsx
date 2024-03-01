@@ -40,11 +40,11 @@ const SubCategory = () => {
     setOpen(false);
   };
 
-  useEffect(() => {
-    if (!removeSubCategoriesisLoading) {
-      setOpen(false);
-    }
-  }, [removeSubCategoriesisLoading]);
+  // useEffect(() => {
+  //   if (!removeSubCategoriesisLoading) {
+  //     setOpen(false);
+  //   }
+  // }, [removeSubCategoriesisLoading]);
 
   const displaySubcategories = subcategories?.pages.map((page, pageIndex) => (
     <React.Fragment key={pageIndex}>

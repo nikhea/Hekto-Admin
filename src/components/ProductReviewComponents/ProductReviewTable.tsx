@@ -39,18 +39,28 @@ const useStyles = makeStyles((theme: any) => ({
 }));
 
 const ProductReviewTable = ({ reviews }: any) => {
+  const [reviewId, setReviewId] = useState("");
+  const [selectedRows, setSelectedRows] = useState([]);
   const [filterText, setFilterText] = useState("");
+  const { open, setOpen } = useDialogStore();
   const { updateReviewStatus, isLoading } = useUpdateReviewStatus();
   const { removeReview, removeReviewisLoading } = useRemoveReview();
-
+  const [isRowRemoveLoading, setisRowRemoveLoading] = useState(
+    removeReviewisLoading
+  );
   const classes = useStyles();
-
-  const [selectedRows, setSelectedRows] = useState([]);
 
   const handleSelectionModelChange = (selectionModel: any) => {
     setSelectedRows(selectionModel);
   };
-
+  const filteredRows = useMemo(() => {
+    if (!filterText) return reviews;
+    return reviews.filter(
+      (row: any) =>
+        row.customer.name.toLowerCase().includes(filterText.toLowerCase()) ||
+        row.customer.email.toLowerCase().includes(filterText.toLowerCase())
+    );
+  }, [filterText, reviews]);
   const columns = useMemo(
     () => [
       {
@@ -109,12 +119,7 @@ const ProductReviewTable = ({ reviews }: any) => {
         editable: true,
         sortable: false,
         renderCell: (params: any) => {
-          const { open, setOpen } = useDialogStore();
           const [isRowLoading, setRowLoading] = useState(isLoading);
-          const [isRowRemoveLoading, setisRowRemoveLoading] = useState(
-            removeReviewisLoading
-          );
-
           useEffect(() => {
             if (!isRowRemoveLoading) {
               setOpen(false);
@@ -125,14 +130,10 @@ const ProductReviewTable = ({ reviews }: any) => {
             handleUpdate(params.row._id, params.id);
           };
           const handleButtonRemove = async () => {
-            setisRowRemoveLoading(true);
-            handleDelete(params.row._id, params.id);
-            // if (isRowRemoveLoading === false) {
-            //   setTimeout(() => {
-            //     setOpen(false);
-            //   }, 5000);
-            // }
+            setOpen(true);
+            setReviewId(params.row._id);
           };
+
           return (
             <div className="flex items-center w-full gap-10 my-4">
               <Box className="w-[50%] my-4 ">
@@ -164,15 +165,7 @@ const ProductReviewTable = ({ reviews }: any) => {
                   className="text-center cursor-pointer hover:!text-red-500"
                   color="#8392A5"
                   size={20}
-                  onClick={() => setOpen(true)}
-                />
-
-                <DraggableDialog
-                  open={open}
-                  handleRemove={handleButtonRemove}
-                  title="product review"
-                  isLoading={isRowRemoveLoading}
-                  handleClose={() => setOpen(false)}
+                  onClick={handleButtonRemove}
                 />
               </Box>
             </div>
@@ -186,17 +179,17 @@ const ProductReviewTable = ({ reviews }: any) => {
   const handleUpdate = (reviewId: any, params: any) => {
     updateReviewStatus(reviewId);
   };
-  const handleDelete = (reviewId: any, params: any) => {
-    removeReview(reviewId);
+
+  const handleButtonRemove = async () => {
+    setisRowRemoveLoading(true);
+    await removeReview(reviewId);
+    setisRowRemoveLoading(false);
+
+    if (isRowRemoveLoading === false) {
+      setOpen(false);
+    }
   };
-  const filteredRows = useMemo(() => {
-    if (!filterText) return reviews;
-    return reviews.filter(
-      (row: any) =>
-        row.customer.name.toLowerCase().includes(filterText.toLowerCase()) ||
-        row.customer.email.toLowerCase().includes(filterText.toLowerCase())
-    );
-  }, [filterText, reviews]);
+
   const gridComponent = useMemo(
     () => (
       <Box
@@ -277,6 +270,14 @@ const ProductReviewTable = ({ reviews }: any) => {
   return (
     <Card className="flex justify-center h-screen text-gray-500">
       <Box className="">{gridComponent}</Box>
+
+      <DraggableDialog
+        open={open}
+        handleRemove={handleButtonRemove}
+        title="product review"
+        isLoading={isRowRemoveLoading}
+        handleClose={() => setOpen(false)}
+      />
     </Card>
   );
 };
