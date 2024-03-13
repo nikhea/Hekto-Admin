@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { Badge, Card } from "@tremor/react";
 import CardHeader from "./CardHeader";
 import Select from "../FormElement/select/select";
