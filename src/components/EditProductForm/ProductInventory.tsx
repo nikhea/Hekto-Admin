@@ -1,4 +1,4 @@
-import { Card } from "@tremor/react";
+import { Badge, Card } from "@tremor/react";
 import CardHeader from "./CardHeader";
 import Select from "../FormElement/select/select";
 import { MdDeleteForever } from "react-icons/md";
@@ -8,6 +8,7 @@ import Input from "../FormElement/input/input";
 import useDeviceProperties from "../../Hooks/UseMediaQueries";
 import { statusOption } from "./defaultValue";
 import CreatableSelect from "../FormElement/CreatableSelect/CreatableSelect";
+import { IoCloseCircleOutline } from "react-icons/io5";
 const style = {
   inputTitle: `capitalize leading-4 tracking-wide my-`,
   inputTitleC: `capitalize leading-4 tracking-wide  ml-4 md:mt-3`,
@@ -19,7 +20,27 @@ const style = {
   errors: `block text-red-500 capitalize  leading-4 tracking-wide my-4 ml-4`,
 };
 
-const ProductInventory = () => {
+const handleClick = (i: number) => {
+  console.log("clicked", i);
+};
+const ProductInventory = ({ features }: any) => {
+  const featuresDisplay = features.map((feature: any, i: number) => (
+    <div key={i} className="flex items-center gap-3 mx-1 ">
+      <Badge
+        className="flex items-center"
+        // icon={IoCloseCircleOutline}
+      >
+        <span className="flex items-center gap-1 ">
+          <IoCloseCircleOutline
+            className="cursor-pointer"
+            onClick={() => handleClick(i)}
+          />
+          {feature}
+        </span>
+      </Badge>
+      {/* <p className="text-[#333]"></p> */}
+    </div>
+  ));
   const { isTabletOrMobile } = useDeviceProperties();
   const {
     register,
@@ -63,7 +84,7 @@ const ProductInventory = () => {
   return (
     <Card>
       <CardHeader title="product inventory" />
-      <div className="grid md:grid-cols-2 gap-x-10 gap-y-5">
+      <div className="grid mt-5 md:grid-cols-2 gap-x-10 gap-y-5">
         <span className="flex flex-col justify-between ">
           <h1 className={`${style.inputTitle} my-3`}>status*</h1>
 
@@ -79,18 +100,25 @@ const ProductInventory = () => {
         </span>
         <span className="flex flex-col justify-between ">
           <h1 className={`${style.inputTitle} my-2`}>features*</h1>
-
+          <p className="text-xs text-gray-500 capitalize">
+            create new features for your products
+          </p>
           <CreatableSelect
-            placeholder="features*"
-            options={statusOption}
+            placeholder="add features*"
+            // options={statusOption}
             field={statusOption.find(
               ({ value }: any) => value === getValues("features")
             )}
             handleSelectChange={handleFeaturesChange}
           />
         </span>
+        <div className="flex flex-wrap items-end justify-end col-span-2">
+          <span className="flex flex-wrap items-end justify-end col-span-2 gap-1 ">
+            {featuresDisplay}
+          </span>
+        </div>
       </div>
-      <span className="flex flex-col justify-between w-full">
+      <span className="flex flex-col justify-between w-full mt-10">
         <h1 className={`${style.inputTitle} my-2`}>specifications*</h1>
         <span>
           {fields.map((specifications: any, index: number) => (

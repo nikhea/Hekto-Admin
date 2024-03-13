@@ -98,3 +98,26 @@ export const UpdateProductServer = async (
     }
   });
 };
+
+export const removeProductImage = async (id: string, assetId: any) => {
+  const { data } = await axios.delete(`products/${id}/images/${assetId}`, {
+    headers: {
+      Authorization: `Bearer ${storage.getToken()}`,
+    },
+  });
+
+  if (data.statuscode === 400) {
+    notify({
+      type: "error",
+      message: data.message,
+    });
+  }
+  if (data.statuscode === 200) {
+    notify({
+      type: "success",
+      message: data.message,
+    });
+  }
+
+  // return data.data;
+};

@@ -112,11 +112,6 @@ const ProductImages = () => {
               />
               change photo
             </button>
-            {/* <LazyLoadImage
-              className="object-cover w-full h-full rounded-md"
-              src={newImageData.secure_url}
-              alt={newImageData.public_id}
-            /> */}
           </div>
         )}
       </div>
@@ -125,3 +120,10 @@ const ProductImages = () => {
 };
 
 export default ProductImages;
+{
+  /* <LazyLoadImage
+              className="object-cover w-full h-full rounded-md"
+              src={newImageData.secure_url}
+              alt={newImageData.public_id}
+            /> */
+}

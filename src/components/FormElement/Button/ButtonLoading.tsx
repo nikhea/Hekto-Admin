@@ -4,11 +4,15 @@ import { ThreeDots } from "react-loader-spinner";
 const ButtonLoading: FC<{
   text: string;
   isLoading: any;
-}> = ({ text, isLoading }) => {
+  type?: "button" | "submit" | "reset" | undefined;
+}> = ({ text, isLoading, type }) => {
   //   console.log(isLoading);
 
   return (
-    <button className="px-4 py-1 text-white capitalize rounded-md w-fit bg-primary">
+    <button
+      type={type}
+      className="px-4 py-1 text-white capitalize rounded-md h-fit w-fit bg-primary"
+    >
       {isLoading ? (
         <ThreeDots
           height="10"

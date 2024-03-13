@@ -175,7 +175,9 @@ const OrderCardItems = ({ order }: any) => {
           </Box>
           <Box className="flex items-center">
             <DollarIcon /> :
-            <Typography className="text-[#111]">{order.total}</Typography>
+            <Typography className="text-[#111]">
+              {order.totalWithFormate}
+            </Typography>
           </Box>
           <Box className="flex items-center">
             <ClockIcon /> :

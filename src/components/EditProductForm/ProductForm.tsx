@@ -11,8 +11,10 @@ import { useEffect } from "react";
 import useCreateProducts from "../../Hooks/useProducts/useCreateProducts";
 import ProductState from "./ProductState";
 import useUpdateProduct from "../../Hooks/useProducts/useUpdateProduct";
+import { usePhotoStore } from "../../store/usePhotosStore";
 const ProductForm = ({ defaultValue, productId }: any) => {
   const { updateProduct, isLoading } = useUpdateProduct();
+  const { photos, setPhotos } = usePhotoStore();
 
   const methods = useForm<ProductForm>({
     resolver: yupResolver(productSchema),
@@ -31,6 +33,7 @@ const ProductForm = ({ defaultValue, productId }: any) => {
       setValue("subcategory", defaultValue.subcategory.name);
       setValue("coverPhoto", defaultValue.coverPhoto);
       setValue("features", defaultValue.features);
+      setPhotos(defaultValue.photos);
     }
   }, [defaultValue, setValue]);
   const submitForm = (data: any) => {
@@ -51,10 +54,12 @@ const ProductForm = ({ defaultValue, productId }: any) => {
           <ProductInformation />
           <ProductDescrption />
           <ProductImages
-            productPhotos={defaultValue.photos}
+            productId={productId}
+            // productPhotos={defaultValue.photos}
+            productPhotos={photos}
             coverPhotos={defaultValue.coverPhoto}
           />
-          <ProductInventory />
+          <ProductInventory features={defaultValue.features} />
           <ProductState isLoading={isLoading} />
         </div>
       </form>

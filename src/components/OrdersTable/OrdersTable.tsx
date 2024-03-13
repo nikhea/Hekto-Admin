@@ -102,7 +102,7 @@ const OrdersTable = ({ orders }: any) => {
       width: 130,
     },
     {
-      field: "total",
+      field: "totalWithFormate",
       headerName: "Total Amount",
       cellClassName: "name-column--cell",
       headerAlign: "start",
