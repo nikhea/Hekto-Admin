@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, FC } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useMultiImageStore } from "../store/useMultipleImageStore";
+import { usePhotoStore } from "../store/usePhotosStore";
 export type ISingleImage = {
   widgetRef: any;
   foldername: string;
@@ -11,7 +12,9 @@ const useMultipleImage = (
   mutationFunction?: any
 ) => {
   const cloudinaryRef = useRef();
-  const { imageData, addImage } = useMultiImageStore();
+  const { photos, addPhoto } = usePhotoStore();
+
+  // const { imageData, addImage } = useMultiImageStore();
 
   const queryClient = useQueryClient();
   const { mutateAsync } = useMutation(mutationFunction, {
@@ -50,16 +53,19 @@ const useMultipleImage = (
               for (let i = 0; i < images.length; i++) {
                 const uploadInfo = images[i].uploadInfo;
                 // uploadInfoArray.push();
-                addImage(uploadInfo);
+                // addImage(uploadInfo);
+                console.log(uploadInfo);
+                addPhoto(uploadInfo);
               }
             }
           }
         }
       }
     );
-  }, [widgetRef, imageData, addImage]);
+  }, [widgetRef, photos, addPhoto]);
 };
 
+// [widgetRef, imageData, addImage]);
 export default useMultipleImage;
 // const { url, asset_id, secure_url, thumbnail_url, public_id } =
 // result?.data?.info?.files[0]?.uploadInfo;

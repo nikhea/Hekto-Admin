@@ -1,4 +1,4 @@
-import { Card } from "@tremor/react";
+import { Badge, Card } from "@tremor/react";
 import CardHeader from "./CardHeader";
 import Select from "../FormElement/select/select";
 import { MdDeleteForever } from "react-icons/md";
@@ -8,6 +8,8 @@ import Input from "../FormElement/input/input";
 import useDeviceProperties from "../../Hooks/UseMediaQueries";
 import { statusOption } from "./defaultValue";
 import CreatableSelect from "../FormElement/CreatableSelect/CreatableSelect";
+import { useState } from "react";
+import { IoCloseCircleOutline } from "react-icons/io5";
 const style = {
   inputTitle: `capitalize leading-4 tracking-wide my-`,
   inputTitleC: `capitalize leading-4 tracking-wide  ml-4 md:mt-3`,
@@ -20,6 +22,8 @@ const style = {
 };
 
 const ProductInventory = () => {
+  const featuresValue =
+    JSON.parse(localStorage.getItem("products-storage")).features || [];
   const { isTabletOrMobile } = useDeviceProperties();
   const {
     register,
@@ -62,7 +66,16 @@ const ProductInventory = () => {
   function onItemDelete(index: number) {
     remove(index);
   }
-
+  const featuresDisplay = featuresValue?.map((feature: any, i: number) => (
+    <div key={i} className="flex items-center gap-3 mx-1">
+      <Badge className="">{feature}</Badge>
+      {/* <p className="text-[#333]"></p> */}
+    </div>
+  ));
+  const findStatusByValue = (options: any, value: any) => {
+    // setFeaturesValue((prevValue) => [...prevValue, value]);
+    return options.find((option: any) => option.value === value);
+  };
   return (
     <Card>
       <CardHeader title="product inventory" />
@@ -82,18 +95,22 @@ const ProductInventory = () => {
         </span>
         <span className="flex flex-col justify-between ">
           <h1 className={`${style.inputTitle} my-2`}>features*</h1>
-
+          <p className="text-xs text-gray-500 capitalize">
+            create new features for your products
+          </p>
           <CreatableSelect
-            placeholder="features*"
-            options={statusOption}
-            field={statusOption.find(
-              ({ value }: any) => value === FeaturesField.value
-            )}
+            placeholder="add features*"
+            // options={statusOption}
+            field={findStatusByValue(statusOption, FeaturesField.value)}
+            // field={statusOption.find(
+            //   ({ value }: any) => value === FeaturesField.value
+            // )}
             handleSelectChange={handleFeaturesChange}
           />
         </span>
+        <span className="flex justify-end col-span-2">{featuresDisplay}</span>
       </div>
-      <span className="flex flex-col justify-between w-full">
+      <span className="flex flex-col justify-between w-full mt-10">
         <h1 className={`${style.inputTitle} my-2`}>specifications*</h1>
         <span>
           {fields.map((specifications: any, index: number) => (

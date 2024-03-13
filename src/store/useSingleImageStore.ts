@@ -9,23 +9,18 @@ interface Image {
 }
 
 type ImageDataState = {
-  newImageData: Image | undefined;
-  setNewImageData: (data: Image | undefined) => void;
+  newImageData: Image | undefined | null;
+  setNewImageData: (data: Image | undefined | null) => void;
   clearStore: () => void;
 };
-const ImageDataStore = create<ImageDataState>((set) => ({
-  newImageData: undefined,
-  setNewImageData: (data) => set({ newImageData: data }),
-  clearStore: () => set({ newImageData: undefined }),
-}));
 
 export const useSingleImageStore = create<ImageDataState>()(
   devtools(
     persist(
       (set) => ({
-        newImageData: undefined,
+        newImageData: null,
         setNewImageData: (data) => set({ newImageData: data }),
-        clearStore: () => set({ newImageData: undefined }),
+        clearStore: () => set({ newImageData: null }),
       }),
       {
         name: "SingleImageStore-storage",
@@ -34,3 +29,8 @@ export const useSingleImageStore = create<ImageDataState>()(
     )
   )
 );
+// const ImageDataStore = create<ImageDataState>((set) => ({
+//   newImageData: null,
+//   setNewImageData: (data) => set({ newImageData: data }),
+//   clearStore: () => set({ newImageData: null }),
+// }));

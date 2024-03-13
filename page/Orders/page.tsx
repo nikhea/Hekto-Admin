@@ -40,7 +40,8 @@ const Orders = (props: Props) => {
         name: `${item.user.firstname + item.user.lastname} ${item.user.email}`,
         image:
           "https://res.cloudinary.com/djkqaqoj3/image/upload/v1686020514/cover-productImages-undefined-1686020113705/qggstfyhcspzpklr4bhl.jpg",
-        total: formatToCurrency(item.total),
+        total: item.total,
+        totalWithFormate: formatToCurrency(item.total),
         deliveryStatus: item.deliveryStatus,
         date: formatDate(item.createdAt),
         time: formatTime(item.createdAt),
@@ -55,13 +56,14 @@ const Orders = (props: Props) => {
   }
   {
   }
+
   return (
     <div>
       {/* className="overflow-hidden " */}
       <Card style={{ gap: 20 }}>
         <h1 className="text-xl font-bold capitalize">orders</h1>
         <RevenunCards data={orderStats} />
-        <OrderChart orderStats={orderStats} />
+        <OrderChart orderStats={orderStats} data={data} />
         {isTabletOrMobile ? (
           <OrdersMobileCards orders={data} />
         ) : (
