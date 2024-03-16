@@ -9,6 +9,8 @@ import useDeviceProperties from "../../Hooks/UseMediaQueries";
 import { statusOption } from "./defaultValue";
 import CreatableSelect from "../FormElement/CreatableSelect/CreatableSelect";
 import { IoCloseCircleOutline } from "react-icons/io5";
+import { useFeaturesStore } from "../../store/useProductFeatures";
+import { useEffect } from "react";
 const style = {
   inputTitle: `capitalize leading-4 tracking-wide my-`,
   inputTitleC: `capitalize leading-4 tracking-wide  ml-4 md:mt-3`,
@@ -20,34 +22,23 @@ const style = {
   errors: `block text-red-500 capitalize  leading-4 tracking-wide my-4 ml-4`,
 };
 
-const handleClick = (i: number) => {
-  console.log("clicked", i);
-};
-const ProductInventory = ({ features }: any) => {
-  const featuresDisplay = features.map((feature: any, i: number) => (
-    <div key={i} className="flex items-center gap-3 mx-1 ">
-      <Badge
-        className="flex items-center"
-        // icon={IoCloseCircleOutline}
-      >
-        <span className="flex items-center gap-1 ">
-          <IoCloseCircleOutline
-            className="cursor-pointer"
-            onClick={() => handleClick(i)}
-          />
-          {feature}
-        </span>
-      </Badge>
-      {/* <p className="text-[#333]"></p> */}
-    </div>
-  ));
+const ProductInventory = ({ productFeatures }: any) => {
+  const { setFeatures, features, removeFeatures } = useFeaturesStore();
   const { isTabletOrMobile } = useDeviceProperties();
+
   const {
     register,
     control,
     formState: { errors },
+    setValue,
     getValues,
   } = useFormContext();
+  useEffect(() => {
+    if (productFeatures) {
+      setFeatures(productFeatures);
+      setValue("features", features);
+    }
+  }, [setFeatures, features, productFeatures]);
   const { field: statusField } = useController({
     name: "status",
     control,
@@ -81,6 +72,24 @@ const ProductInventory = ({ features }: any) => {
     remove(index);
   }
 
+  const handleClick = (i: number) => {
+    console.log(i);
+
+    removeFeatures(i);
+  };
+  const featuresDisplay = features.map((feature: any, i: number) => (
+    <div key={i} className="flex items-center gap-3 mx-1 ">
+      <Badge className="flex items-center">
+        <span className="flex items-center gap-1 ">
+          <IoCloseCircleOutline
+            className="cursor-pointer"
+            onClick={() => handleClick(i)}
+          />
+          {feature}
+        </span>
+      </Badge>
+    </div>
+  ));
   return (
     <Card>
       <CardHeader title="product inventory" />
