@@ -59,7 +59,7 @@ const ProductForm = ({ defaultValue, productId }: any) => {
             productPhotos={photos}
             coverPhotos={defaultValue.coverPhoto}
           />
-          <ProductInventory features={defaultValue.features} />
+          <ProductInventory productFeatures={defaultValue.features} />
           <ProductState isLoading={isLoading} />
         </div>
       </form>
