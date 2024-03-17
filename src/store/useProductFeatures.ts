@@ -29,9 +29,15 @@ export const useFeaturesStore = create<IFeaturesStore>()(
             set((state) => ({ features: [...state.features, features] }));
           },
           removeFeatures: (index: number) => {
-            set((state) => ({
-              features: state.features.filter((_, i) => i !== index),
-            }));
+            set((state) => {
+              console.log("Removing feature at index:", index);
+              const filteredFeatures = state.features.filter(
+                (_, i) => i !== index
+              );
+              console.log(filteredFeatures);
+
+              return { features: filteredFeatures };
+            });
           },
           clearFeatures: () => {
             set({ features: [] });

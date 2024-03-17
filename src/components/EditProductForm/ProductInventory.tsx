@@ -23,7 +23,8 @@ const style = {
 };
 
 const ProductInventory = ({ productFeatures }: any) => {
-  const { setFeatures, features, removeFeatures } = useFeaturesStore();
+  const { setFeatures, features, removeFeatures, addFeatures } =
+    useFeaturesStore();
   const { isTabletOrMobile } = useDeviceProperties();
 
   const {
@@ -34,7 +35,7 @@ const ProductInventory = ({ productFeatures }: any) => {
     getValues,
   } = useFormContext();
   useEffect(() => {
-    if (productFeatures) {
+    if (productFeatures && !features.length) {
       setFeatures(productFeatures);
       setValue("features", features);
     }
@@ -54,10 +55,16 @@ const ProductInventory = ({ productFeatures }: any) => {
   };
   const handleFeaturesChange = (option: any) => {
     FeaturesField.onChange(option.value);
-    const features = option.map((element: any) => {
+    const featuresl = option.map((element: any) => {
       return element.value;
     });
-    return FeaturesField.onChange(features);
+
+    option.forEach((option: any) => {
+      if (!featuresl.includes(features)) {
+        addFeatures(option.value);
+      }
+    });
+    return FeaturesField.onChange(featuresl);
   };
   const { fields, append, remove } = useFieldArray({
     control,
@@ -72,24 +79,38 @@ const ProductInventory = ({ productFeatures }: any) => {
     remove(index);
   }
 
-  const handleClick = (i: number) => {
-    console.log(i);
-
-    removeFeatures(i);
+  const handleRemoveFeature = (index: number) => {
+    removeFeatures(index);
   };
-  const featuresDisplay = features.map((feature: any, i: number) => (
-    <div key={i} className="flex items-center gap-3 mx-1 ">
-      <Badge className="flex items-center">
-        <span className="flex items-center gap-1 ">
-          <IoCloseCircleOutline
-            className="cursor-pointer"
-            onClick={() => handleClick(i)}
-          />
-          {feature}
-        </span>
-      </Badge>
-    </div>
-  ));
+  const featuresDisplay = features
+    ? features.map((feature: any, index: number) => (
+        <div key={index} className="flex items-center gap-3 mx-1 ">
+          <Badge className="flex items-center">
+            <span className="flex items-center gap-1 ">
+              <IoCloseCircleOutline
+                className="cursor-pointer"
+                onClick={() => handleRemoveFeature(index)}
+              />
+              {feature}
+            </span>
+          </Badge>
+        </div>
+      ))
+    : null;
+
+  // const featuresDisplay = features.map((feature: any, index: number) => (
+  //   <div key={index} className="flex items-center gap-3 mx-1 ">
+  //     <Badge className="flex items-center">
+  //       <span className="flex items-center gap-1 ">
+  //         <IoCloseCircleOutline
+  //           className="cursor-pointer"
+  //           onClick={() => handleRemoveFeature(index)}
+  //         />
+  //         {feature}
+  //       </span>
+  //     </Badge>
+  //   </div>
+  // ));
   return (
     <Card>
       <CardHeader title="product inventory" />
